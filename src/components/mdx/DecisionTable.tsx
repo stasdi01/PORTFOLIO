@@ -15,15 +15,11 @@ export function DecisionTable({
           <p className="font-serif text-subtitle text-ink">{row.decision}</p>
           <dl className="mt-4 flex flex-col gap-4">
             <div>
-              <dt className="text-eyebrow font-semibold uppercase text-accent">
-                Why
-              </dt>
+              <dt className="eyebrow text-accent">Why</dt>
               <dd className="mt-2 text-muted">{row.why}</dd>
             </div>
             <div>
-              <dt className="text-eyebrow font-semibold uppercase text-subtle">
-                What I&rsquo;d reconsider
-              </dt>
+              <dt className="eyebrow text-subtle">What I&rsquo;d reconsider</dt>
               <dd className="mt-2 text-muted">{row.reconsider}</dd>
             </div>
           </dl>

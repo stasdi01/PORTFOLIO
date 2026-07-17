@@ -3,10 +3,14 @@ import { experience } from "@content/experience";
 import { about } from "@content/about";
 import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
+import { FeaturedProject } from "@/components/site/FeaturedProject";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ExperienceItem } from "@/components/site/ExperienceItem";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
+
+const featuredProject = projects.find((project) => project.featured);
+const otherProjects = projects.filter((project) => !project.featured);
 
 export default function Home() {
   return (
@@ -23,9 +27,16 @@ export default function Home() {
       <main>
         <Section id="projects" eyebrow="Selected work">
           <div className="flex flex-col gap-6">
-            {projects.map((project) => (
-              <ProjectCard key={project.name} project={project} />
-            ))}
+            {featuredProject ? (
+              <FeaturedProject project={featuredProject} />
+            ) : null}
+            {otherProjects.length > 0 ? (
+              <div className="grid gap-6 sm:grid-cols-2">
+                {otherProjects.map((project) => (
+                  <ProjectCard key={project.name} project={project} />
+                ))}
+              </div>
+            ) : null}
           </div>
         </Section>
 

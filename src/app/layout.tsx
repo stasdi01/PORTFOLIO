@@ -1,10 +1,12 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter } from "next/font/google";
+import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { site } from "@content/site";
+import { SiteHeader } from "@/components/site/SiteHeader";
 import "./globals.css";
 
-// Fraunces (variable) carries the display type; Inter (variable) is the body face.
-// Both are self-hosted by next/font with matched fallback metrics → no layout shift.
+// Fraunces (variable) carries the display type; Inter (variable) is the body face;
+// JetBrains Mono sets micro-labels and technical links. All self-hosted by
+// next/font with matched fallback metrics → no layout shift.
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
@@ -14,6 +16,12 @@ const fraunces = Fraunces({
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-inter",
+  display: "swap",
+});
+
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-jetbrains-mono",
   display: "swap",
 });
 
@@ -40,9 +48,12 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} antialiased`}
+      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
-      <body className="min-h-dvh">{children}</body>
+      <body className="min-h-dvh">
+        <SiteHeader />
+        {children}
+      </body>
     </html>
   );
 }

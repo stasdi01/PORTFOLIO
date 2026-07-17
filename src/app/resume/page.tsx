@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@content/site";
 import { experience } from "@content/experience";
 import { projects } from "@content/projects";
+import { StackList } from "@/components/site/StackList";
 
 export const metadata: Metadata = {
   title: "Résumé",
@@ -17,16 +18,10 @@ const resumeProjects = projects.filter(
 export default function ResumePage() {
   return (
     <main className="mx-auto max-w-2xl px-6 py-24">
-      <div className="flex items-center justify-between gap-4">
-        <Link
-          href="/"
-          className="link-underline text-sm text-muted hover:text-accent-strong"
-        >
-          ← Back home
-        </Link>
+      <div className="flex justify-end">
         <a
           href={site.resumePdfPath}
-          className="link-underline text-sm text-accent-strong"
+          className="link-underline font-mono text-sm text-accent-strong"
           download
         >
           Download PDF ↓
@@ -56,7 +51,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-education">
         <h2
           id="resume-education"
-          className="text-eyebrow font-semibold uppercase text-accent"
+          className="eyebrow text-accent"
         >
           Education
         </h2>
@@ -73,7 +68,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-experience">
         <h2
           id="resume-experience"
-          className="text-eyebrow font-semibold uppercase text-accent"
+          className="eyebrow text-accent"
         >
           Experience
         </h2>
@@ -106,7 +101,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-projects">
         <h2
           id="resume-projects"
-          className="text-eyebrow font-semibold uppercase text-accent"
+          className="eyebrow text-accent"
         >
           Projects
         </h2>
@@ -125,7 +120,8 @@ export default function ResumePage() {
                 ) : null}
               </div>
               <p className="mt-2 text-muted">{project.tagline}</p>
-              <p className="mt-2 text-sm text-subtle">{project.stack.join(" · ")}</p>
+              <StackList stack={project.stack} className="mt-2" />
+
             </article>
           ))}
         </div>

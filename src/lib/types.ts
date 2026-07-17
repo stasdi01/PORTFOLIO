@@ -5,6 +5,8 @@ export type Screenshot = {
   src: string;
   alt: string;
   caption?: string;
+  /** Address shown in the browser-frame bar, e.g. "dormsy.app". Optional. */
+  url?: string;
 };
 
 export type Project = {
@@ -12,10 +14,14 @@ export type Project = {
   /** One-sentence problem statement — what this solves, plainly. */
   tagline: string;
   stack: string[];
+  /** Short, true facts shown as chips (e.g. "Solo build"). Never invented metrics. */
+  facts?: string[];
   liveUrl?: string;
   repoUrl?: string;
   /** Internal route to a long-form case study, if one exists. */
   caseStudyUrl?: string;
+  /** Marks the flagship project rendered as a large featured card. */
+  featured?: boolean;
   screenshot?: Screenshot;
 };
 

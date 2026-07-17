@@ -18,6 +18,7 @@
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+  --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
   /* Display type. Fraunces carries the design; large size contrast. */
   --text-display: clamp(2.75rem, 1.4rem + 5vw, 3.5rem);
@@ -84,6 +85,18 @@
 }
 
 @layer components {
+  /*
+    Monospace micro-label used for eyebrows and section headings. Signals
+    "developer" without touching the Fraunces display type.
+  */
+  .eyebrow {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    font-weight: 500;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+
   /*
     Animated underline that draws in from the left on hover/focus.
     Kept as a component utility so markup stays free of arbitrary values.
