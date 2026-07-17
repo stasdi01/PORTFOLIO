@@ -1,36 +1,111 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Portfolio — Dimitrije Stašić
 
-## Getting Started
+A fast, type-and-content-driven personal site. Single-scroll home, a long-form
+DormSy case study, and a résumé page. Built with Next.js (App Router), Tailwind
+CSS v4, and MDX. No CMS, no database — all copy lives in typed files under
+`/content`.
 
-First, run the development server:
+## Run locally
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+npm install
+npm run dev        # http://localhost:3000
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+npm run build      # production build
+npm run start      # serve the production build
+npx tsc --noEmit   # type check
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+Requires Node 20+ (Node 24 LTS recommended, matching Vercel).
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## Where to edit content
 
-## Learn More
+All copy is separated from components. You can change everything below without
+touching JSX.
 
-To learn more about Next.js, take a look at the following resources:
+| File | What it controls |
+| --- | --- |
+| `content/site.ts` | Name, positioning line, location, email, GitHub/LinkedIn URLs, résumé paths. Feeds the hero, footer, résumé, metadata, and OG image. |
+| `content/projects.ts` | The project cards (max 3). DormSy is real; two placeholder entries are there to fill or delete. |
+| `content/experience.ts` | Roles at Mayo Clinic and SkyIT. Dates are real; bullets are placeholders. |
+| `content/about.ts` | The short About paragraphs. |
+| `content/dormsy.mdx` | The full DormSy case study. Prose is Markdown; the boxed sections are React components imported at the top of the file. |
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+**Screenshots:** drop image files into `public/screenshots/`, then point
+`ScreenshotSlot` at them (or swap it for `next/image`). Until then, slots render
+as labelled placeholder frames.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+**Résumé PDF:** replace `public/resume.pdf` (currently a placeholder) with your
+real file. The `/resume` page also renders a clean HTML version from the same
+content files.
 
-## Deploy on Vercel
+## Design system
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- **Type:** Fraunces (display) + Inter (body), self-hosted via `next/font`.
+- **Color:** off-white background, near-black ink, one burnt-orange accent.
+- **Tokens:** defined once in `src/app/globals.css` under `@theme` (Tailwind v4
+  is CSS-first — there is no `tailwind.config`). Spacing sticks to the
+  4 / 8 / 16 / 24 / 48 / 96 scale.
+- Custom case-study components live in `src/components/mdx/`; site components in
+  `src/components/site/`.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## TODO checklist (fill these before publishing)
+
+Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
+
+**`content/site.ts`**
+- [ ] Set your real GitHub URL.
+- [ ] Set your real LinkedIn URL.
+
+**`content/experience.ts`**
+- [ ] Write the Mayo Clinic bullets (what you built + impact).
+- [ ] Write the SkyIT bullets. Confirm the SkyIT period (currently "Current").
+
+**`content/projects.ts`**
+- [ ] Add DormSy's live URL and repo URL (or remove them).
+- [ ] Replace or delete the two placeholder project cards ("Project two/three").
+- [ ] Add a DormSy screenshot to `public/screenshots/`.
+
+**`content/about.ts`**
+- [ ] Optional: one more personal sentence.
+
+**`content/dormsy.mdx`**
+- [ ] QuickFacts: add the timeline and the live/repo links.
+- [ ] The problem: 2–3 sentences on how Luther students currently handle move-out.
+- [ ] Architecture: fill in the three decision "why" and "reconsider" cells.
+- [ ] Problems: link each bug to a real file/commit if the repo is public
+      (add a `source={{ href, label }}` prop to `ProblemFix`).
+- [ ] What's next: replace the three placeholder list items.
+- [ ] Add a case-study screenshot.
+
+**`src/app/resume/page.tsx`**
+- [ ] Optional: degree type, GPA, honors, or coursework in Education.
+
+**Assets**
+- [ ] Replace `public/resume.pdf` with your real résumé.
+
+## Deploy to Vercel
+
+1. Push this repo to GitHub.
+2. In Vercel, **Add New → Project** and import the repo. Framework preset
+   (Next.js) and build settings are detected automatically.
+3. Add an environment variable so metadata, the sitemap, robots, and the OG
+   image use absolute production URLs:
+
+   ```
+   NEXT_PUBLIC_SITE_URL = https://your-domain.com
+   ```
+
+   (Without it, these fall back to `http://localhost:3000`.)
+4. Deploy.
+
+### Custom domain
+
+1. Vercel project → **Settings → Domains → Add**, enter your domain.
+2. At your registrar, add the DNS records Vercel shows — an `A` record for the
+   apex (`@`) and/or a `CNAME` for `www` pointing to `cname.vercel-dns.com`.
+3. Wait for DNS to verify; Vercel issues the SSL certificate automatically.
+4. Update `NEXT_PUBLIC_SITE_URL` to the custom domain and redeploy so metadata
+   URLs match.
