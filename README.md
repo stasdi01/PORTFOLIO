@@ -1,8 +1,8 @@
-# Portfolio — Dimitrije Stašić
+# Portfolio · Dimitrije Stašić
 
 A fast, type-and-content-driven personal site. Single-scroll home, a long-form
 DormSy case study, and a résumé page. Built with Next.js (App Router), Tailwind
-CSS v4, and MDX. No CMS, no database — all copy lives in typed files under
+CSS v4, and MDX. No CMS, no database; all copy lives in typed files under
 `/content`.
 
 ## Run locally
@@ -46,7 +46,7 @@ content files.
 - **Type:** Fraunces (display) + Inter (body), self-hosted via `next/font`.
 - **Color:** off-white background, near-black ink, one burnt-orange accent.
 - **Tokens:** defined once in `src/app/globals.css` under `@theme` (Tailwind v4
-  is CSS-first — there is no `tailwind.config`). Spacing sticks to the
+  is CSS-first, so there is no `tailwind.config`). Spacing sticks to the
   4 / 8 / 16 / 24 / 48 / 96 scale.
 - Custom case-study components live in `src/components/mdx/`; site components in
   `src/components/site/`.
@@ -56,8 +56,8 @@ content files.
 Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 
 **`content/site.ts`**
-- [ ] Set your real GitHub URL.
-- [ ] Set your real LinkedIn URL.
+- [x] Set your real GitHub URL.
+- [x] Set your real LinkedIn URL.
 
 **`content/experience.ts`**
 - [ ] Write the Mayo Clinic bullets (what you built + impact).
@@ -104,7 +104,7 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 ### Custom domain
 
 1. Vercel project → **Settings → Domains → Add**, enter your domain.
-2. At your registrar, add the DNS records Vercel shows — an `A` record for the
+2. At your registrar, add the DNS records Vercel shows: an `A` record for the
    apex (`@`) and/or a `CNAME` for `www` pointing to `cname.vercel-dns.com`.
 3. Wait for DNS to verify; Vercel issues the SSL certificate automatically.
 4. Update `NEXT_PUBLIC_SITE_URL` to the custom domain and redeploy so metadata

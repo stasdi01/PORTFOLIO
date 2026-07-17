@@ -7,10 +7,10 @@ import { ScreenshotSlot } from "@/components/site/ScreenshotSlot";
 
 # DormSy
 
-A campus marketplace for Luther College — a place to buy and sell the furniture, appliances, and dorm gear that changes hands every time students move in and out. It's a Next.js frontend on top of a small Node.js/Express API, with Supabase for Postgres, authentication, and file storage, styled with Tailwind CSS.
+A campus marketplace for Luther College: a place to buy and sell the furniture, appliances, and dorm gear that changes hands every time students move in and out. It's a Next.js frontend on top of a small Node.js/Express API, with Supabase for Postgres, authentication, and file storage, styled with Tailwind CSS.
 
 <QuickFacts
-  role="Solo build — product, frontend, backend, and deploy"
+  role="Solo build: product, frontend, backend, and deploy"
   timeline="TODO(dimi): add the timeline (e.g. May–Aug 2025)"
   stack={["Next.js (App Router)", "Supabase", "Node.js / Express", "Railway", "Tailwind CSS"]}
   links={[
@@ -22,24 +22,24 @@ A campus marketplace for Luther College — a place to buy and sell the furnitur
 {/* TODO(dimi): if the repo or live site is public, fill in the QuickFacts links above. */}
 
 <ScreenshotSlot
-  label="DormSy — marketplace home"
+  label="DormSy marketplace home"
   caption="TODO(dimi): add a home/listings screenshot to /public/screenshots and swap ScreenshotSlot for next/image."
   className="my-12"
 />
 
 ## The idea
 
-At the end of the year, my senior friends were moving out and trying to sell their stuff — furniture, mini-fridges, desk lamps, things they'd bought new and used for a year or two. There was no good way to reach the people who actually wanted it. The Facebook groups were dead, the group chats were noise, and the timing window was only a few days. Most of it ended up thrown out. Expensive, usable things, in a dumpster.
+At the end of the year, my senior friends were moving out and trying to sell their stuff: furniture, mini-fridges, desk lamps, things they'd bought new and used for a year or two. There was no good way to reach the people who actually wanted it. The Facebook groups were dead, the group chats were noise, and the timing window was only a few days. Most of it ended up thrown out. Expensive, usable things, in a dumpster.
 
-I'm a junior. Next year that's me. And if it happened to my friends, it's happening to every graduating class, every May, at every college — while first-years arrive in August buying the same things new.
+I'm a junior. Next year that's me. And if it happened to my friends, it's happening to every graduating class, every May, at every college, while first-years arrive in August buying the same things new.
 
 The problem isn't that students don't want to buy or sell. It's that supply and demand at a college are separated by four months, and no channel connects them.
 
 ## The problem
 
-The gap is really about timing. Supply peaks in May, when leases end and seniors leave. Demand peaks in August, when new students arrive. The two never overlap, so even though nearly everyone would take the deal, there's no moment when a buyer and a seller are in the same place at the same time — and no channel that holds a listing across those four months, somewhere a May seller can post and an August buyer can still find it.
+The gap is really about timing. Supply peaks in May, when leases end and seniors leave. Demand peaks in August, when new students arrive. The two never overlap, so even though nearly everyone would take the deal, there's no moment when a buyer and a seller are in the same place at the same time, and no channel that holds a listing across those four months, somewhere a May seller can post and an August buyer can still find it.
 
-{/* TODO(dimi): 2–3 sentences on how Luther students handle this today — the Facebook "Free & For Sale" group, GroupMe, word of mouth — and why each falls short. */}
+{/* TODO(dimi): 2–3 sentences on how Luther students handle this today (the Facebook "Free & For Sale" group, GroupMe, word of mouth) and why each falls short. */}
 
 ## Architecture & technical decisions
 
@@ -47,7 +47,7 @@ DormSy is a Next.js App Router frontend talking to a small Node.js/Express API, 
 
 <ArchitectureDiagram />
 
-The interesting parts of a project like this are the decisions you can't tell were decisions from the outside. These are the ones I'd defend — and what I'd reconsider with more time.
+The interesting parts of a project like this are the decisions you can't tell were decisions from the outside. These are the ones I'd defend, and what I'd reconsider with more time.
 
 {/* TODO(dimi): confirm or replace the three decisions below with the real reasoning. */}
 
@@ -55,7 +55,7 @@ The interesting parts of a project like this are the decisions you can't tell we
   rows={[
     {
       decision: "Supabase for auth and data instead of rolling my own",
-      why: "TODO(dimi): why Supabase — Postgres, auth, and storage in one place, so I could spend time on features instead of session plumbing (~2 sentences).",
+      why: "TODO(dimi): why Supabase: Postgres, auth, and storage in one place, so I could spend time on features instead of session plumbing (~2 sentences).",
       reconsider: "TODO(dimi): what you'd reconsider (~1 sentence).",
     },
     {
@@ -74,18 +74,18 @@ The interesting parts of a project like this are the decisions you can't tell we
 ## Problems I hit
 
 <PullQuote>
-  Two of the three hardest bugs never threw an error. Nothing crashed — the behavior was just quietly wrong, which made them far harder to find than anything that failed loudly.
+  Two of the three hardest bugs never threw an error. Nothing crashed: the behavior was just quietly wrong, which made them far harder to find than anything that failed loudly.
 </PullQuote>
 
 {/* TODO(dimi): link each entry below to the real file or commit on GitHub if the repo is public (add a `source` prop). */}
 
 <ProblemFix title="iPhone photos wouldn't upload (HEIC across browsers)">
   <Part label="Problem">
-    Students on iPhones couldn't post listings. iOS saves camera photos as `.heic`, which browsers can't display or upload directly — and phone photos were the primary way listings get created, so this broke the main path into the product. It was roughly eight commits over two days.
+    Students on iPhones couldn't post listings. iOS saves camera photos as `.heic`, which browsers can't display or upload directly, and phone photos were the primary way listings get created, so this broke the main path into the product. It was roughly eight commits over two days.
   </Part>
 
   <Part label="Diagnosis">
-    No single approach worked everywhere. Backend conversion with `sharp` failed in the deploy environment. `heic2any` (WASM) works on Chrome and Firefox but needed CSP changes — `worker-src blob:` and `unsafe-eval` — to run its web workers, and it fell over on Safari and iOS, the exact devices generating the files.
+    No single approach worked everywhere. Backend conversion with `sharp` failed in the deploy environment. `heic2any` (WASM) works on Chrome and Firefox but needed CSP changes (`worker-src blob:` and `unsafe-eval`) to run its web workers, and it fell over on Safari and iOS, the exact devices generating the files.
   </Part>
 
   <Part label="Fix">
@@ -103,7 +103,7 @@ The interesting parts of a project like this are the decisions you can't tell we
   </Part>
 
   <Part label="Fix">
-    The callback (`auth/callback/route.ts`) now handles both flows — a `token_hash` and `type` flow via `verifyOtp`, which needs no verifier and works cross-device, alongside the existing PKCE path, sharing one `handleSession` helper.
+    The callback (`auth/callback/route.ts`) now handles both flows: a `token_hash` and `type` flow via `verifyOtp`, which needs no verifier and works cross-device, alongside the existing PKCE path, sharing one `handleSession` helper.
   </Part>
 
   <Part label="Aside">
@@ -117,11 +117,11 @@ The interesting parts of a project like this are the decisions you can't tell we
   </Part>
 
   <Part label="Diagnosis">
-    Behind Railway's reverse proxy, every request carried the proxy's IP, so the limiter keyed every user into one shared bucket. Nothing errored — the protection just wasn't there.
+    Behind Railway's reverse proxy, every request carried the proxy's IP, so the limiter keyed every user into one shared bucket. Nothing errored: the protection just wasn't there.
   </Part>
 
   <Part label="Fix">
-    One line: `app.set("trust proxy", 1)` in `server.js`, so Express reads the real client IP from `X-Forwarded-For`. The size of the change isn't the point — the failure was silent, and finding it meant understanding how proxies and `X-Forwarded-For` actually interact.
+    One line: `app.set("trust proxy", 1)` in `server.js`, so Express reads the real client IP from `X-Forwarded-For`. The size of the change isn't the point: the failure was silent, and finding it meant understanding how proxies and `X-Forwarded-For` actually interact.
   </Part>
 </ProblemFix>
 
@@ -129,14 +129,14 @@ The interesting parts of a project like this are the decisions you can't tell we
 
 I did outreach to campus offices: the Center for Sustainable Communities, International Admissions, Student Senate, and the student newspaper. The sustainability coordinator had already created an account before we even met.
 
-Growth was constrained by two things. First, thin listings — an empty marketplace gives nobody a reason to come back. Second, passive marketing — announcements don't create users; they just tell people something exists.
+Growth was constrained by two things. First, thin listings: an empty marketplace gives nobody a reason to come back. Second, passive marketing: announcements don't create users; they just tell people something exists.
 
 What I'd do differently is the actual lesson here. A marketplace needs seeded supply before it's worth visiting, and it needs in-person distribution, not announcements. The cold-start problem isn't solved by telling more people about an empty store. It's solved by making sure the first people who show up find something worth taking, and by putting the product in front of them where they already are.
 
 ## What's next
 
-{/* TODO(dimi): fill in future direction as a short list, one sentence each. Keep it honest and short. Candidates below — replace with the real plan. */}
+{/* TODO(dimi): fill in future direction as a short list, one sentence each. Keep it honest and short. Candidates below; replace with the real plan. */}
 
-- TODO(dimi): near-term direction — one sentence.
-- TODO(dimi): the feature that bridges the May–August timing gap — one sentence.
-- TODO(dimi): distribution or launch scope (e.g. one dorm or class year first) — one sentence.
+- TODO(dimi): near-term direction, one sentence.
+- TODO(dimi): the feature that bridges the May–August timing gap, one sentence.
+- TODO(dimi): distribution or launch scope (e.g. one dorm or class year first), one sentence.

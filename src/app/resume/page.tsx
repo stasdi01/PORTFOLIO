@@ -7,7 +7,7 @@ import { StackList } from "@/components/site/StackList";
 
 export const metadata: Metadata = {
   title: "Résumé",
-  description: `Résumé for ${site.name} — ${site.positioning}`,
+  description: `Résumé for ${site.name}: ${site.positioning}`,
 };
 
 // Only show projects with real copy (skip the TODO placeholder cards).

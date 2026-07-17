@@ -14,9 +14,8 @@ export const site = {
   location: "Decorah, Iowa",
   email: "stasic.dimitrije17@gmail.com",
 
-  // TODO(dimi): replace these with your real profile URLs (one line each).
-  github: "https://github.com/", // TODO(dimi): add your GitHub username
-  linkedin: "https://www.linkedin.com/in/", // TODO(dimi): add your LinkedIn handle
+  github: "https://github.com/stasdi01",
+  linkedin: "https://www.linkedin.com/in/dimitrije-stasic-a225ab35b/",
 
   // Resume is served at /resume (HTML) with a downloadable PDF at /resume.pdf.
   resumePath: "/resume",

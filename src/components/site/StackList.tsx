@@ -1,4 +1,4 @@
-// Tech stack rendered as a mono, middot-separated line — the developer-résumé
+// Tech stack rendered as a mono, middot-separated line, the developer-résumé
 // idiom, used on project cards, quick facts, and the résumé.
 export function StackList({
   stack,

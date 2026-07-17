@@ -3,7 +3,7 @@ import type { Project } from "@/lib/types";
 import { StackList } from "./StackList";
 
 // A secondary project (non-featured): name, one-sentence problem statement,
-// stack, and links. Subtle lift on hover — motion confirms, never performs.
+// stack, and links. Subtle lift on hover; motion confirms, never performs.
 export function ProjectCard({ project }: { project: Project }) {
   const { name, tagline, stack, liveUrl, repoUrl, caseStudyUrl } = project;
 

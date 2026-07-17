@@ -1,10 +1,10 @@
 import { ImageResponse } from "next/og";
 import { site } from "@content/site";
 
-// Social share card. Rendered with next/og — this file is the one place inline
+// Social share card. Rendered with next/og; this file is the one place inline
 // styles are required (ImageResponse only accepts them), so the design token
 // hex values are repeated here literally.
-export const alt = `${site.name} — Backend Developer`;
+export const alt = `${site.name} · Backend Developer`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

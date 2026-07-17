@@ -3,7 +3,7 @@ import Link from "next/link";
 import Content from "@content/dormsy.mdx";
 
 export const metadata: Metadata = {
-  title: "DormSy — Case Study",
+  title: "DormSy: Case Study",
   description:
     "How and why I built DormSy, a campus marketplace for Luther College: the architecture, the bugs that failed silently, and what going to market actually taught me.",
 };

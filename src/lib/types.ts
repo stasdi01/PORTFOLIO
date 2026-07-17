@@ -11,7 +11,7 @@ export type Screenshot = {
 
 export type Project = {
   name: string;
-  /** One-sentence problem statement — what this solves, plainly. */
+  /** One-sentence problem statement: what this solves, plainly. */
   tagline: string;
   stack: string[];
   /** Short, true facts shown as chips (e.g. "Solo build"). Never invented metrics. */
