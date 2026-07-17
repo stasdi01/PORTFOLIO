@@ -1,26 +1,101 @@
 @import "tailwindcss";
 
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
+/*
+  Design tokens (Tailwind v4 CSS-first config).
+  One accent (burnt orange), off-white background, near-black ink.
+  Spacing intentionally uses only the default steps that map to the
+  4 / 8 / 16 / 24 / 48 / 96 scale (Tailwind 1 / 2 / 4 / 6 / 12 / 24).
+*/
+@theme {
+  --color-bg: #faf9f7;
+  --color-ink: #1a1a1a;
+  --color-muted: #6b6a67;
+  --color-subtle: #8a8984;
+  --color-accent: #c65a2e;
+  --color-accent-strong: #a8481f;
+  --color-line: #e7e5e0;
+  --color-card: #ffffff;
+
+  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
+
+  /* Display type. Fraunces carries the design; large size contrast. */
+  --text-display: clamp(2.75rem, 1.4rem + 5vw, 3.5rem);
+  --text-display--line-height: 1.04;
+  --text-display--letter-spacing: -0.02em;
+
+  --text-title: clamp(1.6rem, 1rem + 2.4vw, 2.125rem);
+  --text-title--line-height: 1.15;
+  --text-title--letter-spacing: -0.01em;
+
+  --text-subtitle: 1.25rem;
+  --text-subtitle--line-height: 1.35;
+
+  /* Small caps-style eyebrow label. */
+  --text-eyebrow: 0.8125rem;
+  --text-eyebrow--line-height: 1;
+  --text-eyebrow--letter-spacing: 0.09em;
 }
 
-@theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
-}
+@layer base {
+  html {
+    scroll-behavior: smooth;
+    /* Never let a fragment jump hide content behind future sticky headers. */
+    scroll-padding-top: 2rem;
+  }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+  body {
+    background-color: var(--color-bg);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    /* Body 17px per the brief; comfortable measure and rendering. */
+    font-size: 1.0625rem;
+    line-height: 1.6;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1,
+  h2,
+  h3,
+  h4 {
+    font-family: var(--font-serif);
+    font-weight: 500;
+    color: var(--color-ink);
+  }
+
+  /* Accent selection, kept subtle. */
+  ::selection {
+    background-color: color-mix(in srgb, var(--color-accent) 22%, transparent);
+    color: var(--color-ink);
+  }
+
+  /* Real, visible focus states everywhere (WCAG AA, keyboard nav). */
+  :focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+    border-radius: 2px;
+  }
+
+  hr {
+    border: 0;
+    border-top: 1px solid var(--color-line);
   }
 }
 
-body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+/*
+  Motion confirms actions, never performs. Honor reduced-motion:
+  strip transitions/animations and disable smooth scroll.
+*/
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
 }
