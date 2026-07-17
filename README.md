@@ -60,19 +60,20 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [x] Set your real LinkedIn URL.
 
 **`content/experience.ts`**
-- [ ] Write the Mayo Clinic bullets (what you built + impact).
-- [ ] Write the SkyIT bullets. Confirm the SkyIT period (currently "Current").
+- [x] Real roles and bullets from the résumé (Mayo Clinic, Jaka Lounge, WEBX).
 
 **`content/projects.ts`**
-- [ ] Add DormSy's live URL and repo URL (or remove them).
-- [ ] Replace or delete the two placeholder project cards ("Project two/three").
+- [x] Placeholder cards replaced with real projects (DormSy + Clinic Management).
+- [ ] Add DormSy's live custom-domain URL and repo URL (or remove them).
+- [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
 - [ ] Add a DormSy screenshot to `public/screenshots/`.
 
 **`content/about.ts`**
 - [ ] Optional: one more personal sentence.
 
 **`content/dormsy.mdx`**
-- [ ] QuickFacts: add the timeline and the live/repo links.
+- [x] QuickFacts timeline set (March – April 2026).
+- [ ] QuickFacts: add the live/repo links.
 - [ ] The problem: 2–3 sentences on how Luther students currently handle move-out.
 - [ ] Architecture: fill in the three decision "why" and "reconsider" cells.
 - [ ] Problems: link each bug to a real file/commit if the repo is public
@@ -80,8 +81,8 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [ ] What's next: replace the three placeholder list items.
 - [ ] Add a case-study screenshot.
 
-**`src/app/resume/page.tsx`**
-- [ ] Optional: degree type, GPA, honors, or coursework in Education.
+**`content/skills.ts`** and **`src/app/resume/page.tsx`**
+- [x] Education (B.A. Computer Science, 2023–2027) and Technical Skills from the résumé.
 
 **Assets**
 - [ ] Replace `public/resume.pdf` with your real résumé.

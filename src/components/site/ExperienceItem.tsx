@@ -2,7 +2,7 @@ import type { Experience } from "@/lib/types";
 
 // One role: header (role, company, period) then impact bullets.
 export function ExperienceItem({ item }: { item: Experience }) {
-  const { company, role, period, bullets } = item;
+  const { company, role, period, location, bullets } = item;
 
   return (
     <article className="grid gap-2 sm:grid-cols-[1fr_auto] sm:items-baseline">
@@ -10,7 +10,10 @@ export function ExperienceItem({ item }: { item: Experience }) {
         {role}
         <span className="text-muted"> · {company}</span>
       </h3>
-      <p className="text-sm text-subtle sm:text-right">{period}</p>
+      <p className="text-sm text-subtle sm:text-right">
+        {location ? <span>{location} · </span> : null}
+        {period}
+      </p>
 
       <ul className="mt-4 flex list-none flex-col gap-2 text-muted sm:col-span-2">
         {bullets.map((bullet, i) => (

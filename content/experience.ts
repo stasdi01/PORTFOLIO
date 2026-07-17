@@ -1,26 +1,39 @@
 import type { Experience } from "@/lib/types";
 
-// The roles and dates are real; the bullets are placeholders.
-// Each bullet should say what you built and its impact, not responsibilities.
+// Real roles, dates, and bullets from the résumé. Bullets lead with what was
+// built and its impact.
 export const experience: Experience[] = [
   {
-    company: "Mayo Clinic, Digital Health Division",
-    role: "Software Developer Intern",
-    period: "Spring 2026",
+    company: "Mayo Clinic",
+    role: "Software Engineer Intern",
+    period: "Feb 2026 – Present",
+    location: "Rochester, MN",
     bullets: [
-      "TODO(dimi): what you built and the impact: one sentence, lead with the system or feature (~25 words).",
-      "TODO(dimi): a second concrete contribution, e.g. a technical detail a recruiter would find credible (~25 words).",
-      "TODO(dimi): optional third bullet if it adds something the first two don't.",
+      "Built a browser-based DICOM PHI anonymizer applying 300+ de-identification rules per HIPAA standards.",
+      "Extended the open-source OHIF medical imaging viewer with a custom React radiology assessment panel.",
+      "Developed a FastAPI and React user-management system with JWT auth, RBAC, and multi-tenant data isolation.",
     ],
   },
   {
-    company: "SkyIT / GBCS Group",
-    role: "Backend Developer Intern",
-    period: "Current",
+    company: "Jaka Lounge Human Capital",
+    role: "Software Engineer Intern",
+    period: "Jul 2025 – Sep 2025",
+    location: "Belgrade, Serbia",
     bullets: [
-      "TODO(dimi): what you built on the backend and its impact: endpoints, services, data (~25 words).",
-      "TODO(dimi): a second contribution, e.g. reliability, performance, or a problem you solved (~25 words).",
-      "TODO(dimi): optional third bullet if it adds something the first two don't.",
+      "Contributed to backend development of a career-verification platform, building database records in Kotlin.",
+      "Developed company-management features and REST API integrations under senior-engineer supervision.",
+      "Adopted team coding standards and Git version-control practices in a professional development environment.",
+    ],
+  },
+  {
+    company: "WEBX Team",
+    role: "Software Engineer Intern",
+    period: "Apr 2025 – Jun 2025",
+    location: "Belgrade, Serbia",
+    bullets: [
+      "Built RESTful APIs with Spring Boot and PostgreSQL, improving backend response times for client applications.",
+      "Tested and debugged backend modules using JUnit, reducing production bugs and improving release stability.",
+      "Deployed APIs via Docker in a staging environment, accelerating cross-team integration testing.",
     ],
   },
 ];

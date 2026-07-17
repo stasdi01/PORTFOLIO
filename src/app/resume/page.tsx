@@ -3,6 +3,7 @@ import Link from "next/link";
 import { site } from "@content/site";
 import { experience } from "@content/experience";
 import { projects } from "@content/projects";
+import { skills } from "@content/skills";
 import { StackList } from "@/components/site/StackList";
 
 export const metadata: Metadata = {
@@ -55,13 +56,21 @@ export default function ResumePage() {
         >
           Education
         </h2>
-        <div className="mt-6">
-          <h3 className="text-subtitle font-serif">Luther College</h3>
-          <p className="mt-2 text-muted">
-            Computer Science · Decorah, Iowa · Expected 2027
-          </p>
-          {/* TODO(dimi): add degree type (B.A./B.S.), GPA, honors, or relevant
-              coursework if you want them on the résumé (one short line). */}
+        <div className="mt-6 flex flex-col gap-6">
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 className="text-subtitle font-serif">Luther College</h3>
+              <p className="text-sm text-subtle">Decorah, IA · Aug 2023 – May 2027</p>
+            </div>
+            <p className="mt-2 text-muted">Bachelor of Arts in Computer Science</p>
+          </div>
+          <div>
+            <div className="flex flex-wrap items-baseline justify-between gap-x-6 gap-y-1">
+              <h3 className="text-subtitle font-serif">The Kiski School</h3>
+              <p className="text-sm text-subtle">Saltsburg, PA · May 2023</p>
+            </div>
+            <p className="mt-2 text-muted">High School Diploma</p>
+          </div>
         </div>
       </section>
 
@@ -80,7 +89,10 @@ export default function ResumePage() {
                   {item.role}
                   <span className="text-muted"> · {item.company}</span>
                 </h3>
-                <p className="text-sm text-subtle">{item.period}</p>
+                <p className="text-sm text-subtle">
+                  {item.location ? <span>{item.location} · </span> : null}
+                  {item.period}
+                </p>
               </div>
               <ul className="mt-4 flex list-none flex-col gap-2 text-muted">
                 {item.bullets.map((bullet, i) => (
@@ -121,10 +133,26 @@ export default function ResumePage() {
               </div>
               <p className="mt-2 text-muted">{project.tagline}</p>
               <StackList stack={project.stack} className="mt-2" />
-
             </article>
           ))}
         </div>
+      </section>
+
+      <section className="mt-24" aria-labelledby="resume-skills">
+        <h2 id="resume-skills" className="eyebrow text-accent">
+          Technical Skills
+        </h2>
+        <dl className="mt-6 flex flex-col gap-4">
+          {skills.map((group) => (
+            <div
+              key={group.label}
+              className="grid gap-1 sm:grid-cols-[140px_1fr] sm:gap-6"
+            >
+              <dt className="font-mono text-sm text-ink">{group.label}</dt>
+              <dd className="text-muted">{group.items.join(", ")}</dd>
+            </div>
+          ))}
+        </dl>
       </section>
     </main>
   );
