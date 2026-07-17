@@ -83,6 +83,24 @@
   }
 }
 
+@layer components {
+  /*
+    Animated underline that draws in from the left on hover/focus.
+    Kept as a component utility so markup stays free of arbitrary values.
+  */
+  .link-underline {
+    background-image: linear-gradient(var(--color-accent), var(--color-accent));
+    background-position: 0 100%;
+    background-repeat: no-repeat;
+    background-size: 0% 1.5px;
+    transition: background-size 150ms ease;
+  }
+  .link-underline:hover,
+  .link-underline:focus-visible {
+    background-size: 100% 1.5px;
+  }
+}
+
 /*
   Motion confirms actions, never performs. Honor reduced-motion:
   strip transitions/animations and disable smooth scroll.
