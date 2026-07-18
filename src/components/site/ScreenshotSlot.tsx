@@ -9,11 +9,14 @@ export function ScreenshotSlot({
   caption,
   url,
   className,
+  onDark = false,
 }: {
   label?: string;
   caption?: string;
   url?: string;
   className?: string;
+  /** Lightens the caption for use on a dark surface. */
+  onDark?: boolean;
 }) {
   return (
     <figure className={className}>
@@ -23,7 +26,11 @@ export function ScreenshotSlot({
         </div>
       </BrowserFrame>
       {caption ? (
-        <figcaption className="mt-2 text-sm text-subtle">{caption}</figcaption>
+        <figcaption
+          className={`mt-2 text-sm ${onDark ? "text-bg/60" : "text-subtle"}`}
+        >
+          {caption}
+        </figcaption>
       ) : null}
     </figure>
   );

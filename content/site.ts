@@ -9,8 +9,16 @@ export type SiteLink = {
 export const site = {
   name: "Dimitrije Stašić",
   shortName: "Dimi",
-  // One-line positioning shown in the hero and used as the meta description base.
+  // One-line positioning used as the meta description base and OG image subtitle.
   positioning: "CS junior at Luther College. Backend developer. Building healthtech.",
+
+  // Hero: an availability eyebrow, a statement headline (the accent period is
+  // added in the component), and a credential-citing summary.
+  availability: "Seeking internship & new-grad roles · Graduating May 2027",
+  headline: "I build backend systems for healthtech",
+  summary:
+    "Three software-engineering internships, most recently at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live at Luther College.",
+
   location: "Decorah, Iowa",
   email: "stasic.dimitrije17@gmail.com",
 

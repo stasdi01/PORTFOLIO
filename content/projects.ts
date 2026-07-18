@@ -8,8 +8,9 @@ export const projects: Project[] = [
     tagline:
       "Graduating students throw out usable dorm furniture every May while first-years buy the same things new in August. DormSy is a campus marketplace that connects the two.",
     stack: ["Next.js", "TypeScript", "Express", "Supabase", "PostgreSQL", "Railway"],
+    status: "Live at Luther College",
     // Short, true facts drawn from the résumé and case study. Not metrics.
-    facts: ["Launched at Luther College", "Solo build", "Realtime in-app chat"],
+    facts: ["Solo build", "Realtime in-app chat", "Cross-device auth"],
     featured: true,
     caseStudyUrl: "/projects/dormsy",
     // TODO(dimi): add the live custom-domain URL and the repo URL (if public).

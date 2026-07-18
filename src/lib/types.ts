@@ -16,6 +16,8 @@ export type Project = {
   stack: string[];
   /** Short, true facts shown as chips (e.g. "Solo build"). Never invented metrics. */
   facts?: string[];
+  /** Live status shown as a pill on the featured card, e.g. "Live at Luther College". */
+  status?: string;
   liveUrl?: string;
   repoUrl?: string;
   /** Internal route to a long-form case study, if one exists. */
