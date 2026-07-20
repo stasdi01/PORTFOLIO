@@ -41,9 +41,11 @@ export default function Home() {
         </Section>
 
         <Section id="experience" eyebrow="Experience">
-          <div className="flex flex-col gap-12">
+          <div className="flex flex-col divide-y divide-line border-t border-line">
             {experience.map((item) => (
-              <ExperienceItem key={item.company} item={item} />
+              <div key={item.company} className="py-12">
+                <ExperienceItem item={item} />
+              </div>
             ))}
           </div>
         </Section>
