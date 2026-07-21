@@ -13,14 +13,13 @@ export const projects: Project[] = [
     facts: ["Solo build", "Realtime in-app chat", "Cross-device auth"],
     featured: true,
     caseStudyUrl: "/projects/dormsy",
-    // TODO(dimi): add the live custom-domain URL and the repo URL (if public).
-    liveUrl: undefined,
+    liveUrl: "https://getdormsy.com",
+    // TODO(dimi): add the repo URL if the repository is public.
     repoUrl: undefined,
     screenshot: {
       src: "/screenshots/dormsy-home.png",
       alt: "DormSy landing page: a marketplace just for your campus, live at Luther College",
-      // TODO(dimi): set this to the real domain to show it in the browser bar, e.g. "dormsy.app".
-      url: undefined,
+      url: "getdormsy.com",
     },
   },
   {

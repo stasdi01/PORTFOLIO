@@ -66,7 +66,8 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 
 **`content/projects.ts`**
 - [x] Real projects: DormSy (featured), Impostor League, Clinic Management.
-- [ ] Add DormSy's live custom-domain URL and repo URL (or remove them).
+- [x] DormSy live URL added (getdormsy.com).
+- [ ] Add DormSy's repo URL if the repository is public.
 - [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
 - [x] DormSy screenshot added (`public/screenshots/dormsy-home.png`).
 
@@ -75,7 +76,8 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 
 **`content/dormsy.mdx`**
 - [x] QuickFacts timeline set (March – April 2026).
-- [ ] QuickFacts: add the live/repo links.
+- [x] QuickFacts live link added (getdormsy.com).
+- [ ] QuickFacts: add the repo link if the repository is public.
 - [ ] The problem: 2–3 sentences on how Luther students currently handle move-out.
 - [ ] Architecture: fill in the three decision "why" and "reconsider" cells.
 - [ ] Problems: link each bug to a real file/commit if the repo is public
