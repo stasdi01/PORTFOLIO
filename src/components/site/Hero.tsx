@@ -1,4 +1,3 @@
-import Link from "next/link";
 import { site } from "@content/site";
 
 // Opening statement. Leads with an availability line and a positioning claim
@@ -20,12 +19,13 @@ export function Hero() {
         >
           Email me
         </a>
-        <Link
-          href={site.resumePath}
+        <a
+          href={site.resumePdfPath}
+          download
           className="rounded-full border border-line px-4 py-2 text-ink transition-colors duration-150 hover:border-ink"
         >
-          Résumé
-        </Link>
+          Download résumé (PDF)
+        </a>
       </div>
     </header>
   );

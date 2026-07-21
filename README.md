@@ -60,16 +60,17 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [x] Set your real LinkedIn URL.
 
 **`content/experience.ts`**
-- [x] Real roles and bullets from the résumé (Mayo Clinic, Jaka Lounge, WEBX).
+- [x] Real roles and bullets (Mayo Clinic, Jaka Lounge, WEBX).
+- [ ] SkyIT (Backend Developer Intern): add the start date and two real bullets.
 
 **`content/projects.ts`**
-- [x] Placeholder cards replaced with real projects (DormSy + Clinic Management).
+- [x] Real projects: DormSy (featured), Impostor League, Clinic Management.
 - [ ] Add DormSy's live custom-domain URL and repo URL (or remove them).
 - [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
 - [ ] Add a DormSy screenshot to `public/screenshots/`.
 
 **`content/about.ts`**
-- [ ] Optional: one more personal sentence.
+- [x] Personal detail added (basketball at Luther College).
 
 **`content/dormsy.mdx`**
 - [x] QuickFacts timeline set (March – April 2026).

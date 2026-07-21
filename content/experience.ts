@@ -15,6 +15,16 @@ export const experience: Experience[] = [
     ],
   },
   {
+    company: "SkyIT",
+    role: "Backend Developer Intern",
+    // TODO(dimi): add SkyIT's start date (currently just "Present") and location.
+    period: "Present",
+    bullets: [
+      "TODO(dimi): what you're building on the SkyIT backend and its impact (~25 words).",
+      "TODO(dimi): a second concrete contribution (~25 words).",
+    ],
+  },
+  {
     company: "Jaka Lounge Human Capital",
     role: "Software Engineer Intern",
     period: "Jul 2025 – Sep 2025",

@@ -14,10 +14,10 @@ export const site = {
 
   // Hero: an availability eyebrow, a statement headline (the accent period is
   // added in the component), and a credential-citing summary.
-  availability: "Seeking internship & new-grad roles · Graduating May 2027",
+  availability: "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
   headline: "I build backend systems for healthtech",
   summary:
-    "Three software-engineering internships, most recently at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live at Luther College.",
+    "I'm a computer science junior at Luther College with four software-engineering internships, most recently at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
 
   location: "Decorah, Iowa",
   email: "stasic.dimitrije17@gmail.com",

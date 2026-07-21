@@ -25,6 +25,14 @@ export const projects: Project[] = [
     },
   },
   {
+    name: "Impostor League",
+    tagline:
+      "A party game born from a night of playing Spy with friends: we're all sports fans, so I remade it around sports players and clubs instead of everyday places, with two AI-driven modes that generate the words through an OpenAI-backed Supabase Edge Function.",
+    stack: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
+    liveUrl: undefined,
+    repoUrl: "https://github.com/stasdi01/ImpostorLeague",
+  },
+  {
     name: "Clinic Management Web App",
     tagline:
       "A full-stack platform for a small medical practice: role-based staff access, patient records, scheduling, and automated reporting.",
