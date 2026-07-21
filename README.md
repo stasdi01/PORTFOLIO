@@ -61,7 +61,8 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 
 **`content/experience.ts`**
 - [x] Real roles and bullets (Mayo Clinic, Jaka Lounge, WEBX).
-- [ ] SkyIT (Backend Developer Intern): add the start date and two real bullets.
+- [x] SkyIT (Backend Developer Intern): real bullets added.
+- [ ] SkyIT: add the start month (currently year-only, "2026 – Present").
 
 **`content/projects.ts`**
 - [x] Real projects: DormSy (featured), Impostor League, Clinic Management.

@@ -15,13 +15,15 @@ export const experience: Experience[] = [
     ],
   },
   {
-    company: "SkyIT",
+    company: "SkyIT / GBCS Group",
     role: "Backend Developer Intern",
-    // TODO(dimi): add SkyIT's start date (currently just "Present") and location.
-    period: "Present",
+    // TODO(dimi): add the start month (currently year-only, e.g. "Jan 2026 – Present").
+    period: "2026 – Present",
     bullets: [
-      "TODO(dimi): what you're building on the SkyIT backend and its impact (~25 words).",
-      "TODO(dimi): a second concrete contribution (~25 words).",
+      "Contributed to a multi-tenant enterprise ESG and greenhouse-gas emissions platform (Django REST Framework, MySQL, Docker) that serves three branded frontends from one shared backend.",
+      "Built REST APIs for the emissions engine (Scope 1–4 calculations, AI recommendations) on a DTO-service architecture with JWT authentication and standardized response schemas.",
+      "Implemented multi-tenant company isolation: derived tenant context from the authenticated user and scoped every database read and write so no company can access another's data, proving it with automated two-tenant isolation tests against a Dockerized MySQL.",
+      "Developed AI recommendation APIs as a rule-based engine with company-scoped persistence, audit logging, and a documented integration contract for a teammate's module.",
     ],
   },
   {
