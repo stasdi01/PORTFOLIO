@@ -20,7 +20,9 @@ export const site = {
     "I'm a computer science junior at Luther College with four software-engineering internships, most recently at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
 
   location: "Decorah, Iowa",
-  email: "stasic.dimitrije17@gmail.com",
+  // Primary (school) email used for the nav/hero CTA and OG image; personal shown alongside.
+  email: "stasdi01@luther.edu",
+  personalEmail: "stasic.dimitrije17@gmail.com",
 
   github: "https://github.com/stasdi01",
   linkedin: "https://www.linkedin.com/in/dimitrije-stasic-a225ab35b/",

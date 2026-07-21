@@ -40,6 +40,12 @@ export default function ResumePage() {
           <a href={`mailto:${site.email}`} className="link-underline hover:text-accent-strong">
             {site.email}
           </a>
+          <a
+            href={`mailto:${site.personalEmail}`}
+            className="link-underline hover:text-accent-strong"
+          >
+            {site.personalEmail}
+          </a>
           <a href={site.github} className="link-underline hover:text-accent-strong">
             GitHub
           </a>
