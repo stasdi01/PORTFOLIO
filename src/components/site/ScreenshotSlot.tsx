@@ -1,16 +1,19 @@
+import Image from "next/image";
 import { BrowserFrame } from "./BrowserFrame";
 
-// A browser-framed placeholder for a screenshot that doesn't exist yet.
-// Renders an empty state (never a broken <img>) so the layout is real while
-// the image is still a TODO. Swap the inner div for next/image once the file
-// exists.
+// A browser-framed screenshot. Renders the real image via next/image when a
+// `src` is given, otherwise a labelled placeholder frame (never a broken img).
 export function ScreenshotSlot({
+  src,
+  alt,
   label = "Screenshot",
   caption,
   url,
   className,
   onDark = false,
 }: {
+  src?: string;
+  alt?: string;
   label?: string;
   caption?: string;
   url?: string;
@@ -21,8 +24,22 @@ export function ScreenshotSlot({
   return (
     <figure className={className}>
       <BrowserFrame url={url}>
-        <div className="flex aspect-video items-center justify-center bg-bg">
-          <span className="px-6 text-center text-sm text-subtle">{label}</span>
+        <div className="relative aspect-video bg-bg">
+          {src ? (
+            <Image
+              src={src}
+              alt={alt ?? label}
+              fill
+              sizes="(min-width: 1024px) 45vw, 100vw"
+              className="object-cover object-top"
+            />
+          ) : (
+            <div className="flex h-full items-center justify-center">
+              <span className="px-6 text-center text-sm text-subtle">
+                {label}
+              </span>
+            </div>
+          )}
         </div>
       </BrowserFrame>
       {caption ? (

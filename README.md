@@ -68,7 +68,7 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [x] Real projects: DormSy (featured), Impostor League, Clinic Management.
 - [ ] Add DormSy's live custom-domain URL and repo URL (or remove them).
 - [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
-- [ ] Add a DormSy screenshot to `public/screenshots/`.
+- [x] DormSy screenshot added (`public/screenshots/dormsy-home.png`).
 
 **`content/about.ts`**
 - [x] Personal detail added (basketball at Luther College).
@@ -81,7 +81,7 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [ ] Problems: link each bug to a real file/commit if the repo is public
       (add a `source={{ href, label }}` prop to `ProblemFix`).
 - [ ] What's next: replace the three placeholder list items.
-- [ ] Add a case-study screenshot.
+- [x] Case-study screenshot added (DormSy landing page).
 
 **`content/skills.ts`** and **`src/app/resume/page.tsx`**
 - [x] Education (B.A. Computer Science, 2023–2027) and Technical Skills from the résumé.

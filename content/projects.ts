@@ -18,9 +18,8 @@ export const projects: Project[] = [
     repoUrl: undefined,
     screenshot: {
       src: "/screenshots/dormsy-home.png",
-      alt: "DormSy marketplace home screen",
-      caption: "TODO(dimi): drop a real DormSy screenshot into /public/screenshots.",
-      // TODO(dimi): set this to the real domain once confirmed, e.g. "dormsy.app".
+      alt: "DormSy landing page: a marketplace just for your campus, live at Luther College",
+      // TODO(dimi): set this to the real domain to show it in the browser bar, e.g. "dormsy.app".
       url: undefined,
     },
   },

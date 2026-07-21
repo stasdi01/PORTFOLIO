@@ -1,6 +1,8 @@
+import Image from "next/image";
 import { projects } from "@content/projects";
 import { experience } from "@content/experience";
 import { about } from "@content/about";
+import { site } from "@content/site";
 import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
 import { FeaturedProject } from "@/components/site/FeaturedProject";
@@ -51,10 +53,19 @@ export default function Home() {
         </Section>
 
         <Section id="about" eyebrow="About">
-          <div className="flex max-w-xl flex-col gap-4 text-muted">
-            {about.paragraphs.map((paragraph, i) => (
-              <p key={i}>{paragraph}</p>
-            ))}
+          <div className="grid gap-12 sm:grid-cols-[1fr_260px] sm:items-start">
+            <div className="flex flex-col gap-4 text-muted">
+              {about.paragraphs.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+            <Image
+              src="/dimi.jpg"
+              alt={site.name}
+              width={260}
+              height={347}
+              className="rounded-lg border border-line"
+            />
           </div>
         </Section>
 

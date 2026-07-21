@@ -74,8 +74,8 @@ export function FeaturedProject({ project }: { project: Project }) {
 
         {screenshot ? (
           <ScreenshotSlot
-            label={screenshot.alt}
-            caption={screenshot.caption}
+            src={screenshot.src}
+            alt={screenshot.alt}
             url={screenshot.url}
             onDark
           />
