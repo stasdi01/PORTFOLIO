@@ -20,6 +20,8 @@ export const projects: Project[] = [
       src: "/screenshots/dormsy-home.png",
       alt: "DormSy landing page: a marketplace just for your campus, live at Luther College",
       url: "getdormsy.com",
+      width: 2000,
+      height: 1097,
     },
   },
   {

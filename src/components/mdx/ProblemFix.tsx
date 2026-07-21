@@ -41,7 +41,7 @@ export function Part({
 }) {
   return (
     <div>
-      <p className="eyebrow text-accent">{label}</p>
+      <p className="eyebrow text-accent-strong">{label}</p>
       {/* Reset the first paragraph's top margin so it sits tight under the label. */}
       <div className="mt-2 [&>p:first-child]:mt-0">{children}</div>
     </div>

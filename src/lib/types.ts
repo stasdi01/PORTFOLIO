@@ -7,6 +7,9 @@ export type Screenshot = {
   caption?: string;
   /** Address shown in the browser-frame bar, e.g. "dormsy.app". Optional. */
   url?: string;
+  /** Intrinsic pixel dimensions, so next/image reserves the right aspect ratio. */
+  width: number;
+  height: number;
 };
 
 export type Project = {

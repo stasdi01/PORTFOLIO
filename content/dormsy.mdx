@@ -25,6 +25,8 @@ A campus marketplace for Luther College: a place to buy and sell the furniture, 
   src="/screenshots/dormsy-home.png"
   alt="DormSy landing page: a marketplace just for your campus, live at Luther College"
   caption="DormSy's landing page: the verified, .edu-only campus marketplace, now live at Luther College."
+  width={2000}
+  height={1097}
   className="my-12"
 />
 
@@ -47,6 +49,16 @@ The gap is really about timing. Supply peaks in May, when leases end and seniors
 DormSy is a Next.js App Router frontend talking to a small Node.js/Express API, with Supabase underneath for Postgres, authentication, and file storage. The Express service runs on Railway and the frontend deploys separately.
 
 <ArchitectureDiagram />
+
+<ScreenshotSlot
+  src="/screenshots/dormsy-feed.png"
+  alt="DormSy listings feed with search, category filters, and item cards"
+  url="getdormsy.com/feed"
+  caption="The listings feed: search, category filters, and per-item cards, each tied to a verified campus seller."
+  width={2000}
+  height={1101}
+  className="my-12"
+/>
 
 The interesting parts of a project like this are the decisions you can't tell were decisions from the outside. These are the ones I'd defend, and what I'd reconsider with more time.
 
@@ -94,6 +106,16 @@ The interesting parts of a project like this are the decisions you can't tell we
   </Part>
 </ProblemFix>
 
+<ScreenshotSlot
+  src="/screenshots/dormsy-signup.png"
+  alt="DormSy sign-up form gated to a verified .edu college email"
+  url="getdormsy.com/sign-up"
+  caption="Sign-up is gated to a verified .edu email. The cross-device verification bug below lived in this flow."
+  width={2000}
+  height={1015}
+  className="my-12"
+/>
+
 <ProblemFix title="Email verification broke across devices">
   <Part label="Problem">
     Users signed up on a laptop, opened the confirmation email on their phone, and verification failed.
@@ -128,7 +150,7 @@ The interesting parts of a project like this are the decisions you can't tell we
 
 ## Going to market
 
-I did outreach to campus offices: the Center for Sustainable Communities, International Admissions, Student Senate, and the student newspaper. The sustainability coordinator had already created an account before we even met.
+So far, DormSy is live at a single college, Luther, with around 30 users. I got there through outreach to campus offices: the Center for Sustainable Communities, International Admissions, Student Senate, and the student newspaper. The sustainability coordinator had already created an account before we even met.
 
 Growth was constrained by two things. First, thin listings: an empty marketplace gives nobody a reason to come back. Second, passive marketing: announcements don't create users; they just tell people something exists.
 

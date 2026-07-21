@@ -14,9 +14,25 @@ import { Footer } from "@/components/site/Footer";
 const featuredProject = projects.find((project) => project.featured);
 const otherProjects = projects.filter((project) => !project.featured);
 
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const personJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: site.name,
+  url: siteUrl,
+  jobTitle: "Software Engineer",
+  email: `mailto:${site.email}`,
+  alumniOf: { "@type": "CollegeOrUniversity", name: "Luther College" },
+  sameAs: [site.github, site.linkedin],
+};
+
 export default function Home() {
   return (
     <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
+      />
       <a
         href="#projects"
         className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-10 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"

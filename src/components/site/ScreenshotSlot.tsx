@@ -1,14 +1,17 @@
 import Image from "next/image";
 import { BrowserFrame } from "./BrowserFrame";
 
-// A browser-framed screenshot. Renders the real image via next/image when a
-// `src` is given, otherwise a labelled placeholder frame (never a broken img).
+// A browser-framed screenshot. Renders the real image via next/image at its
+// natural aspect ratio when given a src, otherwise a labelled placeholder frame
+// (never a broken img).
 export function ScreenshotSlot({
   src,
   alt,
   label = "Screenshot",
   caption,
   url,
+  width = 2000,
+  height = 1150,
   className,
   onDark = false,
 }: {
@@ -17,6 +20,8 @@ export function ScreenshotSlot({
   label?: string;
   caption?: string;
   url?: string;
+  width?: number;
+  height?: number;
   className?: string;
   /** Lightens the caption for use on a dark surface. */
   onDark?: boolean;
@@ -24,23 +29,22 @@ export function ScreenshotSlot({
   return (
     <figure className={className}>
       <BrowserFrame url={url}>
-        <div className="relative aspect-video bg-bg">
-          {src ? (
-            <Image
-              src={src}
-              alt={alt ?? label}
-              fill
-              sizes="(min-width: 1024px) 45vw, 100vw"
-              className="object-cover object-top"
-            />
-          ) : (
-            <div className="flex h-full items-center justify-center">
-              <span className="px-6 text-center text-sm text-subtle">
-                {label}
-              </span>
-            </div>
-          )}
-        </div>
+        {src ? (
+          <Image
+            src={src}
+            alt={alt ?? label}
+            width={width}
+            height={height}
+            sizes="(min-width: 1024px) 45vw, 100vw"
+            className="h-auto w-full"
+          />
+        ) : (
+          <div className="flex aspect-video items-center justify-center bg-bg">
+            <span className="px-6 text-center text-sm text-subtle">
+              {label}
+            </span>
+          </div>
+        )}
       </BrowserFrame>
       {caption ? (
         <figcaption

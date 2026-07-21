@@ -77,6 +77,8 @@ export function FeaturedProject({ project }: { project: Project }) {
             src={screenshot.src}
             alt={screenshot.alt}
             url={screenshot.url}
+            width={screenshot.width}
+            height={screenshot.height}
             onDark
           />
         ) : null}

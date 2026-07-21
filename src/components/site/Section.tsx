@@ -16,7 +16,7 @@ export function Section({
       className="border-t border-line py-24"
     >
       <div className="mx-auto max-w-3xl px-6">
-        <h2 id={`${id}-label`} className="eyebrow text-accent">
+        <h2 id={`${id}-label`} className="eyebrow text-accent-strong">
           {eyebrow}
         </h2>
         <div className="mt-12">{children}</div>

@@ -58,7 +58,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-education">
         <h2
           id="resume-education"
-          className="eyebrow text-accent"
+          className="eyebrow text-accent-strong"
         >
           Education
         </h2>
@@ -83,7 +83,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-experience">
         <h2
           id="resume-experience"
-          className="eyebrow text-accent"
+          className="eyebrow text-accent-strong"
         >
           Experience
         </h2>
@@ -119,7 +119,7 @@ export default function ResumePage() {
       <section className="mt-24" aria-labelledby="resume-projects">
         <h2
           id="resume-projects"
-          className="eyebrow text-accent"
+          className="eyebrow text-accent-strong"
         >
           Projects
         </h2>
@@ -145,7 +145,7 @@ export default function ResumePage() {
       </section>
 
       <section className="mt-24" aria-labelledby="resume-skills">
-        <h2 id="resume-skills" className="eyebrow text-accent">
+        <h2 id="resume-skills" className="eyebrow text-accent-strong">
           Technical Skills
         </h2>
         <dl className="mt-6 flex flex-col gap-4">

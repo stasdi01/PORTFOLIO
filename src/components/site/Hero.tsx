@@ -6,7 +6,7 @@ import { site } from "@content/site";
 export function Hero() {
   return (
     <header className="mx-auto max-w-3xl px-6 pt-24 pb-12">
-      <p className="eyebrow text-accent">{site.availability}</p>
+      <p className="eyebrow text-accent-strong">{site.availability}</p>
       <h1 className="mt-6 max-w-2xl text-display font-serif">
         {site.headline}
         <span className="text-accent">.</span>
