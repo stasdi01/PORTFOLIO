@@ -17,7 +17,7 @@ export const site = {
   availability: "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
   headline: "I build backend systems for healthtech",
   summary:
-    "I'm a computer science junior at Luther College with four software-engineering internships, most recently at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
+    "I'm a computer science junior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
 
   location: "Decorah, Iowa",
   // Primary (school) email used for the nav/hero CTA and OG image; personal shown alongside.
