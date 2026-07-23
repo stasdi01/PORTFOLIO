@@ -1,9 +1,14 @@
-// Decisions and tradeoffs, formatted as decision → why → what I'd reconsider.
-// Stacked blocks (not a real table) so it reads cleanly on mobile.
+// Decisions and tradeoffs, formatted as decision → why → tradeoff → what I'd
+// reconsider. Stacked blocks (not a real table) so it reads cleanly on mobile.
 export function DecisionTable({
   rows,
 }: {
-  rows: { decision: string; why: string; reconsider: string }[];
+  rows: {
+    decision: string;
+    why: string;
+    tradeoff?: string;
+    reconsider: string;
+  }[];
 }) {
   return (
     <div className="my-12 flex flex-col gap-6">
@@ -18,6 +23,12 @@ export function DecisionTable({
               <dt className="eyebrow text-accent-strong">Why</dt>
               <dd className="mt-2 text-muted">{row.why}</dd>
             </div>
+            {row.tradeoff ? (
+              <div>
+                <dt className="eyebrow text-subtle">Tradeoff</dt>
+                <dd className="mt-2 text-muted">{row.tradeoff}</dd>
+              </div>
+            ) : null}
             <div>
               <dt className="eyebrow text-subtle">What I&rsquo;d reconsider</dt>
               <dd className="mt-2 text-muted">{row.reconsider}</dd>

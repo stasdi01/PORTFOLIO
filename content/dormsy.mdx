@@ -42,7 +42,9 @@ The problem isn't that students don't want to buy or sell. It's that supply and 
 
 The gap is really about timing. Supply peaks in May, when leases end and seniors leave. Demand peaks in August, when new students arrive. The two never overlap, so even though nearly everyone would take the deal, there's no moment when a buyer and a seller are in the same place at the same time, and no channel that holds a listing across those four months, somewhere a May seller can post and an August buyer can still find it.
 
-{/* TODO(dimi): 2–3 sentences on how Luther students handle this today (the Facebook "Free & For Sale" group, GroupMe, word of mouth) and why each falls short. */}
+Today that market is a patchwork of channels, and none of them hold. The campus Facebook "Free & For Sale" group has no search that works, no filters, and a memory measured in hours; posts scroll away, it mixes in townspeople instead of staying campus-only, and it lives on a platform a lot of students no longer use. GroupMe and class chats are worse for browsing: a listing is gone the moment three other messages land, with no categories and no way to see what's for sale right now. Instagram stories only reach people who already follow the seller and vanish in a day. And word of mouth down a dorm hallway never reaches the person two buildings over who actually wants your mini-fridge.
+
+A couch gets dropped in the Free & For Sale group at 11pm and it's gone by morning; if you weren't scrolling at the right minute, you missed it. There was never a place where everything for sale simply lived, and where a buyer could look when they were ready instead of hoping to catch it in a feed.
 
 ## Architecture & technical decisions
 
@@ -62,27 +64,32 @@ DormSy is a Next.js App Router frontend talking to a small Node.js/Express API, 
 
 The interesting parts of a project like this are the decisions you can't tell were decisions from the outside. These are the ones I'd defend, and what I'd reconsider with more time.
 
-{/* TODO(dimi): confirm or replace the three decisions below with the real reasoning. */}
-
 <DecisionTable
   rows={[
     {
       decision: "Supabase for auth and data instead of rolling my own",
-      why: "TODO(dimi): why Supabase: Postgres, auth, and storage in one place, so I could spend time on features instead of session plumbing (~2 sentences).",
-      reconsider: "TODO(dimi): what you'd reconsider (~1 sentence).",
+      why: "As a solo dev on a fixed launch timeline, I needed auth, a Postgres database, file storage, and realtime, and I wanted to spend the time on features, not infrastructure. Supabase gives all four behind one SDK with real Postgres underneath, so I kept SQL, foreign keys, and relational thinking. I rejected Firebase because a NoSQL document model fights a marketplace's inherently relational shape (listings, photos, users, colleges), and rolling my own auth was never on the table: email verification, session refresh, and password reset are exactly what you get wrong at 2am and leak accounts over.",
+      tradeoff: "Lock-in to Supabase's auth and SSR cookie model, and that model bit me. Its SSR client chunks the session token across multiple cookies (`sb-…-auth-token.0`, `.1`), which broke my proxy's auth check, and the PKCE versus token-hash email flow caused the cross-device verification bug below.",
+      reconsider: "Row-Level Security. I enforced the \"every query filters by `college_id`\" rule in the backend because it was faster to reason about, but a single missing filter is a cross-college data leak. At real scale I'd push that invariant into Postgres RLS policies so the database enforces isolation even when app code forgets.",
     },
     {
       decision: "A separate Express API alongside Next.js",
-      why: "TODO(dimi): why a standalone backend rather than Next.js route handlers (~2 sentences).",
-      reconsider: "TODO(dimi): what you'd reconsider (~1 sentence).",
+      why: "Two reasons. The Supabase service-role key must never reach the browser bundle, and a standalone backend makes that a physical boundary: the key lives only on Railway and can't leak into client code. And I wanted the API to be frontend-agnostic, so a future React Native app could reuse the same REST endpoints. The alternative was folding everything into Next.js route handlers on Vercel: one deploy, less config.",
+      tradeoff: "Two deploys, two bills, CORS, and a network hop between Vercel and Railway. I also had to solve problems the single-app approach gets for free, like the proxy-based auth guard and rate-limiting behind a proxy, both of which cost me commits.",
+      reconsider: "This is the one I'd genuinely revisit. For a solo dev at 30 users, a separate backend was premature; route handlers keep the service key server-side just fine, without the second deploy, second bill, and CORS. I'd start there today and extract a service only when a real need appeared.",
     },
     {
       decision: "Deploying the backend on Railway",
-      why: "TODO(dimi): why Railway for the Express service (~2 sentences).",
-      reconsider: "TODO(dimi): what you'd reconsider (~1 sentence).",
+      why: "Railway deploys a plain Node/Express app from the repo with near-zero config and gives a persistent, always-on process, which suited background-ish work like listing-expiry warnings and message email notifications better than per-request functions. I passed on Vercel Functions for the backend to avoid cold starts and execution limits on a long-lived REST service, and on a raw VPS to avoid hand-managing nginx, TLS, and deploys as a solo dev.",
+      tradeoff: "Another vendor and another bill, plus a real gotcha: rate limiting was silently broken because Express behind Railway's proxy saw every request as the proxy's IP, until I set `trust proxy`. A fully managed serverless platform would have hidden that from me.",
+      reconsider: "If I folded the backend into Next.js route handlers, Railway disappears and everything runs on one Vercel deploy. Short of that, I'd re-evaluate Fly.io for multi-region only if users ever spread out geographically; at one college in one town, Railway was the right amount of effort for the stage.",
     },
   ]}
 />
+
+<PullQuote>
+  If I built DormSy again, I'd start with Next.js route handlers instead of a separate Express backend. The standalone API kept my Supabase service key safely server-side, but route handlers do that too, without a second deploy, a second bill, and the CORS and proxy bugs I spent days on. I split the backend to stay scalable for a mobile app that didn't exist yet. I was solving a problem I didn't have.
+</PullQuote>
 
 ## Problems I hit
 
@@ -130,7 +137,7 @@ The interesting parts of a project like this are the decisions you can't tell we
   </Part>
 
   <Part label="Aside">
-    Session cookies also weren't being detected. Supabase SSR splits large auth tokens into chunks (`sb-…-auth-token.0`, `.1`), and the proxy guard matched with `endsWith("-auth-token")` instead of `includes()`.
+    Session cookies also weren't being detected. Supabase SSR splits large auth tokens into chunks (`sb-…-auth-token.0`, `.1`), and the proxy guard matched with `endsWith("-auth-token")` instead of `includes()`. All told, auth took more than ten fix commits to get right: PKCE versus token-hash, the chunked cookies, the proxy guard, and a profile-creation retry. Logging in is never just logging in.
   </Part>
 </ProblemFix>
 
@@ -158,8 +165,6 @@ What I'd do differently is the actual lesson here. A marketplace needs seeded su
 
 ## What's next
 
-{/* TODO(dimi): fill in future direction as a short list, one sentence each. Keep it honest and short. Candidates below; replace with the real plan. */}
-
-- TODO(dimi): near-term direction, one sentence.
-- TODO(dimi): the feature that bridges the May–August timing gap, one sentence.
-- TODO(dimi): distribution or launch scope (e.g. one dorm or class year first), one sentence.
+- **Row-Level Security first.** The whole promise is "campus-only," but that boundary lives in app code today, where one forgotten filter leaks listings across colleges. Move the invariant into Postgres so the database enforces it.
+- **Turn the time gap into the product.** Sellers (graduating seniors in May) and buyers (incoming students in August) are four months apart, so a live feed is empty when each group shows up. A "reserve for August" flow lets seniors list at move-out, incoming students claim now, and DormSy coordinates the scheduled handoff.
+- **Go deep at Luther before going wide.** Seed supply before demand by listing real inventory during May move-out so the first buyers don't hit an empty feed, lean on in-person distribution (RA partnerships, move-out tabling), and only add a second college once the playbook has worked once.

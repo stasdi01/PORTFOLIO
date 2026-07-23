@@ -76,12 +76,12 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 **`content/dormsy.mdx`**
 - [x] QuickFacts timeline set (March – April 2026).
 - [x] QuickFacts live link added (getdormsy.com).
-- [ ] QuickFacts: add the repo link if the repository is public.
-- [ ] The problem: 2–3 sentences on how Luther students currently handle move-out.
-- [ ] Architecture: fill in the three decision "why" and "reconsider" cells.
+- [x] The problem: how Luther students currently handle move-out.
+- [x] Architecture: three decisions written (why / tradeoff / reconsider).
+- [x] What's next: three real directions.
+- [ ] QuickFacts: add the repo link if the repository is public (optional).
 - [ ] Problems: link each bug to a real file/commit if the repo is public
-      (add a `source={{ href, label }}` prop to `ProblemFix`).
-- [ ] What's next: replace the three placeholder list items.
+      (add a `source={{ href, label }}` prop to `ProblemFix`) (optional).
 - [x] Case-study screenshot added (DormSy landing page).
 
 **`content/skills.ts`** and **`src/app/resume/page.tsx`**
