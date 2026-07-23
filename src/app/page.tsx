@@ -2,7 +2,7 @@ import Image from "next/image";
 import { projects } from "@content/projects";
 import { experience } from "@content/experience";
 import { about } from "@content/about";
-import { site } from "@content/site";
+import { site, siteUrl } from "@content/site";
 import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
 import { FeaturedProject } from "@/components/site/FeaturedProject";
@@ -14,7 +14,6 @@ import { Footer } from "@/components/site/Footer";
 const featuredProject = projects.find((project) => project.featured);
 const otherProjects = projects.filter((project) => !project.featured);
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const personJsonLd = {
   "@context": "https://schema.org",
   "@type": "Person",

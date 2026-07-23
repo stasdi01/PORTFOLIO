@@ -1,6 +1,12 @@
 // Central site config: identity, positioning, and links.
 // Edit this file to change what appears in the hero, footer, and metadata.
 
+// Absolute production origin, from NEXT_PUBLIC_SITE_URL (set in Vercel), with any
+// trailing slash stripped so URL joins never double up (e.g. sitemap entries).
+export const siteUrl = (
+  process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000"
+).replace(/\/+$/, "");
+
 export type SiteLink = {
   label: string;
   href: string;

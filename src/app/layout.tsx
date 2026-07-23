@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
-import { site } from "@content/site";
+import { site, siteUrl } from "@content/site";
 import { SiteHeader } from "@/components/site/SiteHeader";
 import "./globals.css";
 
@@ -24,10 +24,6 @@ const jetbrainsMono = JetBrains_Mono({
   variable: "--font-jetbrains-mono",
   display: "swap",
 });
-
-// Set once from the deploy URL; falls back to localhost in development.
-// TODO(dimi): set NEXT_PUBLIC_SITE_URL to your production domain in Vercel.
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
