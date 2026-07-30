@@ -16,9 +16,9 @@ export function Section({
     <section
       id={id}
       aria-labelledby={`${id}-label`}
-      className="scroll-mt-24 px-6 py-24 sm:px-10 lg:px-16"
+      className="scroll-mt-24 px-6 py-20 sm:px-8"
     >
-      <div className="mx-auto max-w-5xl">
+      <div className="mx-auto max-w-6xl">
         <h2
           id={`${id}-label`}
           className="font-sans text-title font-normal text-heading"

@@ -8,9 +8,9 @@ export function Hero() {
   return (
     <section
       id="home"
-      className="flex min-h-[85vh] items-center px-6 py-24 sm:px-10 lg:px-16"
+      className="flex min-h-[85vh] items-center px-6 py-20 sm:px-8"
     >
-      <div className="mx-auto w-full max-w-5xl">
+      <div className="mx-auto w-full max-w-4xl">
         <p className="inline-flex items-center gap-2 rounded-full bg-sage px-3 py-1 text-sm font-medium text-sage-fg">
           <span aria-hidden className="h-2 w-2 rounded-full bg-dot" />
           {site.availabilityShort}

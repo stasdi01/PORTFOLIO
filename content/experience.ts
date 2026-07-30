@@ -1,5 +1,21 @@
 import type { Experience } from "@/lib/types";
 
+// Education, shown beside the experience timeline. Facts are drawn from the
+// brief: Luther College, computer science, graduating 2027, and playing
+// basketball there.
+export const education = [
+  {
+    degree: "B.A. in Computer Science",
+    school: "Luther College",
+    period: "Expected May 2027",
+    location: "Decorah, Iowa",
+    bullets: [
+      "Played basketball for Luther College.",
+      "Completed four software-engineering internships while studying.",
+    ],
+  },
+] as const;
+
 // Real roles, dates, and bullets from the résumé, most recent first. Bullets
 // lead with what was built and its impact.
 export const experience: Experience[] = [

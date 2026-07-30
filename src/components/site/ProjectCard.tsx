@@ -41,70 +41,60 @@ const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent-st
 const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:border-ink`;
 
 // A project card matching the reference: media header, name, one-sentence
-// problem statement, tech pills, and action buttons. The featured project uses
-// a wide horizontal layout; others stack vertically in the grid.
+// problem statement, tech pills, and a row of equal-width action buttons. The
+// first available link is filled, the rest outlined.
 export function ProjectCard({ project }: { project: Project }) {
-  const { name, tagline, stack, liveUrl, repoUrl, caseStudyUrl, featured } =
-    project;
+  const { name, tagline, stack, liveUrl, repoUrl, caseStudyUrl } = project;
 
-  const hasLinks = Boolean(caseStudyUrl || liveUrl || repoUrl);
-
-  const actions = hasLinks ? (
-    <div className="mt-6 flex flex-wrap gap-3">
-      {caseStudyUrl ? (
-        <Link href={caseStudyUrl} className={filledButton}>
-          Read case study
-        </Link>
-      ) : null}
-      {repoUrl ? (
-        <a
-          href={repoUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={caseStudyUrl ? outlineButton : filledButton}
-        >
-          <GithubIcon className="h-4 w-4" />
-          Code
-        </a>
-      ) : null}
-      {liveUrl ? (
-        <a
-          href={liveUrl}
-          target="_blank"
-          rel="noopener noreferrer"
-          className={caseStudyUrl || repoUrl ? outlineButton : filledButton}
-        >
-          <ExternalLinkIcon className="h-4 w-4" />
-          Live
-        </a>
-      ) : null}
-    </div>
-  ) : (
-    <p className="mt-6 text-sm text-subtle">Private project</p>
-  );
-
-  const body = (
-    <div className="flex flex-1 flex-col p-6">
-      <h3 className="font-sans text-2xl font-normal text-ink">{name}</h3>
-      <p className="mt-3 flex-1 text-muted">{tagline}</p>
-      <StackList stack={stack} variant="pills" className="mt-4" />
-      {actions}
-    </div>
-  );
-
-  if (featured) {
-    return (
-      <article className="grid overflow-hidden rounded-card border border-line bg-card shadow-md lg:grid-cols-2">
-        <CardMedia project={project} />
-        {body}
-      </article>
-    );
-  }
+  // Ordered so the most representative link (a live demo) becomes the filled
+  // primary button, matching the reference's Code/Demo pairing.
+  const links = [
+    liveUrl
+      ? { key: "demo", label: "Demo", href: liveUrl, Icon: ExternalLinkIcon }
+      : null,
+    caseStudyUrl
+      ? { key: "case", label: "Case Study", href: caseStudyUrl, internal: true }
+      : null,
+    repoUrl
+      ? { key: "code", label: "Code", href: repoUrl, Icon: GithubIcon }
+      : null,
+  ].filter((link): link is NonNullable<typeof link> => link !== null);
 
   return (
     <article className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-md">
       <CardMedia project={project} />
-      {body}
+      <div className="flex flex-1 flex-col p-6">
+        <h3 className="font-sans text-2xl font-normal text-ink">{name}</h3>
+        <p className="mt-3 flex-1 text-muted">{tagline}</p>
+        <StackList stack={stack} variant="pills" className="mt-4" />
+
+        {links.length > 0 ? (
+          <div className="mt-6 flex flex-wrap gap-3">
+            {links.map((link, i) => {
+              const className = i === 0 ? filledButton : outlineButton;
+              const Icon = "Icon" in link ? link.Icon : null;
+              return link.internal ? (
+                <Link key={link.key} href={link.href} className={className}>
+                  {link.label}
+                </Link>
+              ) : (
+                <a
+                  key={link.key}
+                  href={link.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className={className}
+                >
+                  {Icon ? <Icon className="h-4 w-4" /> : null}
+                  {link.label}
+                </a>
+              );
+            })}
+          </div>
+        ) : (
+          <p className="mt-6 text-sm text-subtle">Private project</p>
+        )}
+      </div>
     </article>
   );
 }

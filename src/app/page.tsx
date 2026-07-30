@@ -1,5 +1,5 @@
 import { projects } from "@content/projects";
-import { experience } from "@content/experience";
+import { experience, education } from "@content/experience";
 import { about } from "@content/about";
 import { site, siteUrl } from "@content/site";
 import { Hero } from "@/components/site/Hero";
@@ -10,9 +10,6 @@ import { ProjectCard } from "@/components/site/ProjectCard";
 import { ExperienceItem } from "@/components/site/ExperienceItem";
 import { Contact } from "@/components/site/Contact";
 import { Footer } from "@/components/site/Footer";
-
-const featuredProject = projects.find((project) => project.featured);
-const otherProjects = projects.filter((project) => !project.featured);
 
 const personJsonLd = {
   "@context": "https://schema.org",
@@ -70,23 +67,16 @@ export default function Home() {
           title="Projects"
           subtitle="Things I've built end to end — one live in production, the rest along the way."
         >
-          <div className="flex flex-col gap-6">
-            {featuredProject ? (
-              <ProjectCard project={featuredProject} />
-            ) : null}
-            {otherProjects.length > 0 ? (
-              <div className="grid gap-6 sm:grid-cols-2">
-                {otherProjects.map((project) => (
-                  <ProjectCard key={project.name} project={project} />
-                ))}
-              </div>
-            ) : null}
+          <div className="grid gap-6 sm:grid-cols-2">
+            {projects.map((project) => (
+              <ProjectCard key={project.name} project={project} />
+            ))}
           </div>
         </Section>
 
         <Section
           id="experience"
-          title="Experience"
+          title="Experience & Education"
           subtitle="Four software-engineering internships, most recent first."
         >
           <div className="relative flex flex-col gap-6">
@@ -96,6 +86,43 @@ export default function Home() {
             />
             {experience.map((item) => (
               <ExperienceItem key={item.company} item={item} />
+            ))}
+          </div>
+
+          <h3 className="mt-16 font-sans text-2xl font-normal text-heading">
+            Education
+          </h3>
+          <div className="mt-6 flex flex-col gap-6">
+            {education.map((item) => (
+              <article
+                key={item.school}
+                className="rounded-card border border-line bg-card p-6 shadow-md"
+              >
+                <div className="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h4 className="font-sans text-xl font-normal text-ink">
+                      {item.degree}
+                    </h4>
+                    <p className="mt-1 text-muted">
+                      {item.school} · {item.location}
+                    </p>
+                  </div>
+                  <span className="rounded-lg bg-sage px-4 py-2 text-xs font-medium text-sage-fg">
+                    {item.period}
+                  </span>
+                </div>
+                <ul className="mt-4 flex flex-col gap-2">
+                  {item.bullets.map((bullet, i) => (
+                    <li key={i} className="flex gap-3 text-muted">
+                      <span
+                        aria-hidden
+                        className="mt-2.5 h-1.5 w-1.5 shrink-0 rounded-full bg-accent/60"
+                      />
+                      <span className="leading-relaxed">{bullet}</span>
+                    </li>
+                  ))}
+                </ul>
+              </article>
             ))}
           </div>
         </Section>
