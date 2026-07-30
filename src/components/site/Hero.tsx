@@ -28,7 +28,7 @@ export function Hero() {
         <div className="mt-12 flex flex-wrap gap-4">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-all duration-150 hover:bg-accent/90"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-all duration-150 hover:bg-accent-strong"
           >
             <MailIcon className="h-4 w-4" />
             Get in Touch

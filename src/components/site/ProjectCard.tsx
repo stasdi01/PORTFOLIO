@@ -37,7 +37,7 @@ function CardMedia({ project }: { project: Project }) {
 
 const buttonBase =
   "inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-150";
-const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent/90`;
+const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent-strong`;
 const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:bg-sage/50`;
 
 // A project card matching the reference: media header, name, one-sentence

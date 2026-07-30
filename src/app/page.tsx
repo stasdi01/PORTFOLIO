@@ -44,7 +44,7 @@ export default function Home() {
           title="About Me"
           subtitle="A little on where I come from and what I care about building."
         >
-          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-center">
             <div className="flex flex-col gap-4 text-muted">
               {about.paragraphs.map((paragraph, i) => (
                 <p key={i}>{paragraph}</p>
