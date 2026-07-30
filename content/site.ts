@@ -15,12 +15,16 @@ export type SiteLink = {
 export const site = {
   name: "Dimitrije Stašić",
   shortName: "Dimi",
+  // Short role label shown under the name in the sidebar.
+  role: "Backend Developer",
   // One-line positioning used as the meta description base and OG image subtitle.
   positioning: "CS junior at Luther College. Backend developer. Building healthtech.",
 
   // Hero: an availability eyebrow, a statement headline (the accent period is
   // added in the component), and a credential-citing summary.
   availability: "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
+  // Compact availability label for the sidebar and contact pills.
+  availabilityShort: "Available for work",
   headline: "I build backend systems for healthtech",
   summary:
     "I'm a computer science junior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",

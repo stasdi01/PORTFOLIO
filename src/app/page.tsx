@@ -1,11 +1,11 @@
-import Image from "next/image";
 import { projects } from "@content/projects";
 import { experience } from "@content/experience";
 import { about } from "@content/about";
 import { site, siteUrl } from "@content/site";
 import { Hero } from "@/components/site/Hero";
 import { Section } from "@/components/site/Section";
-import { FeaturedProject } from "@/components/site/FeaturedProject";
+import { FocusCards } from "@/components/site/FocusCards";
+import { SkillsGrid } from "@/components/site/SkillsGrid";
 import { ProjectCard } from "@/components/site/ProjectCard";
 import { ExperienceItem } from "@/components/site/ExperienceItem";
 import { Contact } from "@/components/site/Contact";
@@ -33,19 +33,46 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(personJsonLd) }}
       />
       <a
-        href="#projects"
-        className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-10 focus:rounded-md focus:bg-ink focus:px-4 focus:py-2 focus:text-bg"
+        href="#main"
+        className="sr-only focus:not-sr-only focus:absolute focus:left-6 focus:top-6 focus:z-[60] focus:rounded-md focus:bg-accent focus:px-4 focus:py-2 focus:text-sidebar-fg"
       >
         Skip to content
       </a>
 
       <Hero />
 
-      <main>
-        <Section id="projects" eyebrow="Selected work">
+      <main id="main">
+        <Section
+          id="about"
+          title="About Me"
+          subtitle="A little on where I come from and what I care about building."
+        >
+          <div className="grid gap-12 lg:grid-cols-2 lg:items-start">
+            <div className="flex flex-col gap-4 text-muted">
+              {about.paragraphs.map((paragraph, i) => (
+                <p key={i}>{paragraph}</p>
+              ))}
+            </div>
+            <FocusCards />
+          </div>
+        </Section>
+
+        <Section
+          id="skills"
+          title="Skills & Technologies"
+          subtitle="The languages, frameworks, and tools I reach for."
+        >
+          <SkillsGrid />
+        </Section>
+
+        <Section
+          id="projects"
+          title="Projects"
+          subtitle="Things I've built end to end — one live in production, the rest along the way."
+        >
           <div className="flex flex-col gap-6">
             {featuredProject ? (
-              <FeaturedProject project={featuredProject} />
+              <ProjectCard project={featuredProject} />
             ) : null}
             {otherProjects.length > 0 ? (
               <div className="grid gap-6 sm:grid-cols-2">
@@ -57,34 +84,27 @@ export default function Home() {
           </div>
         </Section>
 
-        <Section id="experience" eyebrow="Experience">
-          <div className="flex flex-col divide-y divide-line border-t border-line">
+        <Section
+          id="experience"
+          title="Experience"
+          subtitle="Four software-engineering internships, most recent first."
+        >
+          <div className="relative flex flex-col gap-6">
+            <span
+              aria-hidden
+              className="absolute bottom-2 left-0 top-2 w-px bg-line"
+            />
             {experience.map((item) => (
-              <div key={item.company} className="py-12">
-                <ExperienceItem item={item} />
-              </div>
+              <ExperienceItem key={item.company} item={item} />
             ))}
           </div>
         </Section>
 
-        <Section id="about" eyebrow="About">
-          <div className="grid gap-12 sm:grid-cols-[1fr_260px] sm:items-start">
-            <div className="flex flex-col gap-4 text-muted">
-              {about.paragraphs.map((paragraph, i) => (
-                <p key={i}>{paragraph}</p>
-              ))}
-            </div>
-            <Image
-              src="/dimi.jpg"
-              alt={site.name}
-              width={260}
-              height={347}
-              className="rounded-lg border border-line"
-            />
-          </div>
-        </Section>
-
-        <Section id="contact" eyebrow="Contact">
+        <Section
+          id="contact"
+          title="Get in Touch"
+          subtitle="Whether it's a role, a question, or something you're building, I read everything and reply."
+        >
           <Contact />
         </Section>
       </main>

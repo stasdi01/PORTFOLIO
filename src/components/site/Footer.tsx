@@ -4,13 +4,11 @@ export function Footer() {
   const year = new Date().getFullYear();
 
   return (
-    <footer className="border-t border-line py-12">
-      <div className="mx-auto flex max-w-3xl flex-wrap justify-between gap-4 px-6 text-sm text-subtle">
-        <p>
-          © {year} {site.name}
-        </p>
-        <p>Built with Next.js &amp; Tailwind CSS.</p>
-      </div>
+    <footer className="border-t border-line px-6 py-10 text-center text-sm text-subtle sm:px-10 lg:px-16">
+      <p>Built with Next.js &amp; Tailwind CSS.</p>
+      <p className="mt-1">
+        © {year} {site.name}. All rights reserved.
+      </p>
     </footer>
   );
 }

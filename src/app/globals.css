@@ -2,35 +2,49 @@
 
 /*
   Design tokens (Tailwind v4 CSS-first config).
-  One accent (burnt orange), off-white background, near-black ink.
-  Spacing intentionally uses only the default steps that map to the
-  4 / 8 / 16 / 24 / 48 / 96 scale (Tailwind 1 / 2 / 4 / 6 / 12 / 24).
+  Dark forest-green sidebar over a warm light-gray content area with white
+  cards and sage-green accents. Spacing intentionally uses only the default
+  steps that map to the 4 / 8 / 16 / 24 / 48 / 96 scale (Tailwind 1 / 2 / 4 /
+  6 / 12 / 24).
 */
 @theme {
-  --color-bg: #faf9f7;
-  --color-ink: #1a1a1a;
-  --color-muted: #6b6a67;
-  --color-subtle: #6f6d68;
-  --color-accent: #c65a2e;
-  --color-accent-strong: #a8481f;
-  --color-line: #e7e5e0;
+  --color-bg: #e5e5e1;
+  --color-ink: #2b2d28;
+  --color-muted: #5c5e57;
+  --color-subtle: #83857d;
   --color-card: #ffffff;
+  --color-line: #e3e3dd;
+
+  /* Forest green carries the identity: sidebar, primary buttons, headings accent. */
+  --color-accent: #3c4a37;
+  --color-accent-strong: #2f3a2c;
+
+  /* Sidebar surface and its foreground text. */
+  --color-sidebar: #3c4a37;
+  --color-sidebar-fg: #edefe8;
+  --color-sidebar-muted: #a6b09b;
+  --color-sidebar-line: #4a5744;
+
+  /* Sage pills/chips and the live-status dot. */
+  --color-sage: #d7e0cb;
+  --color-sage-fg: #34412f;
+  --color-dot: #74a35a;
 
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Display type. Fraunces carries the design; large size contrast. */
-  --text-display: clamp(2.75rem, 1.4rem + 5vw, 3.5rem);
-  --text-display--line-height: 1.04;
+  /* Display type. Large, tight, sans — matches the reference's clean headings. */
+  --text-display: clamp(2.5rem, 1.2rem + 5vw, 4rem);
+  --text-display--line-height: 1.05;
   --text-display--letter-spacing: -0.02em;
 
-  --text-title: clamp(1.6rem, 1rem + 2.4vw, 2.125rem);
+  --text-title: clamp(1.75rem, 1rem + 2.6vw, 2.5rem);
   --text-title--line-height: 1.15;
-  --text-title--letter-spacing: -0.01em;
+  --text-title--letter-spacing: -0.015em;
 
   --text-subtitle: 1.25rem;
-  --text-subtitle--line-height: 1.35;
+  --text-subtitle--line-height: 1.4;
 
   /* Small caps-style eyebrow label. */
   --text-eyebrow: 0.8125rem;
@@ -60,8 +74,8 @@
   h2,
   h3,
   h4 {
-    font-family: var(--font-serif);
-    font-weight: 500;
+    font-family: var(--font-sans);
+    font-weight: 600;
     color: var(--color-ink);
   }
 
@@ -86,8 +100,8 @@
 
 @layer components {
   /*
-    Monospace micro-label used for eyebrows and section headings. Signals
-    "developer" without touching the Fraunces display type.
+    Monospace micro-label used for eyebrows. Retained for the resume and case
+    study pages; the home page uses the sans heading system instead.
   */
   .eyebrow {
     font-family: var(--font-mono);
@@ -95,6 +109,19 @@
     font-weight: 500;
     letter-spacing: 0.1em;
     text-transform: uppercase;
+  }
+
+  /*
+    Short accent underline that sits under a section heading, drawn as a fixed
+    bar rather than a hover effect. Signals the start of a section.
+  */
+  .heading-rule {
+    display: block;
+    width: 4rem;
+    height: 3px;
+    margin-top: 1rem;
+    border-radius: 9999px;
+    background-color: var(--color-accent);
   }
 
   /*

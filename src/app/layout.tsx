@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
 import { site, siteUrl } from "@content/site";
-import { SiteHeader } from "@/components/site/SiteHeader";
+import { Sidebar } from "@/components/site/Sidebar";
 import "./globals.css";
 
 // Fraunces (variable) carries the display type; Inter (variable) is the body face;
@@ -47,8 +47,8 @@ export default function RootLayout({
       className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="min-h-dvh">
-        <SiteHeader />
-        {children}
+        <Sidebar />
+        <div className="min-h-dvh pt-16 lg:pl-64 lg:pt-0">{children}</div>
       </body>
     </html>
   );
