@@ -67,7 +67,7 @@ export default function Home() {
           title="Projects"
           subtitle="Things I've built end to end — one live in production, the rest along the way."
         >
-          <div className="grid gap-6 sm:grid-cols-2">
+          <div className="grid gap-8 sm:grid-cols-2">
             {projects.map((project) => (
               <ProjectCard key={project.name} project={project} />
             ))}
@@ -96,7 +96,7 @@ export default function Home() {
             {education.map((item) => (
               <article
                 key={item.school}
-                className="rounded-card border border-line bg-card p-6 shadow-md"
+                className="rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl"
               >
                 <div className="flex flex-wrap items-start justify-between gap-3">
                   <div>

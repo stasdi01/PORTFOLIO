@@ -28,7 +28,7 @@ export function Hero() {
         <div className="mt-12 flex flex-wrap gap-4">
           <a
             href="#contact"
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-all duration-150 hover:bg-accent/90"
           >
             <MailIcon className="h-4 w-4" />
             Get in Touch
@@ -36,7 +36,7 @@ export function Hero() {
           <a
             href={site.resumePdfPath}
             download
-            className="inline-flex items-center gap-2 rounded-lg border border-line bg-card px-4 py-3 text-sm font-medium text-ink transition-colors hover:border-ink"
+            className="inline-flex items-center gap-2 rounded-lg border border-line bg-card px-4 py-3 text-sm font-medium text-ink transition-all duration-150 hover:bg-sage/50"
           >
             <DownloadIcon className="h-4 w-4" />
             Download CV

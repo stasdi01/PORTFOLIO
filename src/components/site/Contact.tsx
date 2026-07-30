@@ -73,7 +73,7 @@ export function Contact() {
           </label>
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-all duration-150 hover:bg-accent/90"
           >
             <SendIcon className="h-4 w-4" />
             Send Message
@@ -85,7 +85,7 @@ export function Contact() {
       <div className="flex flex-col gap-4">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-colors hover:border-ink"
+          className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl"
         >
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
             <MailIcon className="h-5 w-5" />
@@ -96,7 +96,7 @@ export function Contact() {
           </span>
         </a>
 
-        <div className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md">
+        <div className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
             <MapPinIcon className="h-5 w-5" />
           </span>
@@ -116,7 +116,7 @@ export function Contact() {
           <a
             href={site.resumePdfPath}
             download
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-colors hover:bg-sidebar-fg"
+            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-all duration-150 hover:bg-sage/80"
           >
             <DownloadIcon className="h-4 w-4" />
             Download CV

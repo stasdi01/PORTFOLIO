@@ -158,7 +158,7 @@ export function Sidebar() {
           <a
             href={site.resumePdfPath}
             download
-            className="flex items-center justify-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-colors hover:bg-sidebar-fg"
+            className="flex items-center justify-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-all duration-150 hover:bg-sage/80"
           >
             <DownloadIcon className="h-4 w-4" />
             Download CV

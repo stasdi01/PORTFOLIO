@@ -5,11 +5,11 @@ import { StackList } from "./StackList";
 // card with its label and the items rendered as sage pills.
 export function SkillsGrid() {
   return (
-    <div className="grid gap-4 sm:grid-cols-2">
+    <div className="grid gap-8 sm:grid-cols-2">
       {skills.map(({ label, items }) => (
         <div
           key={label}
-          className="rounded-card border border-line bg-card p-6 shadow-md"
+          className="rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl"
         >
           <h3 className="font-sans text-xl font-normal text-ink">{label}</h3>
           <StackList stack={items} variant="pills" className="mt-4" />

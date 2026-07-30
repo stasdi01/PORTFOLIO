@@ -36,9 +36,9 @@ function CardMedia({ project }: { project: Project }) {
 }
 
 const buttonBase =
-  "inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition-colors";
-const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent-strong`;
-const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:border-ink`;
+  "inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-150";
+const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent/90`;
+const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:bg-sage/50`;
 
 // A project card matching the reference: media header, name, one-sentence
 // problem statement, tech pills, and a row of equal-width action buttons. The
@@ -46,11 +46,11 @@ const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:b
 export function ProjectCard({ project }: { project: Project }) {
   const { name, tagline, stack, liveUrl, repoUrl, caseStudyUrl } = project;
 
-  // Ordered so the most representative link (a live demo) becomes the filled
-  // primary button, matching the reference's Code/Demo pairing.
+  // Ordered so the most representative link (the live site) becomes the filled
+  // primary button. Labeled "Live" — these are real production URLs, not demos.
   const links = [
     liveUrl
-      ? { key: "demo", label: "Demo", href: liveUrl, Icon: ExternalLinkIcon }
+      ? { key: "live", label: "Live", href: liveUrl, Icon: ExternalLinkIcon }
       : null,
     caseStudyUrl
       ? { key: "case", label: "Case Study", href: caseStudyUrl, internal: true }
@@ -61,7 +61,7 @@ export function ProjectCard({ project }: { project: Project }) {
   ].filter((link): link is NonNullable<typeof link> => link !== null);
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-md">
+    <article className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-md transition-shadow duration-150 hover:shadow-xl">
       <CardMedia project={project} />
       <div className="flex flex-1 flex-col p-6">
         <h3 className="font-sans text-2xl font-normal text-ink">{name}</h3>

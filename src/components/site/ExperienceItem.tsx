@@ -13,7 +13,7 @@ export function ExperienceItem({ item }: { item: Experience }) {
         aria-hidden
         className="absolute left-0 top-6 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-bg bg-accent"
       />
-      <article className="rounded-card border border-line bg-card p-6 shadow-md">
+      <article className="rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
             <h3 className="font-sans text-xl font-normal text-ink">{role}</h3>

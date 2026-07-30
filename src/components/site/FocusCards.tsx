@@ -15,13 +15,13 @@ const iconFor: Record<string, React.ComponentType<React.SVGProps<SVGSVGElement>>
 // icon, title, and one honest line.
 export function FocusCards() {
   return (
-    <ul className="grid gap-4 sm:grid-cols-2">
+    <ul className="grid gap-6 sm:grid-cols-2">
       {about.focus.map(({ icon, title, body }) => {
         const Icon = iconFor[icon] ?? CodeIcon;
         return (
           <li
             key={title}
-            className="rounded-card border border-line bg-card p-6 shadow-md"
+            className="rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl"
           >
             <Icon className="h-7 w-7 text-heading" />
             <h3 className="mt-4 font-sans text-lg font-normal text-ink">
