@@ -7,8 +7,11 @@ export function SkillsGrid() {
   return (
     <div className="grid gap-4 sm:grid-cols-2">
       {skills.map(({ label, items }) => (
-        <div key={label} className="rounded-xl border border-line bg-card p-6">
-          <h3 className="text-subtitle font-semibold text-ink">{label}</h3>
+        <div
+          key={label}
+          className="rounded-card border border-line bg-card p-6 shadow-md"
+        >
+          <h3 className="font-sans text-xl font-normal text-ink">{label}</h3>
           <StackList stack={items} variant="pills" className="mt-4" />
         </div>
       ))}

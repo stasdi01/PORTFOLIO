@@ -1,21 +1,15 @@
 import type { Metadata } from "next";
-import { Fraunces, Inter, JetBrains_Mono } from "next/font/google";
+import { Fraunces, JetBrains_Mono } from "next/font/google";
 import { site, siteUrl } from "@content/site";
 import { Sidebar } from "@/components/site/Sidebar";
 import "./globals.css";
 
-// Fraunces (variable) carries the display type; Inter (variable) is the body face;
-// JetBrains Mono sets micro-labels and technical links. All self-hosted by
-// next/font with matched fallback metrics → no layout shift.
+// The home page uses the system sans (matching the reference). Fraunces
+// (variable) still carries the display type and JetBrains Mono the micro-labels
+// on the résumé and case-study pages. Both self-hosted by next/font.
 const fraunces = Fraunces({
   subsets: ["latin"],
   variable: "--font-fraunces",
-  display: "swap",
-});
-
-const inter = Inter({
-  subsets: ["latin"],
-  variable: "--font-inter",
   display: "swap",
 });
 
@@ -44,7 +38,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${inter.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${fraunces.variable} ${jetbrainsMono.variable} antialiased`}
     >
       <body className="min-h-dvh">
         <Sidebar />

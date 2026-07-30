@@ -23,14 +23,14 @@ export function Contact() {
   }
 
   const fieldClass =
-    "w-full rounded-lg border border-line bg-bg px-4 py-3 text-ink placeholder:text-subtle focus:border-accent focus:outline-none";
+    "w-full rounded-lg border border-line bg-field px-3 py-3 text-ink placeholder:text-subtle focus:border-accent focus:outline-none";
 
   return (
     <div className="grid gap-8 lg:grid-cols-2">
       {/* Form card. */}
       <form
         onSubmit={handleSubmit}
-        className="rounded-xl border border-line bg-card p-6"
+        className="rounded-card border border-line bg-card p-6 shadow-md"
       >
         <div className="flex flex-col gap-4">
           <label className="flex flex-col gap-2">
@@ -73,10 +73,10 @@ export function Contact() {
           </label>
           <button
             type="submit"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-5 py-3 font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
+            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
           >
             <SendIcon className="h-4 w-4" />
-            Send message
+            Send Message
           </button>
         </div>
       </form>
@@ -85,7 +85,7 @@ export function Contact() {
       <div className="flex flex-col gap-4">
         <a
           href={`mailto:${site.email}`}
-          className="flex items-center gap-4 rounded-xl border border-line bg-card p-6 transition-colors hover:border-ink"
+          className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-colors hover:border-ink"
         >
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
             <MailIcon className="h-5 w-5" />
@@ -96,7 +96,7 @@ export function Contact() {
           </span>
         </a>
 
-        <div className="flex items-center gap-4 rounded-xl border border-line bg-card p-6">
+        <div className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md">
           <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
             <MapPinIcon className="h-5 w-5" />
           </span>
@@ -106,9 +106,9 @@ export function Contact() {
           </span>
         </div>
 
-        <div className="rounded-xl bg-accent p-6 text-sidebar-fg">
-          <h3 className="font-semibold text-sidebar-fg">
-            Open to opportunities
+        <div className="rounded-card bg-accent p-6 text-sidebar-fg shadow-md">
+          <h3 className="font-sans text-lg font-normal text-sidebar-fg">
+            Available for Opportunities
           </h3>
           <p className="mt-2 text-sm text-sidebar-muted">
             {site.availability}
@@ -119,7 +119,7 @@ export function Contact() {
             className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-colors hover:bg-sidebar-fg"
           >
             <DownloadIcon className="h-4 w-4" />
-            Download résumé
+            Download CV
           </a>
         </div>
       </div>

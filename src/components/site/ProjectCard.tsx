@@ -85,7 +85,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   const body = (
     <div className="flex flex-1 flex-col p-6">
-      <h3 className="text-title font-semibold">{name}</h3>
+      <h3 className="font-sans text-2xl font-normal text-ink">{name}</h3>
       <p className="mt-3 flex-1 text-muted">{tagline}</p>
       <StackList stack={stack} variant="pills" className="mt-4" />
       {actions}
@@ -94,7 +94,7 @@ export function ProjectCard({ project }: { project: Project }) {
 
   if (featured) {
     return (
-      <article className="grid overflow-hidden rounded-xl border border-line bg-card lg:grid-cols-2">
+      <article className="grid overflow-hidden rounded-card border border-line bg-card shadow-md lg:grid-cols-2">
         <CardMedia project={project} />
         {body}
       </article>
@@ -102,7 +102,7 @@ export function ProjectCard({ project }: { project: Project }) {
   }
 
   return (
-    <article className="flex flex-col overflow-hidden rounded-xl border border-line bg-card">
+    <article className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-md">
       <CardMedia project={project} />
       {body}
     </article>

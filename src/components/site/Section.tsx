@@ -19,7 +19,10 @@ export function Section({
       className="scroll-mt-24 px-6 py-24 sm:px-10 lg:px-16"
     >
       <div className="mx-auto max-w-5xl">
-        <h2 id={`${id}-label`} className="text-title font-semibold">
+        <h2
+          id={`${id}-label`}
+          className="font-sans text-title font-normal text-heading"
+        >
           {title}
         </h2>
         <span className="heading-rule" aria-hidden />

@@ -21,12 +21,12 @@ export function FocusCards() {
         return (
           <li
             key={title}
-            className="rounded-xl border border-line bg-card p-6"
+            className="rounded-card border border-line bg-card p-6 shadow-md"
           >
-            <span className="flex h-11 w-11 items-center justify-center rounded-lg bg-sage text-sage-fg">
-              <Icon className="h-5 w-5" />
-            </span>
-            <h3 className="mt-4 font-semibold text-ink">{title}</h3>
+            <Icon className="h-7 w-7 text-heading" />
+            <h3 className="mt-4 font-sans text-lg font-normal text-ink">
+              {title}
+            </h3>
             <p className="mt-2 text-sm text-muted">{body}</p>
           </li>
         );

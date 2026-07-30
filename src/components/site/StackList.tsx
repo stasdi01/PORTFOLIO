@@ -16,7 +16,7 @@ export function StackList({
         {stack.map((item) => (
           <li
             key={item}
-            className="rounded-md bg-sage px-3 py-1 text-sm font-medium text-sage-fg"
+            className="rounded-lg bg-sage px-4 py-2 text-xs font-medium text-sage-fg"
           >
             {item}
           </li>

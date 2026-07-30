@@ -114,13 +114,15 @@ export function Sidebar() {
             className="rounded-full object-cover"
           />
           <span>
-            <span className="block font-semibold leading-tight">{site.name}</span>
+            <span className="block text-xl font-normal leading-tight">
+              {site.name}
+            </span>
             <span className="block text-sm text-sidebar-muted">{site.role}</span>
           </span>
         </a>
 
         {/* Availability pill. */}
-        <p className="mt-6 flex items-center gap-2 rounded-lg bg-sidebar-line/60 px-3 py-2 text-sm">
+        <p className="mt-6 flex items-center gap-2 rounded-lg bg-pill-dark px-3 py-2 text-sm">
           <span aria-hidden className="h-2 w-2 rounded-full bg-dot" />
           {site.availabilityShort}
         </p>
@@ -156,10 +158,10 @@ export function Sidebar() {
           <a
             href={site.resumePdfPath}
             download
-            className="flex items-center justify-center gap-2 rounded-lg bg-sage px-4 py-2 font-medium text-sage-fg transition-colors hover:bg-sidebar-fg"
+            className="flex items-center justify-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-colors hover:bg-sidebar-fg"
           >
             <DownloadIcon className="h-4 w-4" />
-            Download résumé
+            Download CV
           </a>
           <div className="mt-4 flex items-center gap-6 text-sm text-sidebar-muted">
             <a

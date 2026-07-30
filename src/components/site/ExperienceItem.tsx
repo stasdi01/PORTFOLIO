@@ -13,16 +13,16 @@ export function ExperienceItem({ item }: { item: Experience }) {
         aria-hidden
         className="absolute left-0 top-6 h-3 w-3 -translate-x-1/2 rounded-full border-2 border-bg bg-accent"
       />
-      <article className="rounded-xl border border-line bg-card p-6">
+      <article className="rounded-card border border-line bg-card p-6 shadow-md">
         <div className="flex flex-wrap items-start justify-between gap-3">
           <div>
-            <h3 className="text-subtitle font-semibold text-ink">{role}</h3>
+            <h3 className="font-sans text-xl font-normal text-ink">{role}</h3>
             <p className="mt-1 text-muted">
               {company}
               {location ? ` · ${location}` : ""}
             </p>
           </div>
-          <span className="rounded-full bg-sage px-3 py-1 text-sm font-medium text-sage-fg">
+          <span className="rounded-lg bg-sage px-4 py-2 text-xs font-medium text-sage-fg">
             {period}
           </span>
         </div>

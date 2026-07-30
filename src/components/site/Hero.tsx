@@ -16,28 +16,30 @@ export function Hero() {
           {site.availabilityShort}
         </p>
 
-        <h1 className="mt-6 max-w-3xl text-display font-semibold">
+        <h1 className="mt-6 max-w-3xl font-sans text-display font-normal text-heading">
           Hi, I&rsquo;m {site.name}
         </h1>
-        <p className="mt-4 text-title font-medium text-muted">{site.headline}</p>
+        <p className="mt-4 font-sans text-4xl font-normal text-pill-dark">
+          {site.headline}
+        </p>
 
         <p className="mt-6 max-w-xl text-subtitle text-muted">{site.summary}</p>
 
         <div className="mt-12 flex flex-wrap gap-4">
           <a
-            href={`mailto:${site.email}`}
-            className="inline-flex items-center gap-2 rounded-lg bg-accent px-5 py-3 font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
+            href="#contact"
+            className="inline-flex items-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-colors hover:bg-accent-strong"
           >
             <MailIcon className="h-4 w-4" />
-            Email me
+            Get in Touch
           </a>
           <a
             href={site.resumePdfPath}
             download
-            className="inline-flex items-center gap-2 rounded-lg border border-line bg-card px-5 py-3 font-medium text-ink transition-colors hover:border-ink"
+            className="inline-flex items-center gap-2 rounded-lg border border-line bg-card px-4 py-3 text-sm font-medium text-ink transition-colors hover:border-ink"
           >
             <DownloadIcon className="h-4 w-4" />
-            Download résumé
+            Download CV
           </a>
         </div>
       </div>

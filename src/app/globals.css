@@ -2,46 +2,54 @@
 
 /*
   Design tokens (Tailwind v4 CSS-first config).
-  Dark forest-green sidebar over a warm light-gray content area with white
-  cards and sage-green accents. Spacing intentionally uses only the default
-  steps that map to the 4 / 8 / 16 / 24 / 48 / 96 scale (Tailwind 1 / 2 / 4 /
-  6 / 12 / 24).
+  Values are matched to the reference design: a dark forest-green sidebar
+  (#334833) over a warm light-gray content area (#dfdfde), white cards with a
+  soft shadow, sage-green (#d2e2d1) pills, and green section headings. Type is
+  the system sans at weight 400 throughout. Spacing uses the default steps that
+  map to the 4 / 8 / 16 / 24 / 48 / 96 scale.
 */
 @theme {
-  --color-bg: #e5e5e1;
-  --color-ink: #2b2d28;
-  --color-muted: #5c5e57;
-  --color-subtle: #83857d;
+  --color-bg: #dfdfde;
+  --color-ink: #1a1a1a;
+  --color-muted: #55554f;
+  --color-subtle: #7a7a74;
   --color-card: #ffffff;
-  --color-line: #e3e3dd;
+  --color-line: rgba(51, 72, 51, 0.2);
+  --color-field: #f3f3f5;
 
-  /* Forest green carries the identity: sidebar, primary buttons, headings accent. */
-  --color-accent: #3c4a37;
-  --color-accent-strong: #2f3a2c;
+  /* Forest green: headings, primary buttons, sidebar. */
+  --color-heading: #334833;
+  --color-accent: #334833;
+  --color-accent-strong: #2a3a29;
+  --color-pill-dark: #324240;
 
   /* Sidebar surface and its foreground text. */
-  --color-sidebar: #3c4a37;
-  --color-sidebar-fg: #edefe8;
-  --color-sidebar-muted: #a6b09b;
-  --color-sidebar-line: #4a5744;
+  --color-sidebar: #334833;
+  --color-sidebar-fg: #d2e2d1;
+  --color-sidebar-muted: #aebcaa;
+  --color-sidebar-line: rgba(210, 226, 209, 0.12);
 
   /* Sage pills/chips and the live-status dot. */
-  --color-sage: #d7e0cb;
-  --color-sage-fg: #34412f;
-  --color-dot: #74a35a;
+  --color-sage: #d2e2d1;
+  --color-sage-fg: #334833;
+  --color-dot: #4ade80;
 
-  --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
+  /* Card corner radius (10px, matching the reference). */
+  --radius-card: 0.625rem;
+
+  --font-sans: ui-sans-serif, system-ui, sans-serif, "Apple Color Emoji",
+    "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --font-serif: var(--font-fraunces), ui-serif, Georgia, "Times New Roman", serif;
   --font-mono: var(--font-jetbrains-mono), ui-monospace, SFMono-Regular, Menlo, monospace;
 
-  /* Display type. Large, tight, sans — matches the reference's clean headings. */
-  --text-display: clamp(2.5rem, 1.2rem + 5vw, 4rem);
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.02em;
+  /* Display type. Large, tight, weight 400 — the reference's clean headings. */
+  --text-display: clamp(2.75rem, 1rem + 6vw, 4.5rem);
+  --text-display--line-height: 1.03;
+  --text-display--letter-spacing: normal;
 
-  --text-title: clamp(1.75rem, 1rem + 2.6vw, 2.5rem);
-  --text-title--line-height: 1.15;
-  --text-title--letter-spacing: -0.015em;
+  --text-title: clamp(2rem, 1rem + 3vw, 3rem);
+  --text-title--line-height: 1.1;
+  --text-title--letter-spacing: normal;
 
   --text-subtitle: 1.25rem;
   --text-subtitle--line-height: 1.4;
@@ -63,19 +71,23 @@
     background-color: var(--color-bg);
     color: var(--color-ink);
     font-family: var(--font-sans);
-    /* Body 17px per the brief; comfortable measure and rendering. */
-    font-size: 1.0625rem;
+    font-size: 1rem;
     line-height: 1.6;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
 
+  /*
+    Global heading rule stays serif for the résumé and case-study pages. The
+    home page opts into the reference's sans, weight-400, green headings
+    explicitly per element.
+  */
   h1,
   h2,
   h3,
   h4 {
-    font-family: var(--font-sans);
-    font-weight: 600;
+    font-family: var(--font-serif);
+    font-weight: 500;
     color: var(--color-ink);
   }
 
@@ -100,8 +112,8 @@
 
 @layer components {
   /*
-    Monospace micro-label used for eyebrows. Retained for the resume and case
-    study pages; the home page uses the sans heading system instead.
+    Monospace micro-label retained for the résumé and case-study pages; the
+    home page uses the sans heading system instead.
   */
   .eyebrow {
     font-family: var(--font-mono);
@@ -112,16 +124,15 @@
   }
 
   /*
-    Short accent underline that sits under a section heading, drawn as a fixed
-    bar rather than a hover effect. Signals the start of a section.
+    Short square accent bar under a section heading — 80×4px in the reference's
+    dark teal-green.
   */
   .heading-rule {
     display: block;
-    width: 4rem;
-    height: 3px;
-    margin-top: 1rem;
-    border-radius: 9999px;
-    background-color: var(--color-accent);
+    width: 5rem;
+    height: 4px;
+    margin-top: 0.75rem;
+    background-color: var(--color-pill-dark);
   }
 
   /*
