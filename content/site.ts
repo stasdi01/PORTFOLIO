@@ -13,7 +13,7 @@ export type SiteLink = {
 };
 
 export const site = {
-  name: "Dimitrije Stašić",
+  name: "Dimitrije Stasic",
   shortName: "Dimi",
   // Short role label shown under the name in the sidebar.
   role: "Backend Developer",

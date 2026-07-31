@@ -14,7 +14,7 @@ export const about = {
     {
       icon: "server",
       title: "Backend systems",
-      body: "Data models, REST APIs, auth, and multi-tenant isolation — the parts that decide whether a product holds up.",
+      body: "Data models, REST APIs, auth, and multi-tenant isolation. The parts that decide whether a product holds up.",
     },
     {
       icon: "heart",
@@ -29,7 +29,7 @@ export const about = {
     {
       icon: "code",
       title: "Shipped to production",
-      body: "DormSy, a campus marketplace I built solo, is live and in use at Luther College — not just a demo.",
+      body: "DormSy, a campus marketplace I built solo, is live and in use at Luther College, not just a demo.",
     },
   ],
 } as const;

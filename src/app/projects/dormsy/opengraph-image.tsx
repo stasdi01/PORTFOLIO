@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 // Social share card for the DormSy case study. Inline styles are required by
 // next/og (ImageResponse), so the design token hex values are repeated here.
-export const alt = "DormSy — a campus marketplace, case study";
+export const alt = "DormSy: a campus marketplace, case study";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 

@@ -65,7 +65,7 @@ export default function Home() {
         <Section
           id="projects"
           title="Projects"
-          subtitle="Things I've built end to end — one live in production, the rest along the way."
+          subtitle="Things I've built end to end: one live in production, the rest along the way."
         >
           <div className="grid gap-8 sm:grid-cols-2">
             {projects.map((project) => (

@@ -15,7 +15,7 @@ export function Contact() {
     const subject = String(data.get("subject") ?? "");
     const message = String(data.get("message") ?? "");
 
-    const body = `${message}\n\n— ${name}${email ? ` (${email})` : ""}`;
+    const body = `${message}\n\n${name}${email ? ` (${email})` : ""}`;
     const href = `mailto:${site.email}?subject=${encodeURIComponent(
       subject || "Portfolio inquiry"
     )}&body=${encodeURIComponent(body)}`;

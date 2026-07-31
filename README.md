@@ -1,4 +1,4 @@
-# Portfolio · Dimitrije Stašić
+# Portfolio · Dimitrije Stasic
 
 A fast, type-and-content-driven personal site. Single-scroll home, a long-form
 DormSy case study, and a résumé page. Built with Next.js (App Router), Tailwind
