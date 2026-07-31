@@ -14,8 +14,7 @@ export const projects: Project[] = [
     featured: true,
     caseStudyUrl: "/projects/dormsy",
     liveUrl: "https://getdormsy.com",
-    // TODO(dimi): add the repo URL if the repository is public.
-    repoUrl: undefined,
+    repoUrl: "https://github.com/stasdi01/dormsy-web",
     screenshot: {
       src: "/screenshots/dormsy-home.png",
       alt: "DormSy landing page: a marketplace just for your campus, live at Luther College",
