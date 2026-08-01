@@ -1,5 +1,7 @@
 # Portfolio · Dimitrije Stasic
 
+Live at **[dimitrijestasic.com](https://dimitrijestasic.com)**.
+
 A fast, type-and-content-driven personal site. Single-scroll home, a long-form
 DormSy case study, and a résumé page. Built with Next.js (App Router), Tailwind
 CSS v4, and MDX. No CMS, no database; all copy lives in typed files under
@@ -99,17 +101,27 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
    image use absolute production URLs:
 
    ```
-   NEXT_PUBLIC_SITE_URL = https://your-domain.com
+   NEXT_PUBLIC_SITE_URL = https://dimitrijestasic.com
    ```
 
-   (Without it, these fall back to `http://localhost:3000`.)
+   (Without it, these fall back to `http://localhost:3000`.) It is inlined at
+   build time, so changing it requires a redeploy.
 4. Deploy.
 
 ### Custom domain
 
-1. Vercel project → **Settings → Domains → Add**, enter your domain.
-2. At your registrar, add the DNS records Vercel shows: an `A` record for the
-   apex (`@`) and/or a `CNAME` for `www` pointing to `cname.vercel-dns.com`.
-3. Wait for DNS to verify; Vercel issues the SSL certificate automatically.
-4. Update `NEXT_PUBLIC_SITE_URL` to the custom domain and redeploy so metadata
-   URLs match.
+Production runs on `dimitrijestasic.com`, registered at Cloudflare with DNS
+hosted there. Vercel serves the apex and issues both certificates.
+
+| Host | Record | Value | Cloudflare proxy |
+| --- | --- | --- | --- |
+| `@` | `A` | `216.198.79.1` | DNS only |
+| `www` | `CNAME` | `portfolio-tau-sage-31.vercel.app` | DNS only |
+
+In Vercel → **Settings → Domains**, the apex is the primary domain and `www`
+is set to redirect to it with a 308, so canonical tags, sitemap entries, and
+the generated OG images all resolve without a hop.
+
+Both DNS records must stay **DNS only** (grey cloud). Proxying Cloudflare in
+front of Vercel breaks certificate renewal, and pairing it with a Cloudflare
+redirect rule produces an apex ↔ www redirect loop.
