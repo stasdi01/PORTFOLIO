@@ -1,128 +1,81 @@
 "use client";
 
+import Link from "next/link";
+import { motion } from "motion/react";
 import { site } from "@content/site";
-import { MailIcon, MapPinIcon, SendIcon, DownloadIcon } from "./icons";
+import { GithubIcon, LinkedinIcon, ResumeIcon } from "./icons";
 
-// Contact form + info cards. The form has no backend by design: on submit it
-// builds a prefilled mailto: and hands off to the visitor's email client, so
-// email stays the real channel while the UI matches the reference.
+const links = [
+  { label: "GitHub", href: site.github, Icon: GithubIcon, external: true },
+  { label: "LinkedIn", href: site.linkedin, Icon: LinkedinIcon, external: true },
+  { label: "Résumé", href: site.resumePath, Icon: ResumeIcon, external: false },
+];
+
+const linkClassName =
+  "glow-hover flex items-center gap-2 rounded-xl border border-[var(--border)] px-3 py-2.5 text-foreground/60 transition-colors hover:border-[var(--border-hover)] hover:text-accent sm:px-5";
+
+/**
+ * Closing section: one primary action, the address in plain text underneath it
+ * for anyone who'd rather copy it, then the same three links as the hero.
+ */
 export function Contact() {
-  function handleSubmit(event: React.FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    const data = new FormData(event.currentTarget);
-    const name = String(data.get("name") ?? "");
-    const email = String(data.get("email") ?? "");
-    const subject = String(data.get("subject") ?? "");
-    const message = String(data.get("message") ?? "");
-
-    const body = `${message}\n\n${name}${email ? ` (${email})` : ""}`;
-    const href = `mailto:${site.email}?subject=${encodeURIComponent(
-      subject || "Portfolio inquiry"
-    )}&body=${encodeURIComponent(body)}`;
-    window.location.href = href;
-  }
-
-  const fieldClass =
-    "w-full rounded-lg border border-line bg-field px-3 py-3 text-ink placeholder:text-subtle focus:border-accent focus:outline-none";
-
   return (
-    <div className="grid gap-8 lg:grid-cols-2">
-      {/* Form card. */}
-      <form
-        onSubmit={handleSubmit}
-        className="rounded-card border border-line bg-card p-6 shadow-md"
+    <section id="contact" className="px-4 py-14 sm:px-6 md:py-20">
+      <motion.div
+        className="mx-auto max-w-2xl text-center"
+        initial={{ opacity: 0 }}
+        whileInView={{ opacity: 1 }}
+        transition={{ duration: 0.7, ease: "easeOut" }}
+        viewport={{ once: true, margin: "-80px" }}
       >
-        <div className="flex flex-col gap-4">
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">Name</span>
-            <input
-              name="name"
-              type="text"
-              required
-              placeholder="Your name"
-              className={fieldClass}
-            />
-          </label>
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">Email</span>
-            <input
-              name="email"
-              type="email"
-              placeholder="you@example.com"
-              className={fieldClass}
-            />
-          </label>
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">Subject</span>
-            <input
-              name="subject"
-              type="text"
-              placeholder="Project inquiry"
-              className={fieldClass}
-            />
-          </label>
-          <label className="flex flex-col gap-2">
-            <span className="text-sm font-medium">Message</span>
-            <textarea
-              name="message"
-              required
-              rows={4}
-              placeholder="Tell me what you're building…"
-              className={`${fieldClass} resize-y`}
-            />
-          </label>
-          <button
-            type="submit"
-            className="inline-flex items-center justify-center gap-2 rounded-lg bg-accent px-4 py-3 text-sm font-medium text-sidebar-fg transition-all duration-150 hover:bg-accent-strong"
-          >
-            <SendIcon className="h-4 w-4" />
-            Send Message
-          </button>
-        </div>
-      </form>
+        <h2 className="heading-gradient section-heading mb-5 text-3xl font-bold sm:text-4xl md:mb-6 md:text-5xl">
+          Get In Touch
+        </h2>
 
-      {/* Info cards + availability. */}
-      <div className="flex flex-col gap-4">
-        <a
-          href={`mailto:${site.email}`}
-          className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl"
-        >
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
-            <MailIcon className="h-5 w-5" />
-          </span>
-          <span>
-            <span className="block text-sm text-subtle">Email</span>
-            <span className="block text-ink">{site.email}</span>
-          </span>
-        </a>
+        <p className="mb-8 text-base text-foreground/70 md:mb-12 md:text-lg">
+          Whether it&rsquo;s a role, a question, or something you&rsquo;re
+          building, I read everything and reply.
+        </p>
 
-        <div className="flex items-center gap-4 rounded-card border border-line bg-card p-6 shadow-md transition-shadow duration-150 hover:shadow-xl">
-          <span className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full bg-accent text-sidebar-fg">
-            <MapPinIcon className="h-5 w-5" />
-          </span>
-          <span>
-            <span className="block text-sm text-subtle">Location</span>
-            <span className="block text-ink">{site.location}</span>
-          </span>
-        </div>
-
-        <div className="rounded-card bg-accent p-6 text-sidebar-fg shadow-md">
-          <h3 className="font-sans text-lg font-normal text-sidebar-fg">
-            Available for Opportunities
-          </h3>
-          <p className="mt-2 text-sm text-sidebar-muted">
-            {site.availability}
-          </p>
+        <div className="cosmic-card space-y-5 rounded-2xl p-5 sm:p-8 md:space-y-6">
           <a
-            href={site.resumePdfPath}
-            download
-            className="mt-4 inline-flex items-center gap-2 rounded-lg bg-sage px-4 py-2 text-sm font-medium text-sage-fg transition-all duration-150 hover:bg-sage/80"
+            href={`mailto:${site.email}`}
+            className="btn-primary inline-block w-full rounded-xl px-8 py-4 font-semibold sm:w-auto"
           >
-            <DownloadIcon className="h-4 w-4" />
-            Download CV
+            Send me an email
           </a>
+
+          <p className="text-sm text-foreground/60">{site.email}</p>
+
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4">
+            {links.map(({ label, href, Icon, external }) =>
+              external ? (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className={linkClassName}
+                >
+                  <Icon className="h-5 w-5 shrink-0" />
+                  <span className="hidden sm:inline">{label}</span>
+                </a>
+              ) : (
+                <Link
+                  key={label}
+                  href={href}
+                  aria-label={label}
+                  className={linkClassName}
+                >
+                  <Icon className="h-5 w-5 shrink-0" />
+                  <span className="hidden sm:inline">{label}</span>
+                </Link>
+              )
+            )}
+          </div>
         </div>
-      </div>
-    </div>
+      </motion.div>
+    </section>
   );
 }

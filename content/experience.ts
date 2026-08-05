@@ -1,28 +1,18 @@
 import type { Experience } from "@/lib/types";
 
-// Education, shown beside the experience timeline. Facts are drawn from the
-// brief: Luther College, computer science, graduating 2027, and playing
-// basketball there.
-export const education = [
-  {
-    degree: "B.A. in Computer Science",
-    school: "Luther College",
-    period: "Expected May 2027",
-    location: "Decorah, Iowa",
-    bullets: [
-      "Played basketball for Luther College.",
-      "Completed four software-engineering internships while studying.",
-    ],
-  },
-] as const;
-
 // Real roles, dates, and bullets from the résumé, most recent first. Bullets
-// lead with what was built and its impact.
+// lead with what was built and its impact. Every tag names a technology that
+// already appears in that role's bullets — nothing is added from outside them.
+//
+// TODO(dimi): add square company marks under /public/logos as skyit.png,
+// mayo-clinic.png, jaka-lounge.png, and webx.png (~256px each). Roles without
+// one render an initials tile instead.
 export const experience: Experience[] = [
   {
     company: "SkyIT / GBCS Group",
     role: "Backend Developer Intern",
     period: "Jun 2026 – Present",
+    tags: ["Django REST Framework", "MySQL", "Docker", "JWT", "Multi-tenancy"],
     bullets: [
       "Contributed to a multi-tenant enterprise ESG and greenhouse-gas emissions platform (Django REST Framework, MySQL, Docker) that serves three branded frontends from one shared backend.",
       "Built REST APIs for the emissions engine (Scope 1–4 calculations, AI recommendations) on a DTO-service architecture with JWT authentication and standardized response schemas.",
@@ -35,6 +25,7 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     period: "Feb 2026 – May 2026",
     location: "Rochester, MN",
+    tags: ["React", "FastAPI", "DICOM", "JWT", "RBAC"],
     bullets: [
       "Built a browser-based DICOM PHI anonymizer applying 300+ de-identification rules per HIPAA standards.",
       "Extended the open-source OHIF medical imaging viewer with a custom React radiology assessment panel.",
@@ -46,6 +37,7 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     period: "Jul 2025 – Sep 2025",
     location: "Belgrade, Serbia",
+    tags: ["Kotlin", "REST APIs", "Git"],
     bullets: [
       "Contributed to backend development of a career-verification platform, building database records in Kotlin.",
       "Developed company-management features and REST API integrations under senior-engineer supervision.",
@@ -57,6 +49,7 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     period: "Apr 2025 – Jun 2025",
     location: "Belgrade, Serbia",
+    tags: ["Spring Boot", "PostgreSQL", "JUnit", "Docker"],
     bullets: [
       "Built RESTful APIs with Spring Boot and PostgreSQL, improving backend response times for client applications.",
       "Tested and debugged backend modules using JUnit, reducing production bugs and improving release stability.",

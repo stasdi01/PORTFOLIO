@@ -15,23 +15,23 @@ export function DecisionTable({
       {rows.map((row) => (
         <div
           key={row.decision}
-          className="rounded-lg border border-line bg-card p-6"
+          className="cosmic-card rounded-xl p-6"
         >
-          <p className="font-serif text-subtitle text-ink">{row.decision}</p>
+          <p className="text-lg font-bold text-foreground">{row.decision}</p>
           <dl className="mt-4 flex flex-col gap-4">
             <div>
-              <dt className="eyebrow text-accent-strong">Why</dt>
-              <dd className="mt-2 text-muted">{row.why}</dd>
+              <dt className="text-gradient-cosmic font-mono text-xs font-semibold tracking-[0.18em] uppercase">Why</dt>
+              <dd className="mt-2 text-foreground/70">{row.why}</dd>
             </div>
             {row.tradeoff ? (
               <div>
-                <dt className="eyebrow text-subtle">Tradeoff</dt>
-                <dd className="mt-2 text-muted">{row.tradeoff}</dd>
+                <dt className="font-mono text-xs font-semibold tracking-[0.18em] text-foreground/40 uppercase">Tradeoff</dt>
+                <dd className="mt-2 text-foreground/70">{row.tradeoff}</dd>
               </div>
             ) : null}
             <div>
-              <dt className="eyebrow text-subtle">What I&rsquo;d reconsider</dt>
-              <dd className="mt-2 text-muted">{row.reconsider}</dd>
+              <dt className="font-mono text-xs font-semibold tracking-[0.18em] text-foreground/40 uppercase">What I&rsquo;d reconsider</dt>
+              <dd className="mt-2 text-foreground/70">{row.reconsider}</dd>
             </div>
           </dl>
         </div>

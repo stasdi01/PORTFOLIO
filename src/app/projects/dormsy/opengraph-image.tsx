@@ -7,10 +7,11 @@ export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const colors = {
-  bg: "#faf9f7",
-  ink: "#1a1a1a",
-  muted: "#6b6a67",
-  accent: "#c65a2e",
+  bg: "#0a0a0b",
+  ink: "#fafafa",
+  muted: "rgba(250, 250, 250, 0.6)",
+  accent: "#e11d48",
+  purple: "#7c3aed",
 };
 
 export default function DormsyOpengraphImage() {
@@ -26,6 +27,7 @@ export default function DormsyOpengraphImage() {
           padding: "96px",
           backgroundColor: colors.bg,
           color: colors.ink,
+          backgroundImage: `radial-gradient(at 20% 20%, rgba(225,29,72,0.28) 0%, transparent 55%), radial-gradient(at 85% 80%, rgba(124,58,237,0.22) 0%, transparent 50%)`,
         }}
       >
         <div
@@ -68,7 +70,14 @@ export default function DormsyOpengraphImage() {
             color: colors.muted,
           }}
         >
-          <span style={{ width: 48, height: 4, backgroundColor: colors.accent }} />
+          <span
+            style={{
+              width: 80,
+              height: 4,
+              borderRadius: 2,
+              backgroundImage: `linear-gradient(90deg, ${colors.accent}, ${colors.purple})`,
+            }}
+          />
           getdormsy.com
         </div>
       </div>

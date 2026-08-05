@@ -15,19 +15,25 @@ export type SiteLink = {
 export const site = {
   name: "Dimitrije Stasic",
   shortName: "Dimi",
-  // Short role label shown under the name in the sidebar.
+  // Short role label used in metadata and the résumé header.
   role: "Backend Developer",
   // One-line positioning used as the meta description base and OG image subtitle.
-  positioning: "CS junior at Luther College. Backend developer. Building healthtech.",
+  positioning:
+    "CS junior at Luther College. Backend developer. Building healthtech.",
 
-  // Hero: an availability eyebrow, a statement headline (the accent period is
-  // added in the component), and a credential-citing summary.
-  availability: "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
-  // Compact availability label for the sidebar and contact pills.
-  availabilityShort: "Available for work",
-  headline: "I build backend systems for healthtech",
+  // Hero: the line under the name, then a short blurb. Both stay short enough
+  // to hold the centre of the first viewport without wrapping past two lines.
+  headline: "Backend Developer · Healthtech",
+  heroBlurb:
+    "Computer science junior at Luther College with four software-engineering internships, most recently at SkyIT and Mayo Clinic's Digital Health division. Building backend systems where the details matter.",
+
+  // Longer summary used on the résumé page and in structured data.
   summary:
     "I'm a computer science junior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
+
+  availability:
+    "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
+  availabilityShort: "Available for work",
 
   location: "Decorah, Iowa",
   // Primary (school) email used for the nav/hero CTA and OG image; personal shown alongside.
@@ -41,6 +47,18 @@ export const site = {
   resumePath: "/resume",
   resumePdfPath: "/resume.pdf",
 } as const;
+
+// Single-page anchor targets, in the order they appear down the page. The
+// navbar renders these labels and scroll-spies their lowercased ids.
+export const navSections = [
+  "Home",
+  "About",
+  "Education",
+  "Experience",
+  "Projects",
+  "Skills",
+  "Contact",
+] as const;
 
 // Ordered links used by the hero and footer.
 export const primaryLinks: SiteLink[] = [

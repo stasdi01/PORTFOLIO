@@ -12,16 +12,16 @@ export function BrowserFrame({
 }) {
   return (
     <div
-      className={`overflow-hidden rounded-lg border border-line bg-card ${className ?? ""}`}
+      className={`overflow-hidden rounded-lg border border-[var(--border)] bg-[var(--surface)] ${className ?? ""}`}
     >
-      <div className="flex items-center gap-2 border-b border-line px-4 py-2">
+      <div className="flex items-center gap-2 border-b border-[var(--border)] px-4 py-2">
         <span aria-hidden className="flex gap-2">
-          <span className="h-2 w-2 rounded-full bg-line" />
-          <span className="h-2 w-2 rounded-full bg-line" />
-          <span className="h-2 w-2 rounded-full bg-line" />
+          <span className="h-2 w-2 rounded-full bg-foreground/15" />
+          <span className="h-2 w-2 rounded-full bg-foreground/15" />
+          <span className="h-2 w-2 rounded-full bg-foreground/15" />
         </span>
         {url ? (
-          <span className="truncate font-mono text-xs text-subtle">{url}</span>
+          <span className="truncate font-mono text-xs text-foreground/40">{url}</span>
         ) : null}
       </div>
       {children}

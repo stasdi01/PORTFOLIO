@@ -16,7 +16,7 @@ export function StackList({
         {stack.map((item) => (
           <li
             key={item}
-            className="rounded-lg bg-sage px-4 py-2 text-xs font-medium text-sage-fg"
+            className="rounded-full bg-foreground/5 px-3 py-1 text-sm text-foreground/70"
           >
             {item}
           </li>
@@ -26,7 +26,7 @@ export function StackList({
   }
 
   return (
-    <p className={`font-mono text-sm text-subtle ${className ?? ""}`}>
+    <p className={`font-mono text-sm text-foreground/50 ${className ?? ""}`}>
       {stack.join(" · ")}
     </p>
   );

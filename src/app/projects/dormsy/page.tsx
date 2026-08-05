@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
-import Link from "next/link";
 import Content from "@content/dormsy.mdx";
+import { BackLink } from "@/components/site/BackLink";
 
 export const metadata: Metadata = {
   title: "DormSy: Case Study",
@@ -10,13 +10,8 @@ export const metadata: Metadata = {
 
 export default function DormSyCaseStudy() {
   return (
-    <article className="mx-auto max-w-2xl px-6 py-24">
-      <Link
-        href="/#projects"
-        className="link-underline text-sm text-muted hover:text-accent-strong"
-      >
-        ← Back to work
-      </Link>
+    <article className="mx-auto max-w-3xl px-4 pt-28 pb-20 sm:px-6 md:pt-32">
+      <BackLink href="/#projects">Back to projects</BackLink>
       <div className="mt-12">
         <Content />
       </div>

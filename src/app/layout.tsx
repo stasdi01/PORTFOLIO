@@ -1,28 +1,28 @@
 import type { Metadata } from "next";
-import { Fraunces, JetBrains_Mono } from "next/font/google";
+import { Geist, Geist_Mono } from "next/font/google";
 import { site, siteUrl } from "@content/site";
-import { Sidebar } from "@/components/site/Sidebar";
+import { Navbar } from "@/components/site/Navbar";
+import { Footer } from "@/components/site/Footer";
 import "./globals.css";
 
-// The home page uses the system sans (matching the reference). Fraunces
-// (variable) still carries the display type and JetBrains Mono the micro-labels
-// on the résumé and case-study pages. Both self-hosted by next/font.
-const fraunces = Fraunces({
+// Geist carries the whole site; Geist Mono is kept for code and data in the
+// case study. Both self-hosted by next/font.
+const geistSans = Geist({
   subsets: ["latin"],
-  variable: "--font-fraunces",
+  variable: "--font-geist-sans",
   display: "swap",
 });
 
-const jetbrainsMono = JetBrains_Mono({
+const geistMono = Geist_Mono({
   subsets: ["latin"],
-  variable: "--font-jetbrains-mono",
+  variable: "--font-geist-mono",
   display: "swap",
 });
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
-    default: `${site.name} · Backend Developer`,
+    default: `${site.name} · ${site.role}`,
     template: `%s · ${site.name}`,
   },
   description: site.positioning,
@@ -38,11 +38,17 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${fraunces.variable} ${jetbrainsMono.variable} antialiased`}
+      className={`${geistSans.variable} ${geistMono.variable} antialiased`}
     >
-      <body className="min-h-dvh">
-        <Sidebar />
-        <div className="min-h-dvh pt-16 lg:pl-64 lg:pt-0">{children}</div>
+      <body>
+        {/* Fixed star layer, behind every page. */}
+        <div className="site-stars" aria-hidden="true" />
+
+        <div className="bg-hero-pattern min-h-screen text-foreground">
+          <Navbar />
+          {children}
+          <Footer />
+        </div>
       </body>
     </html>
   );

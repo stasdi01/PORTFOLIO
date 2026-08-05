@@ -4,16 +4,16 @@ import { site } from "@content/site";
 // Social share card. Rendered with next/og; this file is the one place inline
 // styles are required (ImageResponse only accepts them), so the design token
 // hex values are repeated here literally.
-export const alt = `${site.name} · Backend Developer`;
+export const alt = `${site.name} · ${site.role}`;
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 const colors = {
-  bg: "#faf9f7",
-  ink: "#1a1a1a",
-  muted: "#6b6a67",
-  accent: "#c65a2e",
-  line: "#e7e5e0",
+  bg: "#0a0a0b",
+  foreground: "#fafafa",
+  muted: "rgba(250, 250, 250, 0.6)",
+  accent: "#e11d48",
+  purple: "#7c3aed",
 };
 
 export default function OpengraphImage() {
@@ -28,7 +28,9 @@ export default function OpengraphImage() {
           justifyContent: "space-between",
           padding: "96px",
           backgroundColor: colors.bg,
-          color: colors.ink,
+          color: colors.foreground,
+          // The hero's nebulae, flattened into two soft washes.
+          backgroundImage: `radial-gradient(at 20% 20%, rgba(225,29,72,0.28) 0%, transparent 55%), radial-gradient(at 85% 80%, rgba(124,58,237,0.22) 0%, transparent 50%)`,
         }}
       >
         <div
@@ -42,9 +44,8 @@ export default function OpengraphImage() {
           {site.location}
         </div>
         <div style={{ display: "flex", flexDirection: "column" }}>
-          <div style={{ display: "flex", fontSize: 128, lineHeight: 1 }}>
+          <div style={{ display: "flex", fontSize: 118, lineHeight: 1.05 }}>
             {site.name}
-            <span style={{ color: colors.accent }}>.</span>
           </div>
           <div
             style={{
@@ -66,11 +67,18 @@ export default function OpengraphImage() {
             color: colors.muted,
           }}
         >
-          <span style={{ width: 48, height: 4, backgroundColor: colors.accent }} />
+          <span
+            style={{
+              width: 80,
+              height: 4,
+              borderRadius: 2,
+              backgroundImage: `linear-gradient(90deg, ${colors.accent}, ${colors.purple})`,
+            }}
+          />
           {site.email}
         </div>
       </div>
     ),
-    { ...size },
+    { ...size }
   );
 }

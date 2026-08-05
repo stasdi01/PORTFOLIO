@@ -1,100 +1,140 @@
-import Link from "next/link";
-import Image from "next/image";
-import type { Project } from "@/lib/types";
-import { StackList } from "./StackList";
-import { ExternalLinkIcon, GithubIcon } from "./icons";
+"use client";
 
-// Visual header for a card: the real screenshot when one exists, otherwise a
-// tinted placeholder carrying the project's initial (never a broken image).
-function CardMedia({ project }: { project: Project }) {
-  const { name, status, screenshot } = project;
+import Image from "next/image";
+import Link from "next/link";
+import { motion } from "motion/react";
+import type { Project } from "@/lib/types";
+import { fadeUpCard } from "./motion";
+
+type Props = {
+  project: Project;
+  className?: string;
+};
+
+/**
+ * A project as a cover-image card. The cover zooms and dims under a "View
+ * Project" label on hover; the whole card lifts on a spring. Projects without
+ * cover art fall back to the same gradient panel the image would sit on.
+ */
+export function ProjectCard({ project, className = "" }: Props) {
+  const href = project.caseStudyUrl ?? project.liveUrl ?? project.repoUrl;
+
   return (
-    <div className="relative aspect-[16/10] overflow-hidden bg-accent/5">
-      {screenshot ? (
-        <Image
-          src={screenshot.src}
-          alt={screenshot.alt}
-          fill
-          sizes="(min-width: 1024px) 45vw, 100vw"
-          className="object-cover object-top"
-        />
-      ) : (
-        <div className="flex h-full items-center justify-center bg-gradient-to-br from-sage to-accent/15">
-          <span className="text-5xl font-semibold text-sage-fg">
-            {name.charAt(0)}
-          </span>
+    <motion.article
+      id={project.slug}
+      className={`cosmic-card card-hover flex h-full flex-col overflow-hidden rounded-xl ${className}`}
+      variants={fadeUpCard}
+      whileHover={{ scale: 1.02 }}
+      transition={{ type: "spring", stiffness: 300, damping: 22 }}
+    >
+      <CardCover project={project} href={href} />
+
+      <div className="flex flex-grow flex-col p-4 md:p-6">
+        <div className="mb-2 flex items-start justify-between">
+          <h3 className="text-xl font-bold md:text-2xl">{project.name}</h3>
+          {project.year ? (
+            <span className="text-gradient-cosmic ml-2 text-sm font-medium whitespace-nowrap">
+              {project.year}
+            </span>
+          ) : null}
         </div>
-      )}
-      {status ? (
-        <span className="absolute left-4 top-4 inline-flex items-center gap-2 rounded-full bg-card/90 px-3 py-1 text-xs font-medium text-ink shadow-sm backdrop-blur">
-          <span aria-hidden className="h-2 w-2 rounded-full bg-dot" />
-          {status}
-        </span>
-      ) : null}
-    </div>
+
+        <p className="mb-4 text-foreground/60">{project.tagline}</p>
+
+        <div className="mb-4 flex flex-wrap gap-2">
+          {project.stack.map((tech) => (
+            <span
+              key={tech}
+              className="rounded-full bg-foreground/5 px-3 py-1 text-sm text-foreground/70"
+            >
+              {tech}
+            </span>
+          ))}
+        </div>
+
+        {href ? (
+          <div className="mt-auto">
+            <CardLink href={href} internal={Boolean(project.caseStudyUrl)}>
+              <span>
+                {project.caseStudyUrl ? "Learn More →" : "View Repo →"}
+              </span>
+            </CardLink>
+          </div>
+        ) : null}
+      </div>
+    </motion.article>
   );
 }
 
-const buttonBase =
-  "inline-flex flex-1 items-center justify-center gap-2 rounded-lg px-4 py-3 text-sm font-medium transition-all duration-150";
-const filledButton = `${buttonBase} bg-accent text-sidebar-fg hover:bg-accent-strong`;
-const outlineButton = `${buttonBase} border border-line bg-card text-ink hover:bg-sage/50`;
+// The cover is its own link so the image can carry a hover treatment
+// independent of the card's spring lift.
+function CardCover({ project, href }: { project: Project; href?: string }) {
+  const className =
+    "group/img relative block aspect-video w-full overflow-hidden bg-gradient-to-br from-foreground/10 to-foreground/5";
 
-// A project card matching the reference: media header, name, one-sentence
-// problem statement, tech pills, and a row of equal-width action buttons. The
-// first available link is filled, the rest outlined.
-export function ProjectCard({ project }: { project: Project }) {
-  const { name, tagline, stack, liveUrl, repoUrl, caseStudyUrl } = project;
-
-  // Ordered so the most representative link (the live site) becomes the filled
-  // primary button. Labeled "Live" — these are real production URLs, not demos.
-  const links = [
-    liveUrl
-      ? { key: "live", label: "Live", href: liveUrl, Icon: ExternalLinkIcon }
-      : null,
-    caseStudyUrl
-      ? { key: "case", label: "Case Study", href: caseStudyUrl, internal: true }
-      : null,
-    repoUrl
-      ? { key: "code", label: "Code", href: repoUrl, Icon: GithubIcon }
-      : null,
-  ].filter((link): link is NonNullable<typeof link> => link !== null);
-
-  return (
-    <article className="flex flex-col overflow-hidden rounded-card border border-line bg-card shadow-md transition-shadow duration-150 hover:shadow-xl">
-      <CardMedia project={project} />
-      <div className="flex flex-1 flex-col p-6">
-        <h3 className="font-sans text-2xl font-normal text-ink">{name}</h3>
-        <p className="mt-3 flex-1 text-muted">{tagline}</p>
-        <StackList stack={stack} variant="pills" className="mt-4" />
-
-        {links.length > 0 ? (
-          <div className="mt-6 flex flex-wrap gap-3">
-            {links.map((link, i) => {
-              const className = i === 0 ? filledButton : outlineButton;
-              const Icon = "Icon" in link ? link.Icon : null;
-              return link.internal ? (
-                <Link key={link.key} href={link.href} className={className}>
-                  {link.label}
-                </Link>
-              ) : (
-                <a
-                  key={link.key}
-                  href={link.href}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className={className}
-                >
-                  {Icon ? <Icon className="h-4 w-4" /> : null}
-                  {link.label}
-                </a>
-              );
-            })}
-          </div>
-        ) : (
-          <p className="mt-6 text-sm text-subtle">Private project</p>
-        )}
+  const cover = (
+    <>
+      {project.screenshot ? (
+        <Image
+          src={project.screenshot.src}
+          alt={project.screenshot.alt}
+          fill
+          sizes="(max-width: 768px) 100vw, (max-width: 1024px) 50vw, 33vw"
+          className="object-cover transition-transform duration-300 group-hover/img:scale-105"
+        />
+      ) : (
+        <div className="h-full w-full bg-gradient-to-br from-foreground/10 to-foreground/5 transition-transform duration-300 group-hover/img:scale-105" />
+      )}
+      <div className="absolute inset-0 flex items-center justify-center bg-black/0 transition-colors duration-300 group-hover/img:bg-black/30">
+        <span className="font-semibold text-white opacity-0 transition-opacity duration-300 group-hover/img:opacity-100">
+          View Project
+        </span>
       </div>
-    </article>
+    </>
+  );
+
+  if (!href) return <div className={className}>{cover}</div>;
+
+  return project.caseStudyUrl ? (
+    <Link href={href} className={`${className} cursor-pointer`}>
+      {cover}
+    </Link>
+  ) : (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={`${className} cursor-pointer`}
+    >
+      {cover}
+    </a>
+  );
+}
+
+function CardLink({
+  href,
+  internal,
+  children,
+}: {
+  href: string;
+  internal: boolean;
+  children: React.ReactNode;
+}) {
+  const className =
+    "btn-cosmic inline-block w-full rounded-lg px-4 py-2 text-center font-semibold";
+
+  return internal ? (
+    <Link href={href} className={className}>
+      {children}
+    </Link>
+  ) : (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={className}
+    >
+      {children}
+    </a>
   );
 }

@@ -39,8 +39,8 @@ export function ScreenshotSlot({
             className="h-auto w-full"
           />
         ) : (
-          <div className="flex aspect-video items-center justify-center bg-bg">
-            <span className="px-6 text-center text-sm text-subtle">
+          <div className="flex aspect-video items-center justify-center bg-background">
+            <span className="px-6 text-center text-sm text-foreground/40">
               {label}
             </span>
           </div>
@@ -48,7 +48,7 @@ export function ScreenshotSlot({
       </BrowserFrame>
       {caption ? (
         <figcaption
-          className={`mt-2 text-sm ${onDark ? "text-bg/60" : "text-subtle"}`}
+          className={`mt-2 text-sm ${onDark ? "text-foreground/50" : "text-foreground/40"}`}
         >
           {caption}
         </figcaption>

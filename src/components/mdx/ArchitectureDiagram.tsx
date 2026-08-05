@@ -18,9 +18,9 @@ export function ArchitectureDiagram() {
       >
         {nodes.map((node, i) => (
           <Fragment key={node.title}>
-            <div className="flex-1 rounded-lg border border-line bg-card p-6 text-center">
-              <p className="font-serif text-subtitle text-ink">{node.title}</p>
-              <p className="mt-2 text-sm text-muted">{node.sub}</p>
+            <div className="cosmic-card flex-1 rounded-xl p-6 text-center">
+              <p className="text-lg font-bold text-foreground">{node.title}</p>
+              <p className="mt-2 text-sm text-foreground/70">{node.sub}</p>
             </div>
             {i < nodes.length - 1 ? (
               <span aria-hidden className="self-center text-accent">
@@ -31,7 +31,7 @@ export function ArchitectureDiagram() {
           </Fragment>
         ))}
       </div>
-      <figcaption className="mt-4 text-sm text-subtle">
+      <figcaption className="mt-4 text-sm text-foreground/40">
         The frontend and API deploy separately; Supabase backs data, auth, and
         uploaded photos.
       </figcaption>

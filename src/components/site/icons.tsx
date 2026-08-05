@@ -1,193 +1,56 @@
-// Inline line icons (lucide-style, 24×24, 1.75 stroke). Kept as local SVGs so
-// the site needs no icon dependency. Each accepts the standard SVG props so
-// callers control size via className (e.g. "h-5 w-5") and color via currentColor.
+// The three marks the site links with: GitHub, LinkedIn, and the résumé. Kept
+// as local SVGs so the chrome needs no icon dependency (react-icons is used
+// only for the brand glyphs in the skills grid). Each accepts the standard SVG
+// props, so callers set size via className and colour via currentColor.
 
 type IconProps = React.SVGProps<SVGSVGElement>;
 
-function Base({ children, ...props }: IconProps & { children: React.ReactNode }) {
+// The social marks are solid rather than stroked, so they read at 24px against
+// the dark surface the way the rest of the accent chrome does.
+function Solid({
+  children,
+  ...props
+}: IconProps & { children: React.ReactNode }) {
   return (
-    <svg
-      viewBox="0 0 24 24"
-      fill="none"
-      stroke="currentColor"
-      strokeWidth={1.75}
-      strokeLinecap="round"
-      strokeLinejoin="round"
-      aria-hidden="true"
-      {...props}
-    >
+    <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" {...props}>
       {children}
     </svg>
   );
 }
 
-export function HomeIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M3 10.5 12 3l9 7.5" />
-      <path d="M5 9.5V21h14V9.5" />
-      <path d="M9.5 21v-6h5v6" />
-    </Base>
-  );
-}
-
-export function UserIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <circle cx="12" cy="8" r="4" />
-      <path d="M4 20c0-3.3 3.6-6 8-6s8 2.7 8 6" />
-    </Base>
-  );
-}
-
-export function CodeIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="m8 8-4 4 4 4" />
-      <path d="m16 8 4 4-4 4" />
-    </Base>
-  );
-}
-
-export function FolderIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M3 7a2 2 0 0 1 2-2h4l2 2.5h6a2 2 0 0 1 2 2V17a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2Z" />
-    </Base>
-  );
-}
-
-export function BriefcaseIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <rect x="3" y="7.5" width="18" height="12" rx="2" />
-      <path d="M8.5 7.5V6a2 2 0 0 1 2-2h3a2 2 0 0 1 2 2v1.5" />
-      <path d="M3 12.5h18" />
-    </Base>
-  );
-}
-
-export function MailIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <rect x="3" y="5" width="18" height="14" rx="2" />
-      <path d="m4 7 8 6 8-6" />
-    </Base>
-  );
-}
-
-export function DownloadIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 3v12" />
-      <path d="m7 11 5 5 5-5" />
-      <path d="M4 21h16" />
-    </Base>
-  );
-}
-
 export function GithubIcon(props: IconProps) {
   return (
-    <Base {...props}>
-      <path d="M9 19c-4 1.4-4-2.2-6-2.6m12 4.6v-3.6a3.1 3.1 0 0 0-.9-2.4c2.9-.3 5.9-1.4 5.9-6.4a5 5 0 0 0-1.4-3.5 4.6 4.6 0 0 0-.1-3.5s-1.1-.3-3.6 1.3a12.4 12.4 0 0 0-6.4 0C6.6 1.4 5.5 1.7 5.5 1.7a4.6 4.6 0 0 0-.1 3.5A5 5 0 0 0 4 8.7c0 5 3 6.1 5.8 6.4a3.1 3.1 0 0 0-.8 2.4V21" />
-    </Base>
+    <Solid {...props}>
+      <path
+        fillRule="evenodd"
+        clipRule="evenodd"
+        d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0 0 22 12.017C22 6.484 17.522 2 12 2Z"
+      />
+    </Solid>
   );
 }
 
 export function LinkedinIcon(props: IconProps) {
   return (
-    <Base {...props}>
-      <rect x="3" y="3" width="18" height="18" rx="2" />
-      <path d="M8 10.5V17" />
-      <path d="M8 7.5v.01" />
-      <path d="M12 17v-3.5a2 2 0 0 1 4 0V17" />
-      <path d="M12 13.5V10.5" />
-    </Base>
+    <Solid {...props}>
+      <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286ZM5.337 7.433a2.062 2.062 0 1 1 0-4.124 2.062 2.062 0 0 1 0 4.124Zm1.782 13.019H3.555V9h3.564v11.452ZM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003Z" />
+    </Solid>
   );
 }
 
-export function PhoneIcon(props: IconProps) {
+export function ResumeIcon(props: IconProps) {
   return (
-    <Base {...props}>
-      <path d="M4 5a1 1 0 0 1 1-1h2.6a1 1 0 0 1 1 .8l.8 3.4a1 1 0 0 1-.3 1L7.8 10.8a12 12 0 0 0 5.4 5.4l1.6-1.7a1 1 0 0 1 1-.3l3.4.8a1 1 0 0 1 .8 1V19a1 1 0 0 1-1 1A16 16 0 0 1 4 5Z" />
-    </Base>
-  );
-}
-
-export function MapPinIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M12 21s7-5.2 7-11a7 7 0 1 0-14 0c0 5.8 7 11 7 11Z" />
-      <circle cx="12" cy="10" r="2.5" />
-    </Base>
-  );
-}
-
-export function ExternalLinkIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M14 4h6v6" />
-      <path d="M20 4 10 14" />
-      <path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5" />
-    </Base>
-  );
-}
-
-export function SendIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M21 3 10.5 13.5" />
-      <path d="M21 3 14.5 21l-4-8-8-4L21 3Z" />
-    </Base>
-  );
-}
-
-export function MenuIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M4 7h16" />
-      <path d="M4 12h16" />
-      <path d="M4 17h16" />
-    </Base>
-  );
-}
-
-export function CloseIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M6 6 18 18" />
-      <path d="M18 6 6 18" />
-    </Base>
-  );
-}
-
-export function ServerIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <rect x="3" y="4" width="18" height="7" rx="2" />
-      <rect x="3" y="13" width="18" height="7" rx="2" />
-      <path d="M7 7.5v.01" />
-      <path d="M7 16.5v.01" />
-    </Base>
-  );
-}
-
-export function HeartPulseIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <path d="M20.5 8.5a4.5 4.5 0 0 0-8.5-2 4.5 4.5 0 0 0-8.5 2c0 4.5 8.5 10 8.5 10s3.2-2 5.6-4.8" />
-      <path d="M12 12.5h2l1.5-2.5 2 4 1.2-2h2.3" />
-    </Base>
-  );
-}
-
-export function UsersIcon(props: IconProps) {
-  return (
-    <Base {...props}>
-      <circle cx="9" cy="8" r="3.2" />
-      <path d="M3.5 20c0-3 2.5-5 5.5-5s5.5 2 5.5 5" />
-      <path d="M16 5.2a3.2 3.2 0 0 1 0 5.6" />
-      <path d="M17.5 15c2.3.5 3.9 2.4 3.9 5" />
-    </Base>
+    <svg
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      strokeWidth={2}
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      aria-hidden="true"
+      {...props}
+    >
+      <path d="M9 12h6m-6 4h6m2 5H7a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h5.586a1 1 0 0 1 .707.293l5.414 5.414a1 1 0 0 1 .293.707V19a2 2 0 0 1-2 2z" />
+    </svg>
   );
 }
