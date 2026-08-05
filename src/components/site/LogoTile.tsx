@@ -1,5 +1,18 @@
 import Image from "next/image";
 
+/**
+ * Backing colour for the tile. Real marks come in two flavours — light-on-dark
+ * and dark-on-light — and the tile has to match the one it holds or the logo
+ * sits in a contrasting frame.
+ */
+export type LogoTone = "dark" | "light" | "surface";
+
+const toneClass: Record<LogoTone, string> = {
+  dark: "bg-black",
+  light: "bg-white",
+  surface: "bg-background/90",
+};
+
 type Props = {
   /** Path under /public. Falls back to initials when absent. */
   src?: string;
@@ -7,6 +20,7 @@ type Props = {
   name: string;
   /** Rendered pixel size; also what next/image is asked for. */
   size: number;
+  tone?: LogoTone;
   className?: string;
 };
 
@@ -28,10 +42,16 @@ function initials(name: string) {
  * initials tile when it doesn't, so a missing asset never leaves a hole in the
  * card.
  */
-export function LogoTile({ src, name, size, className = "" }: Props) {
+export function LogoTile({
+  src,
+  name,
+  size,
+  tone = "dark",
+  className = "",
+}: Props) {
   return (
     <span
-      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--border)] bg-black ${className}`}
+      className={`flex shrink-0 items-center justify-center overflow-hidden rounded-lg border border-[var(--border)] ${toneClass[tone]} ${className}`}
     >
       {src ? (
         <Image
@@ -39,7 +59,7 @@ export function LogoTile({ src, name, size, className = "" }: Props) {
           alt={`${name} logo`}
           width={size}
           height={size}
-          className="object-contain p-1.5"
+          className="h-full w-full object-contain p-1"
         />
       ) : (
         <span className="text-xs font-bold tracking-wide text-foreground/50">

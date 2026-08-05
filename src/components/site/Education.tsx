@@ -48,7 +48,8 @@ export function Education() {
                     src={item.logo}
                     name={item.school}
                     size={48}
-                    className="h-12 w-12 border-2 border-white/15 bg-background/90 shadow-lg"
+                    tone={item.logoTone ?? "surface"}
+                    className="h-12 w-12 border-2 border-white/15 shadow-lg"
                   />
                 </div>
               </div>

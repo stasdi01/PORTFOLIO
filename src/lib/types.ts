@@ -2,6 +2,8 @@
 
 import type { IconType } from "react-icons";
 
+import type { LogoTone } from "@/components/site/LogoTile";
+
 export type Screenshot = {
   /** Path under /public, e.g. "/screenshots/dormsy-home.png". */
   src: string;
@@ -82,6 +84,8 @@ export type Experience = {
   tags: string[];
   /** Company mark under /public/logos. Falls back to initials. */
   logo?: string;
+  /** Set to "light" when the mark is dark-on-white. Defaults to dark. */
+  logoTone?: LogoTone;
 };
 
 export type Education = {
@@ -95,6 +99,8 @@ export type Education = {
   image?: string;
   /** School mark under /public/logos. Falls back to initials. */
   logo?: string;
+  /** Set to "light" when the mark is dark-on-white. Defaults to the surface tint. */
+  logoTone?: LogoTone;
 };
 
 export type SkillGroup = {

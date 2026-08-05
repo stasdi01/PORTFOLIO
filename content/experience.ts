@@ -4,14 +4,14 @@ import type { Experience } from "@/lib/types";
 // lead with what was built and its impact. Every tag names a technology that
 // already appears in that role's bullets — nothing is added from outside them.
 //
-// TODO(dimi): add square company marks under /public/logos as skyit.png,
-// mayo-clinic.png, jaka-lounge.png, and webx.png (~256px each). Roles without
-// one render an initials tile instead.
+// TODO(dimi): add a square WEBX mark at /public/logos/webx.png (~256px).
+// Roles without one render an initials tile.
 export const experience: Experience[] = [
   {
     company: "SkyIT / GBCS Group",
     role: "Backend Developer Intern",
     period: "Jun 2026 – Present",
+    logo: "/logos/skyit.png",
     tags: ["Django REST Framework", "MySQL", "Docker", "JWT", "Multi-tenancy"],
     bullets: [
       "Contributed to a multi-tenant enterprise ESG and greenhouse-gas emissions platform (Django REST Framework, MySQL, Docker) that serves three branded frontends from one shared backend.",
@@ -25,6 +25,8 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     period: "Feb 2026 – May 2026",
     location: "Rochester, MN",
+    logo: "/logos/mayo-clinic.png",
+    logoTone: "light",
     tags: ["React", "FastAPI", "DICOM", "JWT", "RBAC"],
     bullets: [
       "Built a browser-based DICOM PHI anonymizer applying 300+ de-identification rules per HIPAA standards.",
@@ -37,6 +39,8 @@ export const experience: Experience[] = [
     role: "Software Engineer Intern",
     period: "Jul 2025 – Sep 2025",
     location: "Belgrade, Serbia",
+    logo: "/logos/jaka-lounge.png",
+    logoTone: "light",
     tags: ["Kotlin", "REST APIs", "Git"],
     bullets: [
       "Contributed to backend development of a career-verification platform, building database records in Kotlin.",

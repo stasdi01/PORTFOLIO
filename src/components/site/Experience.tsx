@@ -35,6 +35,7 @@ export function Experience() {
                   src={item.logo}
                   name={item.company}
                   size={44}
+                  tone={item.logoTone}
                   className="h-11 w-11"
                 />
                 <div className="flex min-w-0 flex-1 flex-col gap-1 sm:flex-row sm:items-start sm:justify-between">

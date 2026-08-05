@@ -34,7 +34,7 @@ export const projects: Project[] = [
       height: 1097,
     },
     hero: {
-      // TODO(dimi): set iconSrc: "/icons/dormsy.png" once the art exists.
+      iconSrc: "/icons/dormsy.png",
       monogram: "DS",
       accent: "emerald",
       position: "top-[14%] left-[7%]",
