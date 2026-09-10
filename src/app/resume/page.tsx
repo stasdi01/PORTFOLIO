@@ -2,17 +2,12 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import { site } from "@content/site";
 import { BackLink } from "@/components/site/BackLink";
-
-export const metadata: Metadata = {
-  title: "Résumé",
-  description: `Résumé for ${site.name}: ${site.positioning}`,
-};
-
-// Pixel size of public/resume.png, rasterised from public/resume.pdf at 3x so
-// it stays sharp on retina displays. Next/Image needs the intrinsic dimensions
-// to reserve the right box before the file loads.
-const PAGE_WIDTH = 1836;
-const PAGE_HEIGHT = 2376;
+// Imported as a module rather than referenced as "/resume.png" so the build
+// fingerprints it. Swapping in a new résumé changes the emitted filename,
+// which retires the old image from every cache instead of leaving a stale
+// copy behind a URL that never changes. The import also carries the intrinsic
+// dimensions, so nothing has to be kept in sync by hand.
+import resumePage from "../../../public/resume.png";
 
 /**
  * The résumé itself, shown as a rendered page image rather than retyped as
@@ -37,10 +32,8 @@ export default function ResumePage() {
 
       <div className="cosmic-card mt-8 overflow-hidden rounded-2xl p-2 sm:mt-12 sm:p-4">
         <Image
-          src="/resume.png"
+          src={resumePage}
           alt={`Résumé of ${site.name}`}
-          width={PAGE_WIDTH}
-          height={PAGE_HEIGHT}
           priority
           sizes="(max-width: 896px) 100vw, 896px"
           className="h-auto w-full rounded-lg"

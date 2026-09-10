@@ -47,9 +47,13 @@ whenever the PDF changes so the two never drift apart:
 sips -s format png public/resume.pdf --out public/resume.png   # 72 dpi
 ```
 
-For a sharp 3x render, use PDFKit (macOS) or `pdftoppm -r 216 -png`. The page
-component reads the pixel dimensions from constants at the top of
-`src/app/resume/page.tsx`; update them if the render size changes.
+For a sharp 3x render, use PDFKit (macOS) or `pdftoppm -r 216 -png`.
+
+`src/app/resume/page.tsx` imports the PNG as a module rather than pointing at
+`/resume.png`, so the build fingerprints it and its dimensions come along
+automatically. Dropping in a new render is the whole update: the emitted
+filename changes with the contents, which retires the old image from the
+browser and image-optimizer caches on its own.
 
 ## Design system
 
