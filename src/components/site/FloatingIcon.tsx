@@ -94,7 +94,7 @@ export function FloatingIcon({
         <div className="group relative">
           <Link
             href={href}
-            aria-label={`${name} — ${status}`}
+            aria-label={`${name} (${status})`}
             className="block rounded-2xl focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent focus-visible:ring-offset-2 focus-visible:ring-offset-background"
           >
             <motion.div

@@ -17,7 +17,7 @@ import resumePage from "../../../public/resume.png";
 export default function ResumePage() {
   return (
     <main className="mx-auto max-w-4xl px-4 pt-28 pb-20 sm:px-6 md:pt-32">
-      <h1 className="sr-only">{site.name} — Résumé</h1>
+      <h1 className="sr-only">Résumé of {site.name}</h1>
 
       <div className="flex items-center justify-between gap-4">
         <BackLink href="/">Back home</BackLink>

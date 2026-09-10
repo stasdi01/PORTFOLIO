@@ -23,8 +23,8 @@ export default function ProjectsPage() {
         </div>
 
         <p className="mt-8 max-w-2xl text-base text-foreground/60 md:text-lg">
-          Everything I&rsquo;ve built end to end — two live in production, the
-          rest along the way.
+          Everything I&rsquo;ve built end to end. Two are live in production,
+          and the rest came together along the way.
         </p>
 
         <ProjectList projects={projects} />
