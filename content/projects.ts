@@ -76,20 +76,10 @@ export const projects: Project[] = [
       width: 2922,
       height: 1594,
     },
-  },
-  {
-    name: "Impostor League",
-    slug: "impostor-league",
-    year: "2026",
-    tagline:
-      "A party game born from a night of playing Spy with friends: we're all sports fans, so I remade it around sports players and clubs instead of everyday places, with two AI-driven modes that generate the words through an OpenAI-backed Supabase Edge Function.",
-    stack: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
-    status: "Completed",
-    repoUrl: "https://github.com/stasdi01/ImpostorLeague",
     hero: {
-      // TODO(dimi): set iconSrc: "/icons/impostor-league.png".
-      monogram: "IL",
-      accent: "violet",
+      // TODO(dimi): set iconSrc: "/icons/tipliga.png" (80x80 transparent PNG).
+      monogram: "TL",
+      accent: "amber",
       position: "top-[17%] right-[8%]",
       tooltipBelow: true,
       parallaxFactor: 14,
@@ -103,6 +93,16 @@ export const projects: Project[] = [
         delay: 0.8,
       },
     },
+  },
+  {
+    name: "Impostor League",
+    slug: "impostor-league",
+    year: "2026",
+    tagline:
+      "A party game born from a night of playing Spy with friends: we're all sports fans, so I remade it around sports players and clubs instead of everyday places, with two AI-driven modes that generate the words through an OpenAI-backed Supabase Edge Function.",
+    stack: ["React Native", "Expo", "TypeScript", "Supabase", "OpenAI"],
+    status: "Completed",
+    repoUrl: "https://github.com/stasdi01/ImpostorLeague",
   },
   {
     name: "Clinic Management Web App",

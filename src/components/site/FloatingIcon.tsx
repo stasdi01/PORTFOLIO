@@ -20,18 +20,21 @@ const haloClass: Record<HeroAccent, string> = {
   emerald: "halo-emerald",
   violet: "halo-violet",
   blue: "halo-blue",
+  amber: "halo-amber",
 };
 
 const litClass: Record<HeroAccent, string> = {
   emerald: "icon-lit-emerald",
   violet: "icon-lit-violet",
   blue: "icon-lit-blue",
+  amber: "icon-lit-amber",
 };
 
 const monogramClass: Record<HeroAccent, string> = {
   emerald: "monogram-emerald",
   violet: "monogram-violet",
   blue: "monogram-blue",
+  amber: "monogram-amber",
 };
 
 type Props = {

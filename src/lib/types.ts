@@ -44,7 +44,7 @@ export type Project = {
 };
 
 /** Halo colour for a floating hero icon. Each maps to a set of CSS classes. */
-export type HeroAccent = "emerald" | "violet" | "blue";
+export type HeroAccent = "emerald" | "violet" | "blue" | "amber";
 
 /**
  * A project rendered as a drifting icon in the hero. `iconSrc` is optional —
