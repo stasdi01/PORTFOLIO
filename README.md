@@ -80,7 +80,8 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 **`content/projects.ts`**
 - [x] Real projects: DormSy (featured), Impostor League, Clinic Management.
 - [x] DormSy live URL added (getdormsy.com).
-- [x] TipLiga added on `/projects` only (live + repo, leaderboard screenshot).
+- [x] TipLiga added and featured on the home page in place of Impostor League
+      (live + repo, leaderboard screenshot).
 - [ ] Add DormSy's repo URL if the repository is public.
 - [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
 - [x] DormSy screenshot added (`public/screenshots/dormsy-home.png`).

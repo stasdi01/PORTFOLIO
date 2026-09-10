@@ -76,7 +76,6 @@ export const projects: Project[] = [
       width: 2922,
       height: 1594,
     },
-    // No `hero`: TipLiga is listed on /projects only, not on the home page.
   },
   {
     name: "Impostor League",
@@ -133,7 +132,7 @@ export const projects: Project[] = [
   },
 ];
 
-const homeSlugs = ["dormsy", "impostor-league", "clinic-management"];
+const homeSlugs = ["dormsy", "tipliga", "clinic-management"];
 
 /** The three cards shown on the home page, flagship first. */
 export const featuredProjects = projects.filter((project) =>
