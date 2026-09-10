@@ -17,7 +17,15 @@ type Props = {
  * cover art fall back to the same gradient panel the image would sit on.
  */
 export function ProjectCard({ project, className = "" }: Props) {
-  const href = project.caseStudyUrl ?? project.liveUrl ?? project.repoUrl;
+  const href = project.caseStudyUrl ?? project.repoUrl ?? project.liveUrl;
+  const label = project.caseStudyUrl
+    ? "Learn More →"
+    : project.repoUrl
+      ? "View Repo →"
+      : "View Live →";
+  // When the main button goes to the repo, a live app still gets its own link.
+  const secondaryLiveUrl =
+    !project.caseStudyUrl && project.repoUrl ? project.liveUrl : undefined;
 
   return (
     <motion.article
@@ -55,10 +63,18 @@ export function ProjectCard({ project, className = "" }: Props) {
         {href ? (
           <div className="mt-auto">
             <CardLink href={href} internal={Boolean(project.caseStudyUrl)}>
-              <span>
-                {project.caseStudyUrl ? "Learn More →" : "View Repo →"}
-              </span>
+              <span>{label}</span>
             </CardLink>
+            {secondaryLiveUrl ? (
+              <a
+                href={secondaryLiveUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="mt-2 block rounded text-center text-sm text-foreground/60 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+              >
+                Live app ↗
+              </a>
+            ) : null}
           </div>
         ) : null}
       </div>
