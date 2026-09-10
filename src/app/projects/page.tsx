@@ -23,7 +23,7 @@ export default function ProjectsPage() {
         </div>
 
         <p className="mt-8 max-w-2xl text-base text-foreground/60 md:text-lg">
-          Everything I&rsquo;ve built end to end — one live in production, the
+          Everything I&rsquo;ve built end to end — two live in production, the
           rest along the way.
         </p>
 

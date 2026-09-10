@@ -52,6 +52,33 @@ export const projects: Project[] = [
     },
   },
   {
+    name: "TipLiga",
+    slug: "tipliga",
+    year: "2026",
+    tagline:
+      "A private prediction league I built and ran for my friends during the 2026 World Cup group stage: players pick match outcomes, earn points as results come in, and compete on a live leaderboard.",
+    stack: [
+      "Next.js",
+      "TypeScript",
+      "Prisma",
+      "PostgreSQL",
+      "Supabase",
+      "Vercel",
+    ],
+    status: "Completed",
+    facts: ["Built end to end", "Invite-only", "16 players"],
+    liveUrl: "https://tipliga-hazel.vercel.app/login",
+    repoUrl: "https://github.com/stasdi01/TipLiga",
+    screenshot: {
+      src: "/screenshots/tipliga-leaderboard.png",
+      alt: "TipLiga admin leaderboard from the 2026 World Cup: 16 players ranked by prediction points, referral points, and the 2-point tiebreaker",
+      url: "tipliga-hazel.vercel.app",
+      width: 2922,
+      height: 1594,
+    },
+    // No `hero`: TipLiga is listed on /projects only, not on the home page.
+  },
+  {
     name: "Impostor League",
     slug: "impostor-league",
     year: "2026",
@@ -106,5 +133,9 @@ export const projects: Project[] = [
   },
 ];
 
+const homeSlugs = ["dormsy", "impostor-league", "clinic-management"];
+
 /** The three cards shown on the home page, flagship first. */
-export const featuredProjects = projects;
+export const featuredProjects = projects.filter((project) =>
+  homeSlugs.includes(project.slug),
+);

@@ -30,7 +30,7 @@ touching JSX.
 | File | What it controls |
 | --- | --- |
 | `content/site.ts` | Name, positioning line, location, email, GitHub/LinkedIn URLs, résumé paths. Feeds the hero, footer, résumé, metadata, and OG image. |
-| `content/projects.ts` | The project cards (max 3). DormSy is real; two placeholder entries are there to fill or delete. |
+| `content/projects.ts` | Every project card. `/projects` lists them all; `homeSlugs` picks the three shown on the home page. |
 | `content/experience.ts` | Roles at Mayo Clinic and SkyIT. Dates are real; bullets are placeholders. |
 | `content/about.ts` | The short About paragraphs. |
 | `content/dormsy.mdx` | The full DormSy case study. Prose is Markdown; the boxed sections are React components imported at the top of the file. |
@@ -80,6 +80,7 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 **`content/projects.ts`**
 - [x] Real projects: DormSy (featured), Impostor League, Clinic Management.
 - [x] DormSy live URL added (getdormsy.com).
+- [x] TipLiga added on `/projects` only (live + repo, leaderboard screenshot).
 - [ ] Add DormSy's repo URL if the repository is public.
 - [ ] Optional: add a live/demo and repo link for Clinic Management Web App.
 - [x] DormSy screenshot added (`public/screenshots/dormsy-home.png`).
