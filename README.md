@@ -39,9 +39,17 @@ touching JSX.
 `ScreenshotSlot` at them (or swap it for `next/image`). Until then, slots render
 as labelled placeholder frames.
 
-**Résumé PDF:** replace `public/resume.pdf` (currently a placeholder) with your
-real file. The `/resume` page also renders a clean HTML version from the same
-content files.
+**Résumé:** `public/resume.pdf` is the download. `/resume` displays
+`public/resume.png`, a 3x rasterisation of page one of that PDF — regenerate it
+whenever the PDF changes so the two never drift apart:
+
+```bash
+sips -s format png public/resume.pdf --out public/resume.png   # 72 dpi
+```
+
+For a sharp 3x render, use PDFKit (macOS) or `pdftoppm -r 216 -png`. The page
+component reads the pixel dimensions from constants at the top of
+`src/app/resume/page.tsx`; update them if the render size changes.
 
 ## Design system
 
@@ -86,11 +94,11 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
       (add a `source={{ href, label }}` prop to `ProblemFix`) (optional).
 - [x] Case-study screenshot added (DormSy landing page).
 
-**`content/skills.ts`** and **`src/app/resume/page.tsx`**
+**`content/skills.ts`**
 - [x] Education (B.A. Computer Science, 2023–2027) and Technical Skills from the résumé.
 
 **Assets**
-- [ ] Replace `public/resume.pdf` with your real résumé.
+- [x] Replace `public/resume.pdf` with your real résumé.
 
 ## Deploy to Vercel
 
