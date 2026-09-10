@@ -11,6 +11,8 @@ type Props = {
   className?: string;
 };
 
+type SecondaryLink = { href: string; label: string };
+
 /**
  * A project as a cover-image card. The cover zooms and dims under a "View
  * Project" label on hover; the whole card lifts on a spring. Projects without
@@ -19,13 +21,19 @@ type Props = {
 export function ProjectCard({ project, className = "" }: Props) {
   const href = project.caseStudyUrl ?? project.repoUrl ?? project.liveUrl;
   const label = project.caseStudyUrl
-    ? "Learn More →"
+    ? "Read Case Study →"
     : project.repoUrl
       ? "View Repo →"
       : "View Live →";
-  // When the main button goes to the repo, a live app still gets its own link.
-  const secondaryLiveUrl =
-    !project.caseStudyUrl && project.repoUrl ? project.liveUrl : undefined;
+  // Every link the main button didn't take gets its own outline button, so
+  // the live site and repo are one click away even when a case study leads.
+  const secondaryLinks = [
+    { href: project.liveUrl, label: "Live Site" },
+    { href: project.repoUrl, label: "GitHub" },
+  ].filter(
+    (link): link is SecondaryLink =>
+      link.href !== undefined && link.href !== href,
+  );
 
   return (
     <motion.article
@@ -65,15 +73,22 @@ export function ProjectCard({ project, className = "" }: Props) {
             <CardLink href={href} internal={Boolean(project.caseStudyUrl)}>
               <span>{label}</span>
             </CardLink>
-            {secondaryLiveUrl ? (
-              <a
-                href={secondaryLiveUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="mt-2 block rounded text-center text-sm text-foreground/60 transition-colors hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+            {secondaryLinks.length > 0 ? (
+              <div
+                className={`mt-2 grid gap-2 ${secondaryLinks.length > 1 ? "grid-cols-2" : "grid-cols-1"}`}
               >
-                Live app ↗
-              </a>
+                {secondaryLinks.map((link) => (
+                  <a
+                    key={link.label}
+                    href={link.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="btn-outline block rounded-lg px-4 py-2 text-center text-sm font-semibold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent"
+                  >
+                    {link.label} <span aria-hidden="true">↗</span>
+                  </a>
+                ))}
+              </div>
             ) : null}
           </div>
         ) : null}
