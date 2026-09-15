@@ -48,6 +48,11 @@ home page uses longer bullets than the PDF. Whenever you replace the PDF, update
 drift apart. The web version leaves out the phone number and the "Portfolio"
 link; the PDF keeps both.
 
+The page is styled as a white sheet set in Latin Modern Roman, the font the
+LaTeX PDF uses. The font files live in `src/app/resume/fonts/`: CTAN's OpenType
+release (GUST Font License), subset to Latin with fontTools and renamed, about
+84KB for all four. Only `/resume` loads them.
+
 ## Design system
 
 - **Type:** Fraunces (display) + Inter (body), self-hosted via `next/font`.

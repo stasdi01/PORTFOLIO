@@ -1,21 +1,41 @@
 import type { Metadata } from "next";
+import localFont from "next/font/local";
 import { resume } from "@content/resume";
 import { site } from "@content/site";
 import { BackLink } from "@/components/site/BackLink";
-import { StackList } from "@/components/site/StackList";
 
 export const metadata: Metadata = {
   title: "Résumé",
   description: `Résumé for ${site.name}: ${site.positioning}`,
 };
 
+// Latin Modern Roman, the OpenType release of LaTeX's Computer Modern that the
+// PDF is set in, so the sheet reads as the same document. Sourced from CTAN
+// (GUST Font License), subset to Latin and punctuation, and renamed as the
+// licence asks of modified files. Declared here so only /resume loads it.
+const latinModern = localFont({
+  src: [
+    { path: "./fonts/latin-modern-roman-regular-subset.woff", weight: "400", style: "normal" },
+    { path: "./fonts/latin-modern-roman-italic-subset.woff", weight: "400", style: "italic" },
+    { path: "./fonts/latin-modern-roman-bold-subset.woff", weight: "700", style: "normal" },
+  ],
+  fallback: ["Georgia", "serif"],
+});
+
+// The separate caps cut, for LaTeX's \scshape section headings.
+const latinModernCaps = localFont({
+  src: "./fonts/latin-modern-roman-caps-subset.woff",
+  weight: "400",
+  fallback: ["Georgia", "serif"],
+});
+
 function SectionTitle({ id, children }: { id: string; children: string }) {
   return (
     <h2
       id={id}
-      className="border-b border-foreground/10 pb-2 text-sm font-semibold tracking-widest uppercase"
+      className={`${latinModernCaps.className} mt-4 border-b border-ink text-lg leading-snug`}
     >
-      <span className="text-gradient-cosmic">{children}</span>
+      {children}
     </h2>
   );
 }
@@ -42,7 +62,7 @@ function EntryLine({
 
 function Bullets({ items }: { items: string[] }) {
   return (
-    <ul className="mt-2 list-disc space-y-1 pl-4 text-sm leading-relaxed text-foreground/70 marker:text-accent">
+    <ul className="mt-1 list-disc pl-6 text-sm leading-snug">
       {items.map((item) => (
         <li key={item}>{item}</li>
       ))}
@@ -50,10 +70,12 @@ function Bullets({ items }: { items: string[] }) {
   );
 }
 
+const linkClassName = "text-ink-link hover:underline";
+
 /**
- * The résumé as real markup: selectable, searchable, and readable by screen
- * readers, laid out in the same order as the PDF. Content comes from
- * content/resume.ts, which mirrors public/resume.pdf, so the two stay in step.
+ * The résumé as a sheet of paper: real, selectable markup laid out like the
+ * LaTeX PDF it mirrors, down to the typeface and link colour. Content comes
+ * from content/resume.ts, which is transcribed from public/resume.pdf.
  */
 export default function ResumePage() {
   return (
@@ -69,20 +91,26 @@ export default function ResumePage() {
         </a>
       </div>
 
-      <div className="cosmic-card mt-6 rounded-2xl p-6 sm:mt-12 sm:p-12">
+      {/* 17/22 is US Letter (8.5 × 11). It's a minimum, so content never clips. */}
+      <div
+        className={`${latinModern.className} mt-6 rounded-sm bg-paper px-4 py-6 text-ink shadow-2xl selection:bg-ink-link/20 selection:text-ink sm:mt-12 sm:px-12 sm:py-12 md:aspect-17/22`}
+      >
         <header className="text-center">
-          <h1 className="heading-gradient text-4xl font-bold md:text-5xl">
-            {resume.name}
-          </h1>
-          <ul className="mt-4 flex flex-wrap justify-center gap-x-4 gap-y-2 text-sm text-foreground/60">
-            {resume.links.map((link) => (
+          <h1 className="text-4xl leading-tight font-bold">{resume.name}</h1>
+          <ul className="flex flex-wrap justify-center text-sm">
+            {resume.links.map((link, index) => (
               <li key={link.href}>
+                {index > 0 ? (
+                  <span aria-hidden className="px-1">
+                    |
+                  </span>
+                ) : null}
                 <a
                   href={link.href}
                   {...(link.href.startsWith("http")
                     ? { target: "_blank", rel: "noopener noreferrer" }
                     : {})}
-                  className="transition-colors hover:text-accent"
+                  className={linkClassName}
                 >
                   {link.label}
                 </a>
@@ -91,88 +119,88 @@ export default function ResumePage() {
           </ul>
         </header>
 
-        <section className="mt-12" aria-labelledby="resume-education">
+        <section aria-labelledby="resume-education">
           <SectionTitle id="resume-education">Education</SectionTitle>
           {resume.education.map((item) => (
-            <div key={item.school} className="mt-4">
+            <div key={item.school} className="mt-1 sm:pl-4">
               <EntryLine
-                left={
-                  <h3 className="font-bold text-foreground">{item.school}</h3>
-                }
+                left={<h3 className="font-bold">{item.school}</h3>}
                 right={item.location}
-                className="text-foreground"
+                className="text-base"
               />
               <EntryLine
                 left={<p>{item.degree}</p>}
                 right={item.period}
-                className="text-sm text-foreground/60 italic"
+                className="text-sm italic"
               />
             </div>
           ))}
         </section>
 
-        <section className="mt-12" aria-labelledby="resume-experience">
+        <section aria-labelledby="resume-experience">
           <SectionTitle id="resume-experience">Experience</SectionTitle>
           {resume.experience.map((role) => (
-            <article key={`${role.company}-${role.period}`} className="mt-6">
+            <article
+              key={`${role.company}-${role.period}`}
+              className="mt-2 sm:pl-4"
+            >
               <EntryLine
-                left={
-                  <h3 className="font-bold text-foreground">{role.title}</h3>
-                }
+                left={<h3 className="font-bold">{role.title}</h3>}
                 right={role.period}
-                className="text-foreground"
+                className="text-base"
               />
               <EntryLine
                 left={<p>{role.company}</p>}
                 right={role.location}
-                className="text-sm text-foreground/60 italic"
+                className="text-sm italic"
               />
               <Bullets items={role.bullets} />
             </article>
           ))}
         </section>
 
-        <section className="mt-12" aria-labelledby="resume-projects">
+        <section aria-labelledby="resume-projects">
           <SectionTitle id="resume-projects">Projects</SectionTitle>
           {resume.projects.map((project) => (
-            <article key={project.name} className="mt-6">
+            <article key={project.name} className="mt-2 sm:pl-4">
               <EntryLine
                 left={
-                  <h3 className="font-bold text-foreground">
-                    {project.href ? (
-                      <a
-                        href={project.href}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-accent transition-colors hover:text-accent-hover"
-                      >
-                        {project.name}
-                      </a>
-                    ) : (
-                      project.name
-                    )}
-                  </h3>
+                  <div>
+                    <h3 className="inline font-bold">
+                      {project.href ? (
+                        <a
+                          href={project.href}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className={linkClassName}
+                        >
+                          {project.name}
+                        </a>
+                      ) : (
+                        project.name
+                      )}
+                    </h3>
+                    {" | "}
+                    <span className="text-sm italic">
+                      {project.stack.join(", ")}
+                    </span>
+                  </div>
                 }
                 right={project.period}
-                className="text-foreground"
+                className="text-base"
               />
-              <StackList stack={project.stack} className="mt-1" />
               <Bullets items={project.bullets} />
             </article>
           ))}
         </section>
 
-        <section className="mt-12" aria-labelledby="resume-skills">
+        <section aria-labelledby="resume-skills">
           <SectionTitle id="resume-skills">Technical Skills</SectionTitle>
-          <dl className="mt-4 space-y-2 text-sm leading-relaxed">
+          <dl className="mt-1 text-sm leading-relaxed sm:pl-4">
             {resume.skills.map((row) => (
               <div key={row.label}>
-                <dt className="inline font-semibold text-foreground">
-                  {row.label}:
-                </dt>{" "}
-                <dd className="inline text-foreground/70">
-                  {row.items.join(", ")}
-                </dd>
+                <dt className="inline font-bold">{row.label}</dt>
+                <dd className="inline">: {row.items.join(", ")}</dd>
               </div>
             ))}
           </dl>
