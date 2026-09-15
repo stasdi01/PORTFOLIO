@@ -103,6 +103,54 @@ export type Education = {
   logoTone?: LogoTone;
 };
 
+/**
+ * The résumé as printed in public/resume.pdf. Deliberately its own shape rather
+ * than reusing Experience or Education: the PDF's one-line bullets differ from
+ * the longer ones on the home page, and /resume must match the download.
+ */
+export type Resume = {
+  name: string;
+  links: ResumeLink[];
+  education: ResumeEducation[];
+  experience: ResumeRole[];
+  projects: ResumeProject[];
+  skills: ResumeSkillRow[];
+};
+
+export type ResumeLink = {
+  label: string;
+  href: string;
+};
+
+export type ResumeEducation = {
+  school: string;
+  degree: string;
+  period: string;
+  location: string;
+};
+
+export type ResumeRole = {
+  title: string;
+  company: string;
+  period: string;
+  location: string;
+  bullets: string[];
+};
+
+export type ResumeProject = {
+  name: string;
+  /** External link on the project name, when the PDF carries one. */
+  href?: string;
+  stack: string[];
+  period: string;
+  bullets: string[];
+};
+
+export type ResumeSkillRow = {
+  label: string;
+  items: string[];
+};
+
 export type SkillGroup = {
   title: string;
   items: Skill[];

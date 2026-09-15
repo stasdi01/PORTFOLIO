@@ -33,27 +33,20 @@ touching JSX.
 | `content/projects.ts` | Every project card. `/projects` lists them all; `homeSlugs` picks the three shown on the home page. |
 | `content/experience.ts` | Roles at Mayo Clinic and SkyIT. Dates are real; bullets are placeholders. |
 | `content/about.ts` | The short About paragraphs. |
+| `content/resume.ts` | The `/resume` page. Mirrors `public/resume.pdf` word for word. |
 | `content/dormsy.mdx` | The full DormSy case study. Prose is Markdown; the boxed sections are React components imported at the top of the file. |
 
 **Screenshots:** drop image files into `public/screenshots/`, then point
 `ScreenshotSlot` at them (or swap it for `next/image`). Until then, slots render
 as labelled placeholder frames.
 
-**Résumé:** `public/resume.pdf` is the download. `/resume` displays
-`public/resume.png`, a 3x rasterisation of page one of that PDF — regenerate it
-whenever the PDF changes so the two never drift apart:
-
-```bash
-sips -s format png public/resume.pdf --out public/resume.png   # 72 dpi
-```
-
-For a sharp 3x render, use PDFKit (macOS) or `pdftoppm -r 216 -png`.
-
-`src/app/resume/page.tsx` imports the PNG as a module rather than pointing at
-`/resume.png`, so the build fingerprints it and its dimensions come along
-automatically. Dropping in a new render is the whole update: the emitted
-filename changes with the contents, which retires the old image from the
-browser and image-optimizer caches on its own.
+**Résumé:** `public/resume.pdf` is the download. `/resume` renders the same
+document as HTML from `content/resume.ts`, a word-for-word transcription of
+that PDF. It is separate from `content/experience.ts` on purpose, because the
+home page uses longer bullets than the PDF. Whenever you replace the PDF, update
+`content/resume.ts` in the same change so the page and the download never
+drift apart. The web version leaves out the phone number and the "Portfolio"
+link; the PDF keeps both.
 
 ## Design system
 

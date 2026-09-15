@@ -43,7 +43,7 @@ export const site = {
   github: "https://github.com/stasdi01",
   linkedin: "https://www.linkedin.com/in/dimitrije-stasic-a225ab35b/",
 
-  // /resume shows the rendered résumé page image; /resume.pdf is the download.
+  // /resume renders content/resume.ts as markup; /resume.pdf is the download.
   resumePath: "/resume",
   resumePdfPath: "/resume.pdf",
 } as const;
