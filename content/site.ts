@@ -16,20 +16,20 @@ export const site = {
   name: "Dimitrije Stasic",
   shortName: "Dimi",
   // Short role label used in metadata and the résumé header.
-  role: "Backend Developer",
+  role: "Full-Stack Developer",
   // One-line positioning used as the meta description base and OG image subtitle.
   positioning:
-    "CS junior at Luther College. Backend developer. Building healthtech.",
+    "CS senior at Luther College. Full-stack developer. Building healthtech.",
 
   // Hero: the line under the name, then a short blurb. Both stay short enough
   // to hold the centre of the first viewport without wrapping past two lines.
-  headline: "Backend Developer · Healthtech",
+  headline: "Full-Stack Developer · Healthtech",
   heroBlurb:
-    "Computer science junior at Luther College with four software-engineering internships, most recently at SkyIT and Mayo Clinic's Digital Health division. Building backend systems where the details matter.",
+    "Computer science senior at Luther College with four software-engineering internships, most recently at SkyIT and Mayo Clinic's Biomedical Imaging Resource Core (BIRC). Building systems where the details matter.",
 
   // Longer summary used on the résumé page and in structured data.
   summary:
-    "I'm a computer science junior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Digital Health division. On the side I built DormSy, a campus marketplace now live in production.",
+    "I'm a computer science senior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Biomedical Imaging Resource Core (BIRC). On the side I built DormSy, a campus marketplace now live in production.",
 
   availability:
     "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
