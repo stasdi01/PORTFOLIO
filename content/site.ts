@@ -31,6 +31,7 @@ export const site = {
   summary:
     "I'm a computer science senior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Biomedical Imaging Resource Core (BIRC). On the side I built DormSy, a campus marketplace now live in production.",
 
+  // Shown as a pill between the hero blurb and its buttons.
   availability:
     "Seeking full-time software engineering roles & master's programs · Graduating May 2027",
   availabilityShort: "Available for work",

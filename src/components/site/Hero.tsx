@@ -125,12 +125,24 @@ export function Hero() {
         </motion.p>
 
         <motion.p
-          className="mx-auto mb-8 max-w-2xl px-2 text-base text-foreground/60 md:mb-12 md:px-0 md:text-lg"
+          className="mx-auto mb-6 max-w-2xl px-2 text-base text-foreground/60 md:px-0 md:text-lg"
           initial={{ opacity: 0, y: 16 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.25, ease: "easeOut" }}
         >
           {site.heroBlurb}
+        </motion.p>
+
+        {/* What I'm looking for, stated before the calls to action. Inline-flex
+            so the pill hugs its text and the container's text-center centres it. */}
+        <motion.p
+          className="mb-8 inline-flex items-center gap-2 rounded-2xl border border-foreground/10 bg-foreground/5 px-4 py-2 text-sm text-foreground/70 sm:rounded-full md:mb-12"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.7, delay: 0.3, ease: "easeOut" }}
+        >
+          <span aria-hidden className="h-2 w-2 shrink-0 rounded-full bg-accent" />
+          {site.availability}
         </motion.p>
 
         <motion.div
