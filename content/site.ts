@@ -23,7 +23,7 @@ export const site = {
 
   // Hero: the line under the name, then a short blurb. Both stay short enough
   // to hold the centre of the first viewport without wrapping past two lines.
-  headline: "Full-Stack Developer · Healthtech",
+  headline: "Full-Stack Developer",
   heroBlurb:
     "Computer science senior at Luther College with four software-engineering internships, most recently at SkyIT and Mayo Clinic's Biomedical Imaging Resource Core (BIRC). Building systems where the details matter.",
 
