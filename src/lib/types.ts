@@ -17,7 +17,11 @@ export type Screenshot = {
 };
 
 /** Lifecycle badge shown on project cards and hero-icon tooltips. */
-export type ProjectStatus = "Active" | "Maintained" | "Completed";
+export type ProjectStatus =
+  | "Active"
+  | "Maintained"
+  | "Completed"
+  | "In development";
 
 export type Project = {
   name: string;
@@ -39,12 +43,17 @@ export type Project = {
   featured?: boolean;
   /** Card cover art. Falls back to a gradient panel when absent. */
   screenshot?: Screenshot;
+  /**
+   * Portrait app screens for a mobile project, shown side by side as the card
+   * cover in place of `screenshot`. Up to three are used.
+   */
+  phoneScreens?: Screenshot[];
   /** Floating hero icon: 80x80 art, plus the halo colour behind it. */
   hero?: HeroIcon;
 };
 
 /** Halo colour for a floating hero icon. Each maps to a set of CSS classes. */
-export type HeroAccent = "emerald" | "violet" | "blue" | "amber";
+export type HeroAccent = "emerald" | "violet" | "blue" | "amber" | "teal";
 
 /**
  * A project rendered as a drifting icon in the hero. `iconSrc` is optional —

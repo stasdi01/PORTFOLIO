@@ -1002,6 +1002,33 @@
     color: rgba(254, 243, 199, 0.95);
   }
 
+  /* Dr Anamneza's brand turquoise (#2aa1b7). */
+  .halo-teal {
+    background: radial-gradient(ellipse, rgba(42, 161, 183, 0.6) 0%, transparent 70%);
+  }
+
+  .icon-lit-teal {
+    filter: drop-shadow(0 0 6px rgba(42, 161, 183, 0.3))
+      drop-shadow(0 0 16px rgba(42, 161, 183, 0.08));
+    transition: filter 0.3s ease;
+  }
+
+  .group:hover .icon-lit-teal,
+  .group:focus-within .icon-lit-teal {
+    filter: drop-shadow(0 0 10px rgba(42, 161, 183, 0.65))
+      drop-shadow(0 0 24px rgba(42, 161, 183, 0.24));
+  }
+
+  .monogram-teal {
+    background: linear-gradient(
+      145deg,
+      rgba(42, 161, 183, 0.22) 0%,
+      rgba(42, 161, 183, 0.06) 100%
+    );
+    border-color: rgba(42, 161, 183, 0.45);
+    color: rgba(207, 250, 254, 0.95);
+  }
+
   /* ---------------------------------------------------------------------- *
    * Type treatments
    * ---------------------------------------------------------------------- */

@@ -52,6 +52,60 @@ export const projects: Project[] = [
     },
   },
   {
+    name: "Dr Anamneza",
+    slug: "dr-anamneza",
+    year: "2026",
+    tagline:
+      "Private clinics in Serbia don't share records with each other or the public system, so patients carry folders of results to every visit. Dr Anamneza keeps a family's health records in one place and turns them into a one-page brief for any doctor.",
+    stack: [
+      "React Native",
+      "Expo",
+      "TypeScript",
+      "Supabase",
+      "PostgreSQL",
+      "TanStack Query",
+    ],
+    status: "In development",
+    facts: ["Solo build", "iOS-first", "Row-Level Security"],
+    repoUrl: "https://github.com/stasdi01/dr-anamneza",
+    phoneScreens: [
+      {
+        src: "/screenshots/dr-anamneza-home.png",
+        alt: "Dr Anamneza home screen: quick actions to add a document or prepare for a visit, current medications, and recently added documents",
+        width: 1206,
+        height: 2622,
+      },
+      {
+        src: "/screenshots/dr-anamneza-vault.png",
+        alt: "Dr Anamneza document vault with search and category filters",
+        width: 1206,
+        height: 2622,
+      },
+      {
+        src: "/screenshots/dr-anamneza-document.png",
+        alt: "Dr Anamneza document detail: the stored PDF, its date, doctor, and clinic",
+        width: 1206,
+        height: 2622,
+      },
+    ],
+    hero: {
+      iconSrc: "/icons/dr-anamneza.png",
+      monogram: "DA",
+      accent: "teal",
+      position: "bottom-[22%] left-[9%]",
+      parallaxFactor: 16,
+      drift: {
+        y: -8,
+        yDuration: 6.7,
+        yRepeatDelay: 0.3,
+        x: 10,
+        xDuration: 7.9,
+        xRepeatDelay: 0.7,
+        delay: 1.2,
+      },
+    },
+  },
+  {
     name: "TipLiga",
     slug: "tipliga",
     year: "2026",
@@ -132,7 +186,7 @@ export const projects: Project[] = [
   },
 ];
 
-const homeSlugs = ["dormsy", "tipliga", "clinic-management"];
+const homeSlugs = ["dormsy", "dr-anamneza", "tipliga"];
 
 /** The three cards shown on the home page, flagship first. */
 export const featuredProjects = projects.filter((project) =>

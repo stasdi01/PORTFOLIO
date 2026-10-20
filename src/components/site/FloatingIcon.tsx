@@ -14,6 +14,7 @@ const statusStyles: Record<ProjectStatus, string> = {
   Active: "bg-emerald-500/20 text-emerald-400 border border-emerald-500/30",
   Maintained: "bg-blue-500/20 text-blue-400 border border-blue-500/30",
   Completed: "bg-foreground/10 text-foreground/50 border border-foreground/20",
+  "In development": "bg-amber-500/20 text-amber-400 border border-amber-500/30",
 };
 
 const haloClass: Record<HeroAccent, string> = {
@@ -21,6 +22,7 @@ const haloClass: Record<HeroAccent, string> = {
   violet: "halo-violet",
   blue: "halo-blue",
   amber: "halo-amber",
+  teal: "halo-teal",
 };
 
 const litClass: Record<HeroAccent, string> = {
@@ -28,6 +30,7 @@ const litClass: Record<HeroAccent, string> = {
   violet: "icon-lit-violet",
   blue: "icon-lit-blue",
   amber: "icon-lit-amber",
+  teal: "icon-lit-teal",
 };
 
 const monogramClass: Record<HeroAccent, string> = {
@@ -35,6 +38,7 @@ const monogramClass: Record<HeroAccent, string> = {
   violet: "monogram-violet",
   blue: "monogram-blue",
   amber: "monogram-amber",
+  teal: "monogram-teal",
 };
 
 type Props = {

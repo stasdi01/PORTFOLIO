@@ -5,6 +5,7 @@ import Link from "next/link";
 import { motion } from "motion/react";
 import type { Project } from "@/lib/types";
 import { fadeUpCard } from "./motion";
+import { PhoneFrame } from "./PhoneFrame";
 
 type Props = {
   project: Project;
@@ -105,7 +106,22 @@ function CardCover({ project, href }: { project: Project; href?: string }) {
 
   const cover = (
     <>
-      {project.screenshot ? (
+      {project.phoneScreens ? (
+        <div className="flex h-full items-center justify-center gap-4 px-6 py-4 transition-transform duration-300 group-hover/img:scale-105">
+          {project.phoneScreens.slice(0, 3).map((screen) => (
+            <PhoneFrame key={screen.src} className="h-full">
+              <Image
+                src={screen.src}
+                alt={screen.alt}
+                width={screen.width}
+                height={screen.height}
+                sizes="(max-width: 768px) 30vw, 12vw"
+                className="h-full w-auto"
+              />
+            </PhoneFrame>
+          ))}
+        </div>
+      ) : project.screenshot ? (
         <Image
           src={project.screenshot.src}
           alt={project.screenshot.alt}
