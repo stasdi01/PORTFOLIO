@@ -1,6 +1,7 @@
 import type { Project } from "@/lib/types";
 
-// Real projects. DormSy is the flagship (first card + the only case study).
+// Real projects. DormSy is the flagship (first card); DormSy and Dr Anamneza
+// each have a case study.
 //
 // TODO(dimi): drop 80x80 transparent PNGs under /public/icons and point each
 // `hero.iconSrc` at one to replace the monogram tiles floating in the hero.
@@ -67,6 +68,7 @@ export const projects: Project[] = [
     ],
     status: "In development",
     facts: ["Solo build", "iOS-first", "Row-Level Security"],
+    caseStudyUrl: "/projects/dr-anamneza",
     repoUrl: "https://github.com/stasdi01/dr-anamneza",
     phoneScreens: [
       {

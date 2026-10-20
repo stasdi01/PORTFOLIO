@@ -1,0 +1,155 @@
+import { QuickFacts } from "@/components/mdx/QuickFacts";
+import { ArchitectureDiagram } from "@/components/mdx/ArchitectureDiagram";
+import { DecisionTable } from "@/components/mdx/DecisionTable";
+import { ProblemFix, Part } from "@/components/mdx/ProblemFix";
+import { PullQuote } from "@/components/mdx/PullQuote";
+import { PhoneScreens } from "@/components/mdx/PhoneScreens";
+
+# Dr Anamneza
+
+A personal health record app for patients in Serbia who use private healthcare. Patients store their medical documents, medications, and private notes for up to five family members, and turn them into a one-page brief they can show any doctor at any clinic. It's a React Native app built with Expo, on Supabase (Postgres, authentication, file storage, and Edge Functions) hosted in Frankfurt. I built it solo in about five weeks and 51 commits. It's in development: the app is built and runs end to end, but I haven't submitted it to the App Store yet.
+
+<QuickFacts
+  role="Solo build: product, mobile app, database, and backend"
+  timeline="June – August 2026"
+  stack={["React Native", "Expo (SDK 56)", "TypeScript", "Supabase", "TanStack Query", "Zustand", "PostHog"]}
+  links={[
+    { label: "Repo", href: "https://github.com/stasdi01/dr-anamneza" },
+  ]}
+/>
+
+<PhoneScreens
+  screens={[
+    { src: "/screenshots/dr-anamneza-home.png", alt: "Home screen: quick actions to add a document or prepare for a visit, current medications, and recently added documents", width: 1206, height: 2622 },
+    { src: "/screenshots/dr-anamneza-vault.png", alt: "Document vault with search and category filters, grouped by month", width: 1206, height: 2622 },
+    { src: "/screenshots/dr-anamneza-document.png", alt: "Document detail: the stored PDF with its date, doctor, and clinic, and links to private notes about each", width: 1206, height: 2622 },
+  ]}
+  caption="Home, the document vault, and a document's detail screen. The app is Serbian-only, so every label on screen is in Serbian."
+/>
+
+## The idea
+
+In Serbia, many people use private clinics, but those clinics don't share records with each other or with the public system. Patients have to carry their own folders of lab results and reports to every visit, and the government's eZdravlje app only covers public healthcare.
+
+During my internship at Mayo Clinic, I saw how much organized medical data matters. When it's in one place, a doctor can see the whole picture. When it isn't, the patient has to be the record. After that, I built Dr Anamneza: an app that lets patients keep their family's health records in one place and bring them to any doctor.
+
+## What it does
+
+The core loop is short. After a visit, you add the document to the app. Next time you see any doctor, you open the pre-visit brief.
+
+- **Profiles for the family.** One account holds up to five profiles, because the person keeping the records is often managing them for a parent or a child too. Each profile has its own documents, medications, notes, and a health baseline: blood type, allergies, chronic conditions, and an emergency contact.
+- **A document vault.** Lab results, imaging, prescriptions, visit findings, and vaccines, uploaded as a PDF or photo and tagged with a date, doctor, and clinic. The vault is searchable, including the text of your notes, and filters by category.
+- **Private notes.** Notes on a document ("repeat this test in three months") or on a doctor or clinic. They're only ever visible to you.
+- **The pre-visit brief.** One page: allergies, chronic conditions, current medications, the five most recent documents, and the emergency contact. It exports as a PDF to the share sheet, or as a link that expires after 1, 24, or 72 hours. Notes never appear in it.
+
+<PhoneScreens
+  screens={[
+    { src: "/screenshots/dr-anamneza-medications.png", alt: "Medications list for a profile, with an add button", width: 1206, height: 2622 },
+    { src: "/screenshots/dr-anamneza-paywall.png", alt: "Subscription paywall with four plans priced in Serbian dinars and the annual plan highlighted", width: 1206, height: 2622 },
+  ]}
+  caption="The medications list that feeds the brief, and the subscription screen shown when the 14-day trial ends. After that, documents stay readable but adding new ones is locked."
+/>
+
+## Architecture & technical decisions
+
+There is no backend server. The app talks to Supabase directly with the public anon key, and Postgres Row-Level Security decides what each request can see. Only two jobs can't be done that way, so they run as Edge Functions holding the service-role key: deleting an account, and serving a shared brief to a doctor who isn't signed in.
+
+<ArchitectureDiagram
+  nodes={[
+    { title: "Expo app", sub: "React Native · TanStack Query" },
+    { title: "Supabase", sub: "Postgres + RLS · Auth · Storage" },
+    { title: "Edge Functions", sub: "share-brief · delete-account" },
+  ]}
+  label="The Expo app reads and writes Supabase directly, with Row-Level Security scoping every query to the signed-in user. Two Supabase Edge Functions hold the service-role key for account deletion and for serving shared briefs."
+  caption="All data, files, and functions live in one Supabase project in Frankfurt (eu-central-1). The service-role key never ships in the app."
+/>
+
+<DecisionTable
+  rows={[
+    {
+      decision: "No API server: Row-Level Security is the boundary",
+      why: "DormSy taught me this one. There I put a separate Express API in front of Supabase and enforced the campus boundary in app code, and Row-Level Security ended up first on my list of what to fix. Health records raise the stakes, so here every table has RLS policies scoping rows to auth.uid() before any screen read data. The storage bucket is private, files are only reachable through short-lived signed URLs, and object paths start with the user's id so storage policies can scope them the same way.",
+      tradeoff: "Every rule has to be expressible in Postgres. The five-profile limit couldn't be a CHECK constraint, because Postgres doesn't allow subqueries in one, so it's a BEFORE INSERT trigger. The 72-hour cap on share links and the 20 MB upload limit are database and bucket constraints rather than only client checks.",
+      reconsider: "The subscription gate. RLS knows who owns a row, not whether their trial has ended, so the paywall is enforced by the app, not the database. Once payments are real, I'd move that check server-side.",
+    },
+    {
+      decision: "Expo and React Native instead of native Swift",
+      why: "The plan is iOS first, then Android from the same codebase. Expo Router's file-based navigation and TypeScript strict mode let me build 22 screens as one developer, with one language across the app, the shared types, and the Edge Functions.",
+      tradeoff: "The features that matter most are native modules: document scanning, Sign in with Apple, PDF printing, and in-app purchases. None of them run in Expo Go, so I worked from development builds through Xcode, which is how simulator signing and build configuration became problems of their own.",
+      reconsider: "I'd keep it. The native-module cost comes from the features, not from React Native: a Swift app would need the same Apple signing and device setup for scanning and purchases.",
+    },
+    {
+      decision: "Health data stays out of everything that leaves the account",
+      why: "Health data is a special category under Serbian data protection law, which is aligned with GDPR. So the database is in Frankfurt, notes are excluded from the brief by construction, and analytics run through PostHog's EU cloud with typed, behavioral-only events: no autocapture, no session replay, and nothing about a document, doctor, clinic, or note ever goes into an event property. The session token on the device is encrypted too (see the second bug below).",
+      tradeoff: "I can see that a user generated a brief, but not which kinds of documents people actually store. That's less product insight than a typical app gets, by choice.",
+      reconsider: "Whether a third-party analytics processor is worth it at all. The handful of counters I actually need could live in a first-party table in the same Frankfurt database, which would remove a data processor from the privacy policy.",
+    },
+  ]}
+/>
+
+## Problems I hit
+
+<PullQuote>
+  The worst bug in the app never threw an error. The session was simply gone, and every line of code involved was doing exactly what it said.
+</PullQuote>
+
+<ProblemFix title="Shared briefs arrived as raw HTML source">
+  <Part label="Problem">
+    The share link is meant for a doctor who doesn't have the app: they open it in a browser and see the brief. Instead of a rendered page, they got the brief's HTML source as plain text.
+  </Part>
+
+  <Part label="Diagnosis">
+    The link pointed at a Supabase Edge Function that returned the brief as `text/html`. On the default `supabase.co` domain, Supabase rewrites `text/html` responses to `text/plain` as an anti-phishing measure, so no browser would ever render it. Redirects and PDFs aren't affected.
+  </Part>
+
+  <Part label="Fix">
+    The brief is now rendered to a PDF on the device and uploaded next to that profile's documents, so deleting the profile or the account also removes it. The `share-brief` function validates the token, checks that it hasn't expired, bumps a view count, and answers with a 302 redirect to a signed URL that lives for five minutes. The HTML version can come back once the app has its own domain.
+  </Part>
+</ProblemFix>
+
+<ProblemFix title="Sessions were silently lost on relaunch">
+  <Part label="Problem">
+    I'd sometimes reopen the app and find myself signed out, even though I never logged out and the session hadn't expired.
+  </Part>
+
+  <Part label="Diagnosis">
+    A Supabase session is several kilobytes, too large to keep comfortably in the iOS Keychain. So the session lives AES-encrypted in AsyncStorage, and only the 32-byte key lives in the Keychain. My first version of that adapter generated a fresh random key on every write. When two session writes overlapped, one write's key could end up saved alongside the other write's ciphertext. On the next launch the session no longer decrypted, and the adapter treated an undecryptable value as "no session". Nothing errored. I just had to sign in again.
+  </Part>
+
+  <Part label="Fix">
+    `LargeSecureStore` now creates one key per storage key and reuses it, and concurrent callers share a single in-flight key creation so two writes can't each mint their own. Since the key is now stable, every write uses a fresh random IV, stored in front of the ciphertext, instead of the fixed counter the first version used.
+  </Part>
+</ProblemFix>
+
+{/* TODO(dimi): describe what the iCloud build failure actually looked like (the error or behavior you saw), 1–2 sentences, and replace the Problem part below. */}
+
+<ProblemFix title="Building inside an iCloud-synced folder">
+  <Part label="Problem">
+    Simulator builds wrote their output to `ios/build`, inside the project. The project lives on my Desktop, which syncs to iCloud.
+  </Part>
+
+  <Part label="Diagnosis">
+    An Xcode build writes thousands of intermediate files and rewrites them on every build, and iCloud was trying to sync that same folder while it happened.
+  </Part>
+
+  <Part label="Fix">
+    The `ios:sim` script now puts Xcode's derived data in `~/Library/Developer/DrAnamneza-build`, outside iCloud, and signs simulator builds ad hoc (`CODE_SIGN_IDENTITY=-`) instead of building them unsigned.
+  </Part>
+</ProblemFix>
+
+## Where it stands
+
+Dr Anamneza is in development. The app runs end to end against a real Supabase project: sign-up and login with email or Google, password reset by deep link, profiles and health baselines, document upload and viewing, notes, medications, the pre-visit brief with PDF export and expiring share links, data export, in-app account deletion, and dark mode.
+
+I haven't submitted it to the App Store yet. Before I do, a few pieces are still open:
+
+- **Payments.** The paywall and the 14-day trial work, but purchases aren't connected to RevenueCat yet.
+- **Camera scanning.** Documents can be uploaded as photos or PDFs today. Scanning with edge detection needs a physical device and Apple signing, so I deferred it.
+- **Sign in with Apple** is written but waits on Apple Developer enrollment, and Google sign-in's consent screen is still in testing mode.
+- **Transactional emails** (trial ending, subscription confirmed) aren't built yet.
+
+## What's next
+
+- **Finish the launch list above** and submit to the App Store, then ship Android from the same codebase.
+- **Trend charts for lab values,** like a cholesterol reading over time. Factual only: no reference ranges or "normal" and "abnormal" labels, so the app stays a record-keeping tool and not medical advice.
+- **A structured vaccine log** per profile that also appears in the brief.
