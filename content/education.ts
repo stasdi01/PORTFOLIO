@@ -6,7 +6,7 @@ import type { Education } from "@/lib/types";
 export const education: Education[] = [
   {
     school: "Luther College",
-    degree: "B.A. in Computer Science",
+    degree: "B.A. in Computer Science, minor in Data Science",
     period: "Expected May 2027",
     location: "Decorah, Iowa",
     details:

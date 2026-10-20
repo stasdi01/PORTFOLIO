@@ -9,8 +9,20 @@ import type { Experience } from "@/lib/types";
 export const experience: Experience[] = [
   {
     company: "SkyIT / GBCS Group",
+    role: "Backend Team Lead Intern",
+    period: "Aug 2026 – Oct 2026",
+    logo: "/logos/skyit.png",
+    tags: ["Code Review", "CI", "Team Leadership"],
+    bullets: [
+      "Led a team of 7 backend interns: task assignment, daily stand-ups, and weekly progress reports to the CEO.",
+      "Owned backend code review: merged 40+ PRs and 6,000+ lines across tenant isolation, auth, and migrations.",
+      "Introduced CI test gating and protected branching after repeated branch breakages; green builds now gate merges.",
+    ],
+  },
+  {
+    company: "SkyIT / GBCS Group",
     role: "Backend Developer Intern",
-    period: "Jun 2026 – Oct 2026",
+    period: "Jun 2026 – Aug 2026",
     logo: "/logos/skyit.png",
     tags: ["Django REST Framework", "MySQL", "Docker", "JWT", "Multi-tenancy"],
     bullets: [

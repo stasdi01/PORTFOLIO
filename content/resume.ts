@@ -18,16 +18,16 @@ export const resume: Resume = {
   education: [
     {
       school: "Luther College",
-      degree: "Bachelor of Arts in Computer Science",
+      degree: "Bachelor of Arts in Computer Science, minor in Data Science",
       period: "Aug. 2023 – May 2027",
       location: "Decorah, IA",
     },
   ],
   experience: [
     {
-      title: "Backend Team Lead",
+      title: "Backend Team Lead Intern",
       company: "GBCS Group (SkyIT)",
-      period: "Aug. 2026 – Present",
+      period: "Aug. 2026 – Oct. 2026",
       location: "Alberta, Canada",
       bullets: [
         "Lead a team of 7 backend interns: task assignment, daily stand-ups, and weekly progress reports to the CEO.",
@@ -143,7 +143,7 @@ export const resume: Resume = {
         "Azure",
         "Vercel",
         "Railway",
-        "Claude",
+        "Claude Code",
         "Cursor",
         "Jira",
         "Slack",
