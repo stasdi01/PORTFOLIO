@@ -10,7 +10,7 @@ export const experience: Experience[] = [
   {
     company: "SkyIT / GBCS Group",
     role: "Backend Developer Intern",
-    period: "Jun 2026 – Present",
+    period: "Jun 2026 – Oct 2026",
     logo: "/logos/skyit.png",
     tags: ["Django REST Framework", "MySQL", "Docker", "JWT", "Multi-tenancy"],
     bullets: [
