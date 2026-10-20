@@ -6,6 +6,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     { url: `${siteUrl}/`, priority: 1 },
     { url: `${siteUrl}/projects`, priority: 0.8 },
     { url: `${siteUrl}/projects/dormsy`, priority: 0.8 },
+    { url: `${siteUrl}/projects/dr-anamneza`, priority: 0.8 },
     { url: `${siteUrl}/resume`, priority: 0.5 },
   ];
 }
