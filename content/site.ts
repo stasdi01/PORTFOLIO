@@ -29,7 +29,7 @@ export const site = {
 
   // Longer summary used on the résumé page and in structured data.
   summary:
-    "I'm a computer science senior at Luther College with four software-engineering internships, currently at SkyIT and previously at Mayo Clinic's Biomedical Imaging Resource Core (BIRC). On the side I built DormSy, a campus marketplace now live in production.",
+    "I'm a computer science senior at Luther College with four software-engineering internships, most recently at SkyIT and before that at Mayo Clinic's Biomedical Imaging Resource Core (BIRC). On the side I built DormSy, a campus marketplace now live in production.",
 
   // Shown as a pill between the hero blurb and its buttons.
   availability:
