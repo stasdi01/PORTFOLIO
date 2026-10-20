@@ -2,8 +2,8 @@
 
 Live at **[dimitrijestasic.com](https://dimitrijestasic.com)**.
 
-A fast, type-and-content-driven personal site. Single-scroll home, a long-form
-DormSy case study, and a résumé page. Built with Next.js (App Router), Tailwind
+A fast, type-and-content-driven personal site. Single-scroll home, long-form
+case studies for DormSy and Dr Anamneza, and a résumé page. Built with Next.js (App Router), Tailwind
 CSS v4, and MDX. No CMS, no database; all copy lives in typed files under
 `/content`.
 
@@ -35,10 +35,13 @@ touching JSX.
 | `content/about.ts` | The short About paragraphs. |
 | `content/resume.ts` | The `/resume` page. Mirrors `public/resume.pdf` word for word. |
 | `content/dormsy.mdx` | The full DormSy case study. Prose is Markdown; the boxed sections are React components imported at the top of the file. |
+| `content/dr-anamneza.mdx` | The Dr Anamneza case study, built from the same components plus `PhoneScreens` for the mobile screenshots. |
 
 **Screenshots:** drop image files into `public/screenshots/`, then point
 `ScreenshotSlot` at them (or swap it for `next/image`). Until then, slots render
-as labelled placeholder frames.
+as labelled placeholder frames. Mobile apps use portrait screenshots instead:
+set `phoneScreens` on the project in `content/projects.ts` for the card cover,
+and use `PhoneScreens` in the case study. Both wrap each shot in a `PhoneFrame`.
 
 **Résumé:** `public/resume.pdf` is the download. `/resume` renders the same
 document as HTML from `content/resume.ts`, a word-for-word transcription of
@@ -97,6 +100,16 @@ Search the codebase for `TODO(dimi)` to jump to each. Grouped by file:
 - [ ] Problems: link each bug to a real file/commit if the repo is public
       (add a `source={{ href, label }}` prop to `ProblemFix`) (optional).
 - [x] Case-study screenshot added (DormSy landing page).
+
+**`content/dr-anamneza.mdx`**
+- [x] Project card (status "In development"), case study, share card, and
+      sitemap entry added; featured on the home page in place of Clinic
+      Management.
+- [x] Phone screenshots added (home, vault, document, medications, paywall).
+- [ ] Problems: describe what the iCloud build failure actually looked like
+      (1–2 sentences, replaces the Problem part of that entry).
+- [ ] Optional: add a screenshot of the pre-visit brief. It needs an account
+      with an active trial, since the brief is locked once the trial ends.
 
 **`content/skills.ts`**
 - [x] Education (B.A. Computer Science, 2023–2027) and Technical Skills from the résumé.
